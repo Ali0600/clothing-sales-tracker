@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "name": "Clothing Sales Tracker",
+    "slug": "clothing-sales-tracker",
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "cst",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.cst.mobile"
+    },
+    "android": {
+      "package": "com.cst.mobile"
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "plugins": ["expo-router"],
+    "extra": {
+      "snapshotBaseUrl": "https://raw.githubusercontent.com/REPLACE_ME/clothing-sales-tracker/main/data"
+    }
+  }
+}

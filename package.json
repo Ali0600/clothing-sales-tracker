@@ -1,0 +1,17 @@
+{
+  "name": "clothing-sales-tracker",
+  "version": "0.0.1",
+  "private": true,
+  "packageManager": "pnpm@9.12.0",
+  "scripts": {
+    "scrape": "tsx scripts/scrape.ts",
+    "scrape:uniqlo": "tsx scripts/scrape.ts uniqlo",
+    "mobile": "pnpm --filter mobile start",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.9.0"
+  }
+}
