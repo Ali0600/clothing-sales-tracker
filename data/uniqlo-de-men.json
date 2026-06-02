@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-02T21:23:10.669Z",
+  "scrapedAt": "2026-06-02T21:45:02.265Z",
   "products": [
     {
       "id": "E483829-000",
@@ -543,18 +543,6 @@
       "gender": "men"
     },
     {
-      "id": "E485272-000",
-      "source": "uniqlo-de-men",
-      "name": "KAWS WINTER 100% Cashmere Crew Neck Jumper",
-      "url": "https://www.uniqlo.com/de/en/products/E485272-000/00?colorDisplayCode=03",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485272/item/eugoods_03_485272_3x4.jpg?width=300",
-      "price": 129.9,
-      "salePrice": 59.9,
-      "currency": "EUR",
-      "discountPct": 54,
-      "gender": "men"
-    },
-    {
       "id": "E450544-000",
       "source": "uniqlo-de-men",
       "name": "100% Cashmere Turtleneck Jumper",
@@ -596,18 +584,6 @@
       "name": "100% Premium Linen Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E457428-000/01?colorDisplayCode=32",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/457428/item/goods_32_457428_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 29.9,
-      "currency": "EUR",
-      "discountPct": 40,
-      "gender": "men"
-    },
-    {
-      "id": "E467504-000",
-      "source": "uniqlo-de-men",
-      "name": "100% Premium Linen Shirt (Stripe)",
-      "url": "https://www.uniqlo.com/de/en/products/E467504-000/01?colorDisplayCode=64",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/467504/item/goods_64_467504_3x4.jpg?width=300",
       "price": 49.9,
       "salePrice": 29.9,
       "currency": "EUR",
@@ -675,18 +651,6 @@
       "gender": "men"
     },
     {
-      "id": "E477683-002",
-      "source": "uniqlo-de-men",
-      "name": "Oxford Boxy Shirt (Stripe)",
-      "url": "https://www.uniqlo.com/de/en/products/E477683-002/00?colorDisplayCode=60",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477683002/item/goods_60_477683002_3x4.jpg?width=300",
-      "price": 34.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 72,
-      "gender": "men"
-    },
-    {
       "id": "E479071-000",
       "source": "uniqlo-de-men",
       "name": "Rayon Blouse",
@@ -720,18 +684,6 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
-    },
-    {
-      "id": "E473295-000",
-      "source": "uniqlo-de-men",
-      "name": "Super Non-Iron Slim Fit Shirt (Regular Collar, Check)",
-      "url": "https://www.uniqlo.com/de/en/products/E473295-000/01?colorDisplayCode=61",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/473295/item/goods_61_473295_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 50,
       "gender": "men"
     },
     {
@@ -780,18 +732,6 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
-    },
-    {
-      "id": "E482873-000",
-      "source": "uniqlo-de-men",
-      "name": "Wide Straight Colour Jeans",
-      "url": "https://www.uniqlo.com/de/en/products/E482873-000/00?colorDisplayCode=68",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482873/item/eugoods_68_482873_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 74,
       "gender": "men"
     },
     {
@@ -1020,18 +960,6 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 34,
-      "gender": "men"
-    },
-    {
-      "id": "E478303-000",
-      "source": "uniqlo-de-men",
-      "name": "HEATTECH Beanie (Ribbed)",
-      "url": "https://www.uniqlo.com/de/en/products/E478303-000/00?colorDisplayCode=26",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478303/item/goods_26_478303_3x4.jpg?width=300",
-      "price": 14.9,
-      "salePrice": 7.9,
-      "currency": "EUR",
-      "discountPct": 47,
       "gender": "men"
     },
     {
