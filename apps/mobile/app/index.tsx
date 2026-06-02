@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useRouter } from "expo-router";
@@ -13,6 +13,9 @@ import {
   type Swipe,
 } from "../src/storage";
 import { SwipeDeck } from "../src/components/SwipeDeck";
+import { getFreshnessConfig, getToken, isStale, triggerScrape } from "../src/github";
+
+type RefreshPhase = "idle" | "triggering" | "polling" | "fresh" | "error";
 
 interface DeckState {
   products: Product[];
@@ -26,28 +29,104 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const [nonce, setNonce] = useState(0);
+  const [phase, setPhase] = useState<RefreshPhase>("idle");
+  const [phaseDetail, setPhaseDetail] = useState<string | null>(null);
   const router = useRouter();
+  const lastScrapedAtRef = useRef<string | null>(null);
+  const pollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const stopPolling = useCallback(() => {
+    if (pollTimerRef.current) {
+      clearTimeout(pollTimerRef.current);
+      pollTimerRef.current = null;
+    }
+  }, []);
+
+  const reload = useCallback(async (): Promise<DeckState | null> => {
+    const [{ snapshots, errors }, swipes, seen] = await Promise.all([
+      fetchAllSnapshots(),
+      loadSwipes(),
+      loadSeen(),
+    ]);
+    const built = buildDeck(snapshots, swipes, seen, errors);
+    setState(built);
+    setError(null);
+    if (snapshots.length > 0) await mergeIntoCatalog(snapshots);
+    if (built.products.length > 0) await markSeen(built.products.map((p) => p.id));
+    return built;
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
+      stopPolling();
+
       (async () => {
         try {
-          const [{ snapshots, errors }, swipes, seen] = await Promise.all([
-            fetchAllSnapshots(),
-            loadSwipes(),
-            loadSeen(),
-          ]);
+          const built = await reload();
+          if (cancelled || !built) return;
+          lastScrapedAtRef.current = built.oldestScrapedAt;
+
+          if (!isStale(built.oldestScrapedAt)) {
+            setPhase("fresh");
+            return;
+          }
+          const token = await getToken();
+          if (!token) {
+            setPhase("idle");
+            return;
+          }
+
+          setPhase("triggering");
+          setPhaseDetail("Checking Uniqlo…");
+          const result = await triggerScrape();
           if (cancelled) return;
-          const built = buildDeck(snapshots, swipes, seen, errors);
-          setState(built);
-          setError(null);
-          if (snapshots.length > 0) {
-            await mergeIntoCatalog(snapshots);
+
+          if (!result.ok) {
+            if (result.reason === "rate-limited") {
+              setPhase("idle");
+            } else {
+              setPhase("error");
+              setPhaseDetail(
+                result.reason === "no-config"
+                  ? "GitHub repo not configured in app.json"
+                  : result.reason === "no-token"
+                    ? "Add a GitHub token in Options"
+                    : result.detail ?? "Failed to trigger scrape",
+              );
+            }
+            return;
           }
-          if (built.products.length > 0) {
-            await markSeen(built.products.map((p) => p.id));
-          }
+
+          setPhase("polling");
+          setPhaseDetail("Scraping Uniqlo…");
+
+          const { pollIntervalSeconds, pollTimeoutSeconds } = getFreshnessConfig();
+          const startedAt = Date.now();
+          const baseline = built.oldestScrapedAt;
+
+          const tick = async () => {
+            if (cancelled) return;
+            try {
+              const next = await reload();
+              if (cancelled) return;
+              if (next && next.oldestScrapedAt && next.oldestScrapedAt !== baseline) {
+                lastScrapedAtRef.current = next.oldestScrapedAt;
+                setPhase("fresh");
+                setPhaseDetail(null);
+                return;
+              }
+            } catch {
+              // swallow during polling
+            }
+            if (Date.now() - startedAt > pollTimeoutSeconds * 1000) {
+              setPhase("idle");
+              setPhaseDetail("Scrape still running — pull ⟳ later to fetch result.");
+              return;
+            }
+            pollTimerRef.current = setTimeout(tick, pollIntervalSeconds * 1000);
+          };
+          pollTimerRef.current = setTimeout(tick, pollIntervalSeconds * 1000);
         } catch (e) {
           if (!cancelled) setError((e as Error).message);
         } finally {
@@ -56,9 +135,12 @@ export default function Home() {
       })();
       return () => {
         cancelled = true;
+        stopPolling();
       };
-    }, [nonce]),
+    }, [nonce, reload, stopPolling]),
   );
+
+  useEffect(() => stopPolling, [stopPolling]);
 
   const handleSwipe = useCallback((product: Product, swipe: Swipe) => {
     void saveSwipe(product.id, swipe);
@@ -124,6 +206,18 @@ export default function Home() {
           <Text style={styles.iconText}>⚙︎</Text>
         </TouchableOpacity>
       </View>
+
+      {(phase === "triggering" || phase === "polling") && phaseDetail && (
+        <View style={styles.phaseBanner}>
+          <ActivityIndicator size="small" color="#1e40af" />
+          <Text style={styles.phaseBannerText}>{phaseDetail}</Text>
+        </View>
+      )}
+      {phase === "error" && phaseDetail && (
+        <View style={styles.warnBanner}>
+          <Text style={styles.warnBannerText}>{phaseDetail}</Text>
+        </View>
+      )}
 
       {state.fetchErrors.length > 0 && (
         <View style={styles.errorBanner}>
@@ -208,6 +302,31 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   iconText: { fontSize: 20, color: "#374151" },
+  phaseBanner: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+    marginHorizontal: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    backgroundColor: "#eff6ff",
+    borderWidth: 1,
+    borderColor: "#bfdbfe",
+    marginBottom: 8,
+  },
+  phaseBannerText: { color: "#1e40af", fontSize: 13 },
+  warnBanner: {
+    marginHorizontal: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    borderRadius: 8,
+    backgroundColor: "#fffbeb",
+    borderWidth: 1,
+    borderColor: "#fde68a",
+    marginBottom: 8,
+  },
+  warnBannerText: { color: "#92400e", fontSize: 12 },
   errorBanner: {
     marginHorizontal: 20,
     paddingHorizontal: 12,

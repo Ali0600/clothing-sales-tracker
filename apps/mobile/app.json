@@ -19,7 +19,19 @@
     },
     "plugins": ["expo-router"],
     "extra": {
-      "snapshotBaseUrl": "https://raw.githubusercontent.com/Ali0600/clothing-sales-tracker/main/data"
+      "snapshotBaseUrl": "https://raw.githubusercontent.com/Ali0600/clothing-sales-tracker/main/data",
+      "github": {
+        "owner": "Ali0600",
+        "repo": "clothing-sales-tracker",
+        "workflowFile": "scrape.yml",
+        "branch": "main"
+      },
+      "freshness": {
+        "staleAfterMinutes": 30,
+        "minTriggerIntervalMinutes": 5,
+        "pollIntervalSeconds": 10,
+        "pollTimeoutSeconds": 180
+      }
     }
   }
 }

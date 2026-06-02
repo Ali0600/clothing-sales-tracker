@@ -4,6 +4,7 @@ import {
   Platform,
   StyleSheet,
   Text,
+  TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
@@ -15,6 +16,7 @@ import {
   loadSwipes,
   resetAllSwipes,
 } from "../src/storage";
+import { clearToken, getToken, setToken } from "../src/github";
 
 interface Counts {
   total: number;
@@ -29,6 +31,24 @@ export default function Options() {
   const [busy, setBusy] = useState<null | "reject" | "reset">(null);
   const [confirm, setConfirm] = useState<null | "reject" | "reset">(null);
   const [error, setError] = useState<string | null>(null);
+  const [tokenInput, setTokenInput] = useState("");
+  const [tokenStatus, setTokenStatus] = useState<"loading" | "configured" | "missing">("loading");
+
+  useEffect(() => {
+    void getToken().then((t) => setTokenStatus(t ? "configured" : "missing"));
+  }, []);
+
+  const handleSaveToken = useCallback(async () => {
+    if (!tokenInput.trim()) return;
+    await setToken(tokenInput);
+    setTokenInput("");
+    setTokenStatus("configured");
+  }, [tokenInput]);
+
+  const handleClearToken = useCallback(async () => {
+    await clearToken();
+    setTokenStatus("missing");
+  }, []);
 
   const refresh = useCallback(async () => {
     try {
@@ -130,6 +150,47 @@ export default function Options() {
               busy={busy === "reset"}
               onPress={handleReset}
             />
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>GitHub token (for on-launch refresh)</Text>
+              <Text style={styles.sectionHint}>
+                Lets the app trigger a fresh scrape on Uniqlo when it opens. Create a fine-grained PAT at
+                github.com/settings/personal-access-tokens with{" "}
+                <Text style={styles.code}>Actions: Read and write</Text> on the{" "}
+                <Text style={styles.code}>clothing-sales-tracker</Text> repo.
+              </Text>
+              <View style={styles.tokenRow}>
+                <Text style={styles.tokenStatus}>
+                  {tokenStatus === "loading"
+                    ? "…"
+                    : tokenStatus === "configured"
+                      ? "✓ configured"
+                      : "○ not set"}
+                </Text>
+                {tokenStatus === "configured" && (
+                  <TouchableOpacity onPress={handleClearToken} style={styles.linkButton}>
+                    <Text style={styles.linkLabel}>Remove</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+              <TextInput
+                style={styles.input}
+                value={tokenInput}
+                onChangeText={setTokenInput}
+                placeholder="github_pat_..."
+                placeholderTextColor="#9ca3af"
+                autoCorrect={false}
+                autoCapitalize="none"
+                secureTextEntry
+              />
+              <TouchableOpacity
+                onPress={handleSaveToken}
+                disabled={!tokenInput.trim()}
+                style={[styles.saveButton, !tokenInput.trim() && styles.actionDisabled]}
+              >
+                <Text style={styles.saveLabel}>Save token</Text>
+              </TouchableOpacity>
+            </View>
           </>
         )}
       </View>
@@ -231,4 +292,35 @@ const styles = StyleSheet.create({
   actionLabelDanger: { color: "#fff" },
   actionLabelNeutral: { color: "#111827" },
   actionHint: { fontSize: 13, color: "#6b7280", paddingHorizontal: 4 },
+  section: {
+    marginTop: 24,
+    gap: 10,
+    paddingTop: 20,
+    borderTopWidth: 1,
+    borderTopColor: "#e5e7eb",
+  },
+  sectionTitle: { fontSize: 15, fontWeight: "600", color: "#111827" },
+  sectionHint: { fontSize: 12, color: "#6b7280", lineHeight: 18 },
+  code: { fontFamily: "monospace", color: "#374151" },
+  tokenRow: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
+  tokenStatus: { fontSize: 13, color: "#374151" },
+  linkButton: { paddingVertical: 4, paddingHorizontal: 8 },
+  linkLabel: { color: "#2563eb", fontSize: 13 },
+  input: {
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#d1d5db",
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    fontSize: 14,
+    color: "#111827",
+  },
+  saveButton: {
+    backgroundColor: "#111827",
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  saveLabel: { color: "#fff", fontWeight: "600" },
 });

@@ -49,6 +49,26 @@ pnpm mobile               # starts Expo (press i for iOS, w for web)
 
 4. The `scrape` workflow runs every 6 hours and on manual dispatch. The first run creates the snapshots. Subsequent runs diff against the committed JSON and push if there are new items.
 
+## On-launch refresh (optional)
+
+The app can trigger a fresh scrape on Uniqlo when you open it (instead of waiting for the 6h cron). It does this by calling GitHub's `workflow_dispatch` API to run `scrape.yml`, then polling for the new snapshot to land (~30–60s).
+
+Set up:
+
+1. Create a **fine-grained PAT** at https://github.com/settings/personal-access-tokens/new:
+   - **Repository access**: *Only select repositories* → `clothing-sales-tracker`
+   - **Repository permissions**: **Actions** → *Read and write*
+   - Generate, copy.
+2. In the app: open **⚙︎ Options** → paste under *GitHub token* → **Save token**.
+
+Behavior on next launch:
+
+- Snapshot fresh (≤30 min old) → no trigger, show data immediately.
+- Snapshot stale → show stale data immediately, kick off a fresh scrape, banner reads *"Scraping Uniqlo…"*. When the new snapshot lands, it swaps in.
+- Rate-limited to one trigger per 5 minutes per device to avoid runaway Actions usage.
+
+All thresholds are configurable in `apps/mobile/app.json` → `extra.freshness`.
+
 ## Adding a new site
 
 1. Create `packages/scrapers/src/<source>.ts` exporting an async function returning `Snapshot`.
