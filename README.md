@@ -2,6 +2,18 @@
 
 Tinder-style swipe UI over a unified feed of newly-on-sale clothes scraped from multiple retailers. Built with Expo (iOS + Web). The "backend" is GitHub Actions: a scheduled workflow scrapes each site with Playwright, commits the snapshot JSON to this repo, and sends an Expo push notification when new items appear. A self-heal workflow runs Claude Code automatically when a scraper breaks and opens a PR with the fix.
 
+## Features
+
+- **Zero-infrastructure backend.** GitHub Actions is the runtime, the repo is the database (`data/*.json`), and `raw.githubusercontent.com` is the CDN. No Fly.io / Railway / Vercel / Supabase to deploy, monitor, or pay for.
+- **Self-healing scrapers.** A scraper failure isn't a page — it's a workflow chain. The failing job uploads a 4 KB HTML snippet plus the structured `ScrapeError` context as an artifact and exits non-zero. The `self-heal` workflow listens for `workflow_run.conclusion == 'failure'`, downloads the artifact, runs Claude Code headlessly with `--permission-mode acceptEdits` and a tightly-scoped tool allowlist, verifies the fix by running the scraper inside the same job, and opens a PR if (and only if) the patch produced a non-empty snapshot. Humans only get involved at review.
+- **Immutable, auditable data history.** Every catalog change is a git commit on `main` (`data: update snapshots …`). Want to know when a product first hit sale, or diff today's catalog against last week's? `git log -p data/uniqlo-de-men.json`. No separate audit log to maintain.
+- **Push notifications without push infrastructure.** The scrape job computes the snapshot diff in-process and `POST`s directly to `https://exp.host/--/api/v2/push/send` with the device's Expo token (stored as a repo secret). No FCM project, no APNs certificates, no server-side queue, no token-rotation pipeline.
+- **Per-source fault isolation.** Each retailer is one file in `packages/scrapers/src/`. A breakage in Zara doesn't stop Uniqlo from running — failures are tracked per-source in `<source>.failure.json` artifacts, and the diff/notify path only fires for sources that succeeded.
+- **Reproducible builds.** pnpm lockfile committed, Node version pinned via `.nvmrc`, Playwright browser binaries pinned by package version with `--with-deps` for system libs. CI runs match local runs deterministically.
+- **Concurrency-safe cron.** `concurrency: { group: scrape, cancel-in-progress: false }` prevents overlapping runs from racing on `git push` to the same branch. If a previous run is still going, the next cron tick queues behind it.
+- **Least-privilege CI tokens.** `scrape.yml` requests `contents: write` only; `self-heal.yml` adds `pull-requests: write` only. The Anthropic API key is never exposed to the scrape workflow — only the self-heal job can read it.
+- **Cost ≈ $0/year.** Public repo → unlimited Actions minutes, free CDN, free raw file serving. The only metered cost is Anthropic API for self-heal, which only burns tokens when a scraper actually breaks (~$0.25/incident, single-digit dollars/year).
+
 ## Layout
 
 ```

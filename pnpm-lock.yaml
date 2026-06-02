@@ -7,6 +7,13 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@cst/scrapers':
+        specifier: workspace:*
+        version: link:packages/scrapers
+      '@cst/shared':
+        specifier: workspace:*
+        version: link:packages/shared
     devDependencies:
       '@types/node':
         specifier: ^22.9.0
@@ -23,6 +30,9 @@ importers:
       '@cst/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@expo/metro-runtime':
+        specifier: ~4.0.0
+        version: 4.0.1(react-native@0.76.0(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@18.3.29)(react@18.3.1))
       '@react-native-async-storage/async-storage':
         specifier: 2.1.2
         version: 2.1.2(react-native@0.76.0(@babel/core@7.29.7)(@babel/preset-env@7.29.7(@babel/core@7.29.7))(@types/react@18.3.29)(react@18.3.1))

@@ -9,6 +9,10 @@
     "mobile": "pnpm --filter mobile start",
     "typecheck": "pnpm -r typecheck"
   },
+  "dependencies": {
+    "@cst/shared": "workspace:*",
+    "@cst/scrapers": "workspace:*"
+  },
   "devDependencies": {
     "tsx": "^4.19.2",
     "typescript": "^5.6.3",

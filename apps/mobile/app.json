@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "scheme": "cst",
+    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.cst.mobile"
@@ -18,7 +19,7 @@
     },
     "plugins": ["expo-router"],
     "extra": {
-      "snapshotBaseUrl": "https://raw.githubusercontent.com/REPLACE_ME/clothing-sales-tracker/main/data"
+      "snapshotBaseUrl": "https://raw.githubusercontent.com/Ali0600/clothing-sales-tracker/main/data"
     }
   }
 }

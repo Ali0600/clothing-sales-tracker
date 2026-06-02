@@ -8,11 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
-} from "react-native-gesture-handler";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   interpolate,
   runOnJS,
@@ -157,7 +153,7 @@ export function SwipeDeck({ products, newIds, onSwipe }: SwipeDeckProps) {
   }
 
   return (
-    <GestureHandlerRootView style={styles.root}>
+    <View style={styles.root}>
       <View style={styles.stack}>
         {visible.map((p, i) => (
           <Card
@@ -177,7 +173,7 @@ export function SwipeDeck({ products, newIds, onSwipe }: SwipeDeckProps) {
       <Text style={styles.counter}>
         {index + 1} / {products.length}
       </Text>
-    </GestureHandlerRootView>
+    </View>
   );
 }
 
