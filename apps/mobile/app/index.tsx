@@ -11,6 +11,7 @@ import {
   mergeIntoCatalog,
   saveSwipe,
   type Swipe,
+  type SwipeRecord,
 } from "../src/storage";
 import { SwipeDeck } from "../src/components/SwipeDeck";
 import { getFreshnessConfig, getToken, isStale, triggerScrape } from "../src/github";
@@ -20,6 +21,7 @@ type RefreshPhase = "idle" | "triggering" | "polling" | "fresh" | "error";
 interface DeckState {
   products: Product[];
   newIds: Set<string>;
+  repricedIds: Map<string, number>;
   oldestScrapedAt: string | null;
   fetchErrors: FetchResult["errors"];
 }
@@ -143,7 +145,7 @@ export default function Home() {
   useEffect(() => stopPolling, [stopPolling]);
 
   const handleSwipe = useCallback((product: Product, swipe: Swipe) => {
-    void saveSwipe(product.id, swipe);
+    void saveSwipe(product.id, swipe, product.salePrice);
   }, []);
 
   const handleRefresh = useCallback(() => {
@@ -227,31 +229,59 @@ export default function Home() {
         </View>
       )}
 
-      <SwipeDeck products={state.products} newIds={state.newIds} onSwipe={handleSwipe} />
+      <SwipeDeck
+        products={state.products}
+        newIds={state.newIds}
+        repricedIds={state.repricedIds}
+        onSwipe={handleSwipe}
+      />
     </SafeAreaView>
   );
 }
 
 function buildDeck(
   snapshots: Snapshot[],
-  swipes: Record<string, Swipe>,
+  swipes: Record<string, SwipeRecord>,
   seen: Set<string>,
   fetchErrors: FetchResult["errors"],
 ): DeckState {
   const all: Product[] = snapshots.flatMap((s) => s.products);
-  const unswiped = all.filter((p) => !(p.id in swipes));
-  const newIds = new Set(unswiped.filter((p) => !seen.has(p.id)).map((p) => p.id));
-  unswiped.sort((a, b) => {
-    const an = newIds.has(a.id) ? 0 : 1;
-    const bn = newIds.has(b.id) ? 0 : 1;
-    if (an !== bn) return an - bn;
+  const candidates: Product[] = [];
+  const repricedIds = new Map<string, number>();
+
+  for (const p of all) {
+    const swipe = swipes[p.id];
+    if (!swipe) {
+      candidates.push(p);
+      continue;
+    }
+    if (
+      swipe.priceAtSwipe != null &&
+      Math.abs(swipe.priceAtSwipe - p.salePrice) > 0.01
+    ) {
+      candidates.push(p);
+      repricedIds.set(p.id, swipe.priceAtSwipe);
+    }
+  }
+
+  const newIds = new Set(
+    candidates
+      .filter((p) => !seen.has(p.id) && !repricedIds.has(p.id))
+      .map((p) => p.id),
+  );
+
+  candidates.sort((a, b) => {
+    const ra = repricedIds.has(a.id) ? 0 : newIds.has(a.id) ? 1 : 2;
+    const rb = repricedIds.has(b.id) ? 0 : newIds.has(b.id) ? 1 : 2;
+    if (ra !== rb) return ra - rb;
     return b.discountPct - a.discountPct;
   });
+
   const oldestScrapedAt = snapshots
     .map((s) => s.scrapedAt)
     .sort()
     .at(0) ?? null;
-  return { products: unswiped, newIds, oldestScrapedAt, fetchErrors };
+  return { products: candidates, newIds, repricedIds, oldestScrapedAt, fetchErrors };
 }
 
 function formatAge(iso: string | null): string | null {

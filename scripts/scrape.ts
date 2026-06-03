@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { diffSnapshots, type Snapshot, type Source } from "@cst/shared";
+import { diffSnapshots, type Snapshot, type SnapshotDiff, type Source } from "@cst/shared";
 import { ScrapeError, scrapers } from "@cst/scrapers";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,16 +36,35 @@ async function writeFailureArtifact(source: Source, error: ScrapeError): Promise
   );
 }
 
-async function sendExpoPush(source: Source, addedCount: number): Promise<void> {
+const PRICE_DROP_THRESHOLD = Number(process.env.PRICE_DROP_THRESHOLD ?? "0.05");
+
+function significantDrops(diff: SnapshotDiff): number {
+  let n = 0;
+  for (const { before, after } of diff.repriced) {
+    if (after.salePrice >= before.salePrice) continue;
+    if ((before.salePrice - after.salePrice) / before.salePrice >= PRICE_DROP_THRESHOLD) n++;
+  }
+  return n;
+}
+
+async function sendExpoPush(
+  source: Source,
+  addedCount: number,
+  dropCount: number,
+): Promise<void> {
   const token = process.env.EXPO_PUSH_TOKEN;
-  if (!token || addedCount === 0) return;
+  if (!token) return;
+  if (addedCount === 0 && dropCount === 0) return;
+  const parts: string[] = [];
+  if (addedCount > 0) parts.push(`${addedCount} new`);
+  if (dropCount > 0) parts.push(`${dropCount} price drop${dropCount === 1 ? "" : "s"}`);
   const body = {
     to: token,
-    title: "New items on sale",
-    body: `${addedCount} new ${source} item${addedCount === 1 ? "" : "s"}`,
+    title: "Sale update",
+    body: `${parts.join(" · ")} on ${source}`,
     sound: "default",
     priority: "high",
-    data: { source, addedCount },
+    data: { source, addedCount, dropCount },
   };
   try {
     const res = await fetch("https://exp.host/--/api/v2/push/send", {
@@ -77,11 +96,13 @@ async function run(only?: string, notify = false): Promise<number> {
       const current = await fn();
       const diff = diffSnapshots(previous, current);
       await writeSnapshot(current);
+      const drops = significantDrops(diff);
       console.log(
         `${source}: scraped ${current.products.length} products ` +
-          `(+${diff.added.length} new, -${diff.removed.length} removed, ~${diff.repriced.length} repriced)`,
+          `(+${diff.added.length} new, -${diff.removed.length} removed, ` +
+          `~${diff.repriced.length} repriced, ↓${drops} significant drops)`,
       );
-      if (notify) await sendExpoPush(source, diff.added.length);
+      if (notify) await sendExpoPush(source, diff.added.length, drops);
     } catch (e) {
       failures++;
       if (e instanceof ScrapeError) {

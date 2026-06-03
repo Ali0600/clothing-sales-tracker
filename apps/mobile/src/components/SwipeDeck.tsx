@@ -28,11 +28,12 @@ const SWIPE_THRESHOLD = CARD_W * 0.28;
 interface CardProps {
   product: Product;
   isNew: boolean;
+  previousPrice: number | null;
   onSwipe: (swipe: Swipe) => void;
   zIndex: number;
 }
 
-function Card({ product, isNew, onSwipe, zIndex }: CardProps) {
+function Card({ product, isNew, previousPrice, onSwipe, zIndex }: CardProps) {
   const tx = useSharedValue(0);
   const ty = useSharedValue(0);
 
@@ -87,11 +88,25 @@ function Card({ product, isNew, onSwipe, zIndex }: CardProps) {
     <GestureDetector gesture={pan}>
       <Animated.View style={[styles.card, { zIndex }, cardStyle]}>
         <Image source={{ uri: product.imageUrl }} style={styles.image} resizeMode="cover" />
-        {isNew && (
+        {previousPrice != null ? (
+          <View
+            style={[
+              styles.repriceBadge,
+              previousPrice > product.salePrice ? styles.repriceDown : styles.repriceUp,
+            ]}
+          >
+            <Text style={styles.repriceText}>
+              {previousPrice > product.salePrice ? "PRICE DROP" : "PRICE UP"}
+            </Text>
+            <Text style={styles.repriceSub}>
+              was €{previousPrice.toFixed(2)} → €{product.salePrice.toFixed(2)}
+            </Text>
+          </View>
+        ) : isNew ? (
           <View style={styles.newBadge}>
             <Text style={styles.newBadgeText}>NEW ON SALE</Text>
           </View>
-        )}
+        ) : null}
         <Animated.View style={[styles.stamp, styles.stampLike, likeStyle]}>
           <Text style={styles.stampText}>LIKE</Text>
         </Animated.View>
@@ -126,10 +141,11 @@ function Card({ product, isNew, onSwipe, zIndex }: CardProps) {
 interface SwipeDeckProps {
   products: Product[];
   newIds: Set<string>;
+  repricedIds: Map<string, number>;
   onSwipe: (product: Product, swipe: Swipe) => void;
 }
 
-export function SwipeDeck({ products, newIds, onSwipe }: SwipeDeckProps) {
+export function SwipeDeck({ products, newIds, repricedIds, onSwipe }: SwipeDeckProps) {
   const [index, setIndex] = React.useState(0);
 
   const handleSwipe = useCallback(
@@ -160,6 +176,7 @@ export function SwipeDeck({ products, newIds, onSwipe }: SwipeDeckProps) {
             key={p.id}
             product={p}
             isNew={newIds.has(p.id)}
+            previousPrice={repricedIds.get(p.id) ?? null}
             onSwipe={handleSwipe}
             zIndex={i + 1}
           />
@@ -229,6 +246,19 @@ const styles = StyleSheet.create({
     zIndex: 10,
   },
   newBadgeText: { color: "#fff", fontSize: 11, fontWeight: "700", letterSpacing: 1 },
+  repriceBadge: {
+    position: "absolute",
+    top: 12,
+    left: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 4,
+    zIndex: 10,
+  },
+  repriceDown: { backgroundColor: "#16a34a" },
+  repriceUp: { backgroundColor: "#6b7280" },
+  repriceText: { color: "#fff", fontSize: 11, fontWeight: "800", letterSpacing: 1 },
+  repriceSub: { color: "#fff", fontSize: 10, opacity: 0.9, marginTop: 1 },
   stamp: {
     position: "absolute",
     top: 40,

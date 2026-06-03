@@ -19,6 +19,7 @@ import { fetchAllSnapshots } from "../src/api";
 import {
   loadCatalog,
   loadSwipes,
+  lowestSalePrice,
   mergeIntoCatalog,
   type CatalogEntry,
   type Swipe,
@@ -37,6 +38,30 @@ interface Row {
   swipe?: Swipe;
 }
 
+interface PriceLabel {
+  text: string;
+  tone: "drop" | "rise" | "lowest" | null;
+}
+
+function priceLabel(entry: CatalogEntry): PriceLabel {
+  const history = entry.priceHistory ?? [];
+  const current = entry.product.salePrice;
+  if (history.length < 2) return { text: "", tone: null };
+  const prev = history[history.length - 2].salePrice;
+  const min = lowestSalePrice(entry);
+  if (Math.abs(current - prev) > 0.01) {
+    const arrow = current < prev ? "↓" : "↑";
+    return {
+      text: `${arrow} was €${prev.toFixed(2)}`,
+      tone: current < prev ? "drop" : "rise",
+    };
+  }
+  if (Math.abs(current - min) < 0.01 && current < history[0].salePrice) {
+    return { text: `lowest ever`, tone: "lowest" };
+  }
+  return { text: "", tone: null };
+}
+
 export default function Catalog() {
   const router = useRouter();
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -52,7 +77,11 @@ export default function Catalog() {
       const catalog = Object.keys(merged).length > 0 ? merged : await loadCatalog();
       const onSaleIds = new Set(snapshots.flatMap((s) => s.products.map((p) => p.id)));
       const built: Row[] = Object.values(catalog)
-        .map((entry) => ({ entry, onSale: onSaleIds.has(entry.product.id), swipe: swipes[entry.product.id] }))
+        .map((entry) => ({
+          entry,
+          onSale: onSaleIds.has(entry.product.id),
+          swipe: swipes[entry.product.id]?.swipe,
+        }))
         .sort((a, b) => {
           if (a.onSale !== b.onSale) return a.onSale ? -1 : 1;
           return b.entry.product.discountPct - a.entry.product.discountPct;
@@ -176,6 +205,7 @@ function CatalogCard({ row }: { row: Row }) {
   const open = useCallback(() => {
     if (row.onSale) Linking.openURL(product.url);
   }, [product.url, row.onSale]);
+  const label = priceLabel(row.entry);
   return (
     <TouchableOpacity
       activeOpacity={row.onSale ? 0.7 : 1}
@@ -203,6 +233,18 @@ function CatalogCard({ row }: { row: Row }) {
             <Text style={styles.cardBasePrice}>€{product.price.toFixed(2)}</Text>
           )}
         </View>
+        {label.tone && (
+          <Text
+            style={[
+              styles.cardHistory,
+              label.tone === "drop" && styles.historyDrop,
+              label.tone === "rise" && styles.historyRise,
+              label.tone === "lowest" && styles.historyLowest,
+            ]}
+          >
+            {label.text}
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -296,4 +338,8 @@ const styles = StyleSheet.create({
   cardPriceRow: { flexDirection: "row", alignItems: "baseline", gap: 6 },
   cardSalePrice: { fontSize: 14, fontWeight: "700", color: "#dc2626" },
   cardBasePrice: { fontSize: 11, color: "#9ca3af", textDecorationLine: "line-through" },
+  cardHistory: { fontSize: 11, marginTop: 2, fontWeight: "600" },
+  historyDrop: { color: "#16a34a" },
+  historyRise: { color: "#6b7280" },
+  historyLowest: { color: "#7c3aed" },
 });

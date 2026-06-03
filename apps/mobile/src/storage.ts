@@ -3,33 +3,74 @@ import type { Product, Snapshot } from "@cst/shared";
 
 export type Swipe = "like" | "dislike" | "maybe";
 
+export interface SwipeRecord {
+  swipe: Swipe;
+  priceAtSwipe?: number;
+  swipedAt?: string;
+}
+
 const SWIPES_KEY = "v1:swipes";
 const SEEN_KEY = "v1:seen";
 const CATALOG_KEY = "v1:catalog";
+
+export interface PricePoint {
+  scrapedAt: string;
+  salePrice: number;
+  price: number;
+}
 
 export interface CatalogEntry {
   product: Product;
   firstSeenAt: string;
   lastSeenAt: string;
+  priceHistory?: PricePoint[];
 }
 
 export type Catalog = Record<string, CatalogEntry>;
 
-export async function loadSwipes(): Promise<Record<string, Swipe>> {
-  const raw = await AsyncStorage.getItem(SWIPES_KEY);
-  return raw ? (JSON.parse(raw) as Record<string, Swipe>) : {};
+function normalizeSwipe(v: unknown): SwipeRecord | null {
+  if (typeof v === "string" && (v === "like" || v === "dislike" || v === "maybe")) {
+    return { swipe: v };
+  }
+  if (v && typeof v === "object" && "swipe" in v) {
+    return v as SwipeRecord;
+  }
+  return null;
 }
 
-export async function saveSwipe(id: string, swipe: Swipe): Promise<void> {
+export async function loadSwipes(): Promise<Record<string, SwipeRecord>> {
+  const raw = await AsyncStorage.getItem(SWIPES_KEY);
+  if (!raw) return {};
+  const parsed = JSON.parse(raw) as Record<string, unknown>;
+  const out: Record<string, SwipeRecord> = {};
+  for (const [k, v] of Object.entries(parsed)) {
+    const norm = normalizeSwipe(v);
+    if (norm) out[k] = norm;
+  }
+  return out;
+}
+
+export async function saveSwipe(
+  id: string,
+  swipe: Swipe,
+  priceAtSwipe?: number,
+): Promise<void> {
   const all = await loadSwipes();
-  all[id] = swipe;
+  all[id] = { swipe, priceAtSwipe, swipedAt: new Date().toISOString() };
   await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(all));
 }
 
-export async function bulkSaveSwipes(ids: string[], swipe: Swipe): Promise<void> {
+export async function bulkSaveSwipes(
+  ids: string[],
+  swipe: Swipe,
+  priceById?: Map<string, number>,
+): Promise<void> {
   if (ids.length === 0) return;
   const all = await loadSwipes();
-  for (const id of ids) all[id] = swipe;
+  const now = new Date().toISOString();
+  for (const id of ids) {
+    all[id] = { swipe, swipedAt: now, priceAtSwipe: priceById?.get(id) };
+  }
   await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(all));
 }
 
@@ -61,11 +102,48 @@ export async function mergeIntoCatalog(snapshots: Snapshot[]): Promise<Catalog> 
     const ts = snapshot.scrapedAt;
     for (const product of snapshot.products) {
       const existing = catalog[product.id];
-      catalog[product.id] = existing
-        ? { product, firstSeenAt: existing.firstSeenAt, lastSeenAt: ts }
-        : { product, firstSeenAt: ts, lastSeenAt: ts };
+      const point: PricePoint = { scrapedAt: ts, salePrice: product.salePrice, price: product.price };
+      if (!existing) {
+        catalog[product.id] = {
+          product,
+          firstSeenAt: ts,
+          lastSeenAt: ts,
+          priceHistory: [point],
+        };
+        continue;
+      }
+      const history =
+        existing.priceHistory ??
+        [
+          {
+            scrapedAt: existing.firstSeenAt,
+            salePrice: existing.product.salePrice,
+            price: existing.product.price,
+          },
+        ];
+      const lastPoint = history[history.length - 1];
+      if (
+        Math.abs(lastPoint.salePrice - point.salePrice) > 0.01 ||
+        Math.abs(lastPoint.price - point.price) > 0.01
+      ) {
+        history.push(point);
+      }
+      catalog[product.id] = {
+        product,
+        firstSeenAt: existing.firstSeenAt,
+        lastSeenAt: ts,
+        priceHistory: history,
+      };
     }
   }
   await AsyncStorage.setItem(CATALOG_KEY, JSON.stringify(catalog));
   return catalog;
+}
+
+export function lowestSalePrice(entry: CatalogEntry): number {
+  const history = entry.priceHistory ?? [];
+  if (history.length === 0) return entry.product.salePrice;
+  let min = history[0].salePrice;
+  for (const p of history) if (p.salePrice < min) min = p.salePrice;
+  return min;
 }

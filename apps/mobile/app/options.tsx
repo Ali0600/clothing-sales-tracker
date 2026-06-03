@@ -28,6 +28,7 @@ export default function Options() {
   const router = useRouter();
   const [counts, setCounts] = useState<Counts | null>(null);
   const [unswipedIds, setUnswipedIds] = useState<string[]>([]);
+  const [priceById, setPriceById] = useState<Map<string, number>>(new Map());
   const [busy, setBusy] = useState<null | "reject" | "reset">(null);
   const [confirm, setConfirm] = useState<null | "reject" | "reset">(null);
   const [error, setError] = useState<string | null>(null);
@@ -53,12 +54,15 @@ export default function Options() {
   const refresh = useCallback(async () => {
     try {
       const [{ snapshots }, swipes] = await Promise.all([fetchAllSnapshots(), loadSwipes()]);
-      const ids = snapshots.flatMap((s) => s.products.map((p) => p.id));
-      const unique = Array.from(new Set(ids));
+      const products = snapshots.flatMap((s) => s.products);
+      const prices = new Map<string, number>();
+      for (const p of products) prices.set(p.id, p.salePrice);
+      const unique = Array.from(prices.keys());
       const swipedCount = unique.filter((id) => id in swipes).length;
       const unswiped = unique.filter((id) => !(id in swipes));
       setCounts({ total: unique.length, swiped: swipedCount, remaining: unswiped.length });
       setUnswipedIds(unswiped);
+      setPriceById(prices);
     } catch (e) {
       setError((e as Error).message);
     }
@@ -75,14 +79,14 @@ export default function Options() {
     }
     setBusy("reject");
     try {
-      await bulkSaveSwipes(unswipedIds, "dislike");
+      await bulkSaveSwipes(unswipedIds, "dislike", priceById);
       router.back();
     } catch (e) {
       setError((e as Error).message);
       setBusy(null);
       setConfirm(null);
     }
-  }, [confirm, unswipedIds, router]);
+  }, [confirm, unswipedIds, priceById, router]);
 
   const handleReset = useCallback(async () => {
     if (confirm !== "reset") {
