@@ -15,6 +15,7 @@ import {
 } from "../src/storage";
 import { SwipeDeck } from "../src/components/SwipeDeck";
 import { getFreshnessConfig, getToken, isStale, triggerScrape } from "../src/github";
+import { pullAndMerge, schedulePush } from "../src/sync";
 
 type RefreshPhase = "idle" | "triggering" | "polling" | "fresh" | "error";
 
@@ -65,9 +66,17 @@ export default function Home() {
 
       (async () => {
         try {
+          // Pull remote state in the background so the catalog/swipes merge before
+          // the deck commits to its order. Failures are non-fatal — we just use local.
+          void pullAndMerge().then((r) => {
+            if (cancelled) return;
+            if (r.ok && r.merged) setNonce((n) => n + 1);
+          });
+
           const built = await reload();
           if (cancelled || !built) return;
           lastScrapedAtRef.current = built.oldestScrapedAt;
+          if (built.products.length > 0) schedulePush();
 
           if (!isStale(built.oldestScrapedAt)) {
             setPhase("fresh");
@@ -146,6 +155,7 @@ export default function Home() {
 
   const handleSwipe = useCallback((product: Product, swipe: Swipe) => {
     void saveSwipe(product.id, swipe, product.salePrice);
+    schedulePush();
   }, []);
 
   const handleRefresh = useCallback(() => {

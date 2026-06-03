@@ -78,6 +78,18 @@ export async function resetAllSwipes(): Promise<void> {
   await AsyncStorage.removeItem(SWIPES_KEY);
 }
 
+export async function replaceSwipes(swipes: Record<string, SwipeRecord>): Promise<void> {
+  await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(swipes));
+}
+
+export async function replaceSeen(ids: string[]): Promise<void> {
+  await AsyncStorage.setItem(SEEN_KEY, JSON.stringify(ids));
+}
+
+export async function replaceCatalog(catalog: Catalog): Promise<void> {
+  await AsyncStorage.setItem(CATALOG_KEY, JSON.stringify(catalog));
+}
+
 export async function loadSeen(): Promise<Set<string>> {
   const raw = await AsyncStorage.getItem(SEEN_KEY);
   if (!raw) return new Set();

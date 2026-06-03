@@ -70,6 +70,8 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 - Push notifications fire for adds + significant drops only (>= 5%, configurable via `PRICE_DROP_THRESHOLD` env).
 - `SwipeDeck` holds `index` in local state. It survives focus refreshes — must be clamped when `products.length` drops below it (see `useEffect` in `SwipeDeck.tsx`).
 - App fetches from `raw.githubusercontent.com/<owner>/<repo>/main/data/<source>.json`. Repo must be PUBLIC for this to work without auth.
+- Cross-device state lives in a **private Gist** auto-created on first sync, described as `clothing-sales-tracker-state-v1` and containing one file `cst-state.json` (`{ swipes, seen, catalog }`). The gist ID is cached in `AsyncStorage["v1:sync_gist_id"]`. If AsyncStorage is wiped, sync re-discovers the gist by description on next run with a valid token.
+- **Never tell the user to clear Expo Go's app data.** It wipes AsyncStorage (swipes, catalog, gist ID, PAT) and they will lose state since the last sync. Always reach for `pnpm --filter mobile start --clear` (Metro cache only) first.
 
 ## Commands
 

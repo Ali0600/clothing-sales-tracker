@@ -16,7 +16,9 @@ import {
   loadSwipes,
   resetAllSwipes,
 } from "../src/storage";
+import { schedulePush } from "../src/sync";
 import { clearToken, getToken, setToken } from "../src/github";
+import { disconnectSync, getGistId, getLastSync, pullAndMerge, pushNow } from "../src/sync";
 
 interface Counts {
   total: number;
@@ -34,10 +36,57 @@ export default function Options() {
   const [error, setError] = useState<string | null>(null);
   const [tokenInput, setTokenInput] = useState("");
   const [tokenStatus, setTokenStatus] = useState<"loading" | "configured" | "missing">("loading");
+  const [syncState, setSyncState] = useState<{
+    lastSync: string | null;
+    gistId: string | null;
+    busy: null | "push" | "pull";
+    error: string | null;
+  }>({ lastSync: null, gistId: null, busy: null, error: null });
+
+  const refreshSyncState = useCallback(async () => {
+    const [lastSync, gistId] = await Promise.all([getLastSync(), getGistId()]);
+    setSyncState((s) => ({ ...s, lastSync, gistId }));
+  }, []);
 
   useEffect(() => {
     void getToken().then((t) => setTokenStatus(t ? "configured" : "missing"));
-  }, []);
+    void refreshSyncState();
+  }, [refreshSyncState]);
+
+  const handleSyncPush = useCallback(async () => {
+    setSyncState((s) => ({ ...s, busy: "push", error: null }));
+    const r = await pushNow();
+    if (!r.ok) {
+      setSyncState((s) => ({
+        ...s,
+        busy: null,
+        error: r.reason === "no-token" ? "Add a GitHub token first" : r.detail ?? "Push failed",
+      }));
+      return;
+    }
+    await refreshSyncState();
+    setSyncState((s) => ({ ...s, busy: null }));
+  }, [refreshSyncState]);
+
+  const handleSyncPull = useCallback(async () => {
+    setSyncState((s) => ({ ...s, busy: "pull", error: null }));
+    const r = await pullAndMerge();
+    if (!r.ok) {
+      setSyncState((s) => ({
+        ...s,
+        busy: null,
+        error: r.reason === "no-token" ? "Add a GitHub token first" : r.detail ?? "Pull failed",
+      }));
+      return;
+    }
+    await refreshSyncState();
+    setSyncState((s) => ({ ...s, busy: null }));
+  }, [refreshSyncState]);
+
+  const handleSyncDisconnect = useCallback(async () => {
+    await disconnectSync();
+    await refreshSyncState();
+  }, [refreshSyncState]);
 
   const handleSaveToken = useCallback(async () => {
     if (!tokenInput.trim()) return;
@@ -80,6 +129,7 @@ export default function Options() {
     setBusy("reject");
     try {
       await bulkSaveSwipes(unswipedIds, "dislike", priceById);
+      schedulePush();
       router.back();
     } catch (e) {
       setError((e as Error).message);
@@ -96,6 +146,7 @@ export default function Options() {
     setBusy("reset");
     try {
       await resetAllSwipes();
+      schedulePush();
       router.back();
     } catch (e) {
       setError((e as Error).message);
@@ -195,11 +246,71 @@ export default function Options() {
                 <Text style={styles.saveLabel}>Save token</Text>
               </TouchableOpacity>
             </View>
+
+            <View style={styles.section}>
+              <Text style={styles.sectionTitle}>Cross-device sync (Gist)</Text>
+              <Text style={styles.sectionHint}>
+                Backs up swipes + catalog + price history to a private GitHub Gist. Same data
+                appears on every device that's signed in with your token, and survives clearing
+                Expo Go. PAT needs <Text style={styles.code}>gist</Text> scope (classic) or
+                Account permission <Text style={styles.code}>Gists: Read and write</Text>{" "}
+                (fine-grained).
+              </Text>
+              <View style={styles.tokenRow}>
+                <Text style={styles.tokenStatus}>
+                  {syncState.gistId
+                    ? `✓ ${formatSyncAge(syncState.lastSync)}`
+                    : "○ not synced yet"}
+                </Text>
+                {syncState.gistId && (
+                  <TouchableOpacity onPress={handleSyncDisconnect} style={styles.linkButton}>
+                    <Text style={styles.linkLabel}>Disconnect</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+              {syncState.error && <Text style={styles.errorLine}>{syncState.error}</Text>}
+              <View style={styles.syncButtonRow}>
+                <TouchableOpacity
+                  onPress={handleSyncPull}
+                  disabled={syncState.busy !== null}
+                  style={[styles.secondaryButton, syncState.busy !== null && styles.actionDisabled]}
+                >
+                  {syncState.busy === "pull" ? (
+                    <ActivityIndicator color="#111827" />
+                  ) : (
+                    <Text style={styles.secondaryLabel}>Pull & merge</Text>
+                  )}
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={handleSyncPush}
+                  disabled={syncState.busy !== null}
+                  style={[styles.saveButton, syncState.busy !== null && styles.actionDisabled, styles.flex1]}
+                >
+                  {syncState.busy === "push" ? (
+                    <ActivityIndicator color="#fff" />
+                  ) : (
+                    <Text style={styles.saveLabel}>Sync now</Text>
+                  )}
+                </TouchableOpacity>
+              </View>
+            </View>
           </>
         )}
       </View>
     </SafeAreaView>
   );
+}
+
+function formatSyncAge(iso: string | null): string {
+  if (!iso) return "configured · not yet synced";
+  const ms = Date.now() - new Date(iso).getTime();
+  if (isNaN(ms)) return "configured";
+  const m = Math.round(ms / 60_000);
+  if (m < 1) return "synced just now";
+  if (m < 60) return `synced ${m}m ago`;
+  const h = Math.round(m / 60);
+  if (h < 24) return `synced ${h}h ago`;
+  return `synced ${Math.round(h / 24)}d ago`;
 }
 
 function Stat({ label, value }: { label: string; value: number }) {
@@ -327,4 +438,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   saveLabel: { color: "#fff", fontWeight: "600" },
+  secondaryButton: {
+    backgroundColor: "#fff",
+    borderWidth: 1,
+    borderColor: "#d1d5db",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+    alignItems: "center",
+  },
+  secondaryLabel: { color: "#111827", fontWeight: "600" },
+  syncButtonRow: { flexDirection: "row", gap: 8, marginTop: 4 },
+  flex1: { flex: 1 },
+  errorLine: { color: "#dc2626", fontSize: 12 },
 });

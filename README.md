@@ -69,6 +69,27 @@ Behavior on next launch:
 
 All thresholds are configurable in `apps/mobile/app.json` → `extra.freshness`.
 
+## Cross-device sync (optional)
+
+Swipes, the catalog, and price history live in `AsyncStorage` on the device. To share them across devices and survive clearing Expo Go, the app can sync them to a **private Gist** owned by your GitHub account.
+
+Setup (once):
+
+1. Re-use your existing PAT — but it needs `Gist` scope. Either:
+   - **Classic PAT** at https://github.com/settings/tokens/new with `gist` checked (and optionally `workflow` if you also want the on-launch refresh from earlier), or
+   - **Fine-grained PAT** at https://github.com/settings/personal-access-tokens/new with *Account permissions → Gists → Read and write*.
+2. Paste under *⚙︎ Options → GitHub token*.
+3. The first time the app sees the token it auto-creates a private gist titled `clothing-sales-tracker-state-v1`. The gist ID is cached in AsyncStorage; if that's ever wiped the app re-discovers the gist by description.
+
+Behaviour:
+
+- **On every swipe**: schedules a debounced push (5s) so 30 quick swipes = 1 sync round-trip.
+- **On home focus**: silently pulls the gist in the background; if remote state differs, merges and re-renders.
+- **Merge strategy**: swipes prefer the entry with the later `swipedAt`; catalog entries merge `priceHistory` by `scrapedAt` and overwrite `product` with whichever side has the later `lastSeenAt`; seen-set is a union.
+- **Options screen** shows last-sync age, gist connection status, and *Pull & merge* / *Sync now* buttons for manual control.
+
+If you ever want to start clean: tap **Disconnect** in the Sync section. The gist remains in your GitHub account; the app just forgets the ID and creates a new one next time.
+
 ## Adding a new site
 
 1. Create `packages/scrapers/src/<source>.ts` exporting an async function returning `Snapshot`.
