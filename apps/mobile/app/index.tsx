@@ -222,18 +222,22 @@ export default function Home() {
       {(phase === "triggering" || phase === "polling") && phaseDetail && (
         <View style={styles.phaseBanner}>
           <ActivityIndicator size="small" color="#1e40af" />
-          <Text style={styles.phaseBannerText}>{phaseDetail}</Text>
+          <Text style={styles.phaseBannerText} numberOfLines={2}>
+            {phaseDetail}
+          </Text>
         </View>
       )}
       {phase === "error" && phaseDetail && (
         <View style={styles.warnBanner}>
-          <Text style={styles.warnBannerText}>{phaseDetail}</Text>
+          <Text style={styles.warnBannerText} numberOfLines={2}>
+            {phaseDetail}
+          </Text>
         </View>
       )}
 
       {state.fetchErrors.length > 0 && (
         <View style={styles.errorBanner}>
-          <Text style={styles.errorBannerText}>
+          <Text style={styles.errorBannerText} numberOfLines={2}>
             Couldn't load {state.fetchErrors.map((e) => e.source).join(", ")}. {state.fetchErrors[0]?.message}
           </Text>
         </View>
@@ -354,8 +358,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#bfdbfe",
     marginBottom: 8,
+    flexShrink: 0,
+    zIndex: 10,
   },
-  phaseBannerText: { color: "#1e40af", fontSize: 13 },
+  phaseBannerText: { color: "#1e40af", fontSize: 13, flex: 1 },
   warnBanner: {
     marginHorizontal: 20,
     paddingHorizontal: 12,
@@ -365,6 +371,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#fde68a",
     marginBottom: 8,
+    flexShrink: 0,
+    zIndex: 10,
   },
   warnBannerText: { color: "#92400e", fontSize: 12 },
   errorBanner: {
@@ -376,6 +384,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#fecaca",
     marginBottom: 8,
+    flexShrink: 0,
+    zIndex: 10,
   },
   errorBannerText: { color: "#991b1b", fontSize: 12 },
 });

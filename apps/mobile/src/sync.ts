@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { getToken } from "./github";
+import { formatGitHubError, getToken } from "./github";
 import {
   loadCatalog,
   loadSeen,
@@ -35,7 +35,7 @@ async function gh<T>(url: string, token: string, init?: RequestInit): Promise<T>
       "X-GitHub-Api-Version": "2022-11-28",
     },
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}: ${await res.text()}`);
+  if (!res.ok) throw new Error(await formatGitHubError(res));
   return (await res.json()) as T;
 }
 

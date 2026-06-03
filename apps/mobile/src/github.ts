@@ -88,10 +88,22 @@ export async function triggerScrape(): Promise<TriggerResult> {
       await setLastTriggerNow();
       return { ok: true };
     }
-    return { ok: false, reason: "http", detail: `${res.status}: ${await res.text()}` };
+    return { ok: false, reason: "http", detail: await formatGitHubError(res) };
   } catch (e) {
     return { ok: false, reason: "http", detail: (e as Error).message };
   }
+}
+
+export async function formatGitHubError(res: Response): Promise<string> {
+  const text = await res.text();
+  try {
+    const json = JSON.parse(text) as { message?: string };
+    if (json.message) return `${res.status} ${json.message}`;
+  } catch {
+    // not JSON
+  }
+  const trimmed = text.trim().slice(0, 120);
+  return trimmed ? `${res.status}: ${trimmed}` : `HTTP ${res.status}`;
 }
 
 export function isStale(scrapedAt: string | null): boolean {
