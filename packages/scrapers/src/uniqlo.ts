@@ -136,7 +136,8 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
     const tiles = Array.from(document.querySelectorAll(sel)) as HTMLAnchorElement[];
     return tiles.map((tile) => {
       const href = tile.href;
-      const idMatch = href.match(/\/products\/(E[\w-]+)/);
+      const baseMatch = href.match(/\/products\/(E[\w-]+)/);
+      const colorMatch = href.match(/colorDisplayCode=([\w-]+)/);
       const img = tile.querySelector("img") as HTMLImageElement | null;
       const text = tile.innerText.trim();
       const priceMatches = Array.from(tile.innerText.matchAll(/(\d+(?:[.,]\d{1,2}))\s*€|€\s*(\d+(?:[.,]\d{1,2}))/g))
@@ -145,7 +146,8 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
       const nameEl = tile.querySelector('[data-testid="product-tile-title"], h3, h2, [class*="title" i], [class*="name" i]');
       const name = (nameEl?.textContent || tile.getAttribute("aria-label") || text.split("\n")[0] || "").trim();
       return {
-        id: idMatch?.[1] || href,
+        baseId: baseMatch?.[1] || "",
+        colorCode: colorMatch?.[1] || "default",
         href,
         name,
         image: img?.src || img?.getAttribute("data-src") || "",
@@ -157,14 +159,16 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
   const seen = new Set<string>();
   const products: Product[] = [];
   for (const r of raw) {
-    if (!r.id || seen.has(r.id)) continue;
-    seen.add(r.id);
+    if (!r.baseId) continue;
+    const id = `${r.baseId}-${r.colorCode}`;
+    if (seen.has(id)) continue;
+    seen.add(id);
     const prices = r.prices.slice().sort((a, b) => b - a);
     const base = prices[0] ?? 0;
     const sale = prices[1] ?? base;
     if (base === 0) continue;
     products.push({
-      id: r.id,
+      id,
       source: SOURCE,
       name: r.name,
       url: r.href,
