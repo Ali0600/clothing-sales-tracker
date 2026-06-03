@@ -66,11 +66,18 @@ export default function Home() {
 
       (async () => {
         try {
-          // Pull remote state in the background so the catalog/swipes merge before
-          // the deck commits to its order. Failures are non-fatal — we just use local.
-          void pullAndMerge().then((r) => {
+          // Pull remote state in the background. If the merge produced changes,
+          // just rebuild the deck with the merged data — DO NOT bump nonce and
+          // re-run the trigger/poll path, that's what caused the banner flash.
+          void pullAndMerge().then(async (r) => {
             if (cancelled) return;
-            if (r.ok && r.merged) setNonce((n) => n + 1);
+            if (r.ok && r.merged) {
+              try {
+                await reload();
+              } catch {
+                // local state still shown; non-fatal
+              }
+            }
           });
 
           const built = await reload();

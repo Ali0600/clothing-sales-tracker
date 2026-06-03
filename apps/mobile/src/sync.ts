@@ -160,16 +160,30 @@ export async function pullAndMerge(): Promise<SyncResult> {
       loadSeen(),
       loadCatalog(),
     ]);
+    const sortedLocalSeen = [...localSeen].sort();
     const mergedSwipes = mergeSwipes(localSwipes, remote.swipes ?? {});
-    const mergedSeenArr = [...new Set([...localSeen, ...(remote.seen ?? [])])];
+    const mergedSeenArr = [...new Set([...localSeen, ...(remote.seen ?? [])])].sort();
     const mergedCatalog = mergeCatalog(localCatalog, remote.catalog ?? {});
-    await Promise.all([
-      replaceSwipes(mergedSwipes),
-      replaceSeen(mergedSeenArr),
-      replaceCatalog(mergedCatalog),
-    ]);
+
+    const before =
+      JSON.stringify(localSwipes) +
+      JSON.stringify(sortedLocalSeen) +
+      JSON.stringify(localCatalog);
+    const after =
+      JSON.stringify(mergedSwipes) +
+      JSON.stringify(mergedSeenArr) +
+      JSON.stringify(mergedCatalog);
+    const changed = before !== after;
+
+    if (changed) {
+      await Promise.all([
+        replaceSwipes(mergedSwipes),
+        replaceSeen(mergedSeenArr),
+        replaceCatalog(mergedCatalog),
+      ]);
+    }
     await AsyncStorage.setItem(LAST_SYNC_KEY, new Date().toISOString());
-    return { ok: true, merged: true };
+    return { ok: true, merged: changed };
   } catch (e) {
     return { ok: false, reason: "http", detail: (e as Error).message };
   }
