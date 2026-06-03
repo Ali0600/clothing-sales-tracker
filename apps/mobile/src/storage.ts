@@ -159,3 +159,82 @@ export function lowestSalePrice(entry: CatalogEntry): number {
   for (const p of history) if (p.salePrice < min) min = p.salePrice;
   return min;
 }
+
+// Pre-colorway product IDs looked like `E486160-000`. Post-colorway IDs
+// look like `E486160-000-34` (base + colorDisplayCode). When this returns
+// true, the id is the legacy design-level format and should be fanned out
+// to every colorway that's currently known.
+const LEGACY_PRODUCT_ID = /^E\d+-\d+$/;
+
+function colorwaysFor(baseId: string, knownIds: Iterable<string>): string[] {
+  const prefix = baseId + "-";
+  const matches: string[] = [];
+  for (const id of knownIds) if (id.startsWith(prefix)) matches.push(id);
+  return matches;
+}
+
+export async function migrateLegacySwipes(
+  swipes: Record<string, SwipeRecord>,
+  knownIds: Set<string>,
+): Promise<Record<string, SwipeRecord>> {
+  const out: Record<string, SwipeRecord> = { ...swipes };
+  let changed = false;
+
+  for (const [oldId, record] of Object.entries(swipes)) {
+    if (!LEGACY_PRODUCT_ID.test(oldId)) continue;
+    const colorways = colorwaysFor(oldId, knownIds);
+    if (colorways.length === 0) continue; // design not in current snapshot — defer
+    for (const newId of colorways) {
+      if (!out[newId]) {
+        out[newId] = { ...record };
+        changed = true;
+      }
+    }
+    delete out[oldId];
+    changed = true;
+  }
+
+  if (changed) await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(out));
+  return out;
+}
+
+export async function migrateLegacyCatalog(
+  catalog: Catalog,
+  snapshots: Snapshot[],
+): Promise<Catalog> {
+  const newByBase = new Map<string, Product[]>();
+  for (const snap of snapshots) {
+    for (const p of snap.products) {
+      const base = p.id.match(/^(E\d+-\d+)-/)?.[1];
+      if (!base) continue;
+      const bucket = newByBase.get(base) ?? [];
+      bucket.push(p);
+      newByBase.set(base, bucket);
+    }
+  }
+
+  const out: Catalog = { ...catalog };
+  let changed = false;
+
+  for (const [oldId, entry] of Object.entries(catalog)) {
+    if (!LEGACY_PRODUCT_ID.test(oldId)) continue;
+    const colorways = newByBase.get(oldId) ?? [];
+    if (colorways.length === 0) continue;
+    for (const p of colorways) {
+      if (!out[p.id]) {
+        out[p.id] = {
+          product: p,
+          firstSeenAt: entry.firstSeenAt,
+          lastSeenAt: entry.lastSeenAt,
+          priceHistory: entry.priceHistory ? [...entry.priceHistory] : undefined,
+        };
+        changed = true;
+      }
+    }
+    delete out[oldId];
+    changed = true;
+  }
+
+  if (changed) await AsyncStorage.setItem(CATALOG_KEY, JSON.stringify(out));
+  return out;
+}

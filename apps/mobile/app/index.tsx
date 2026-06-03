@@ -5,10 +5,13 @@ import { useFocusEffect, useRouter } from "expo-router";
 import type { Product, Snapshot } from "@cst/shared";
 import { fetchAllSnapshots, type FetchResult } from "../src/api";
 import {
+  loadCatalog,
   loadSeen,
   loadSwipes,
   markSeen,
   mergeIntoCatalog,
+  migrateLegacyCatalog,
+  migrateLegacySwipes,
   saveSwipe,
   type Swipe,
   type SwipeRecord,
@@ -46,11 +49,30 @@ export default function Home() {
   }, []);
 
   const reload = useCallback(async (): Promise<DeckState | null> => {
-    const [{ snapshots, errors }, swipes, seen] = await Promise.all([
+    const [{ snapshots, errors }, rawSwipes, seen, rawCatalog] = await Promise.all([
       fetchAllSnapshots(),
       loadSwipes(),
       loadSeen(),
+      loadCatalog(),
     ]);
+
+    // Fan legacy design-level IDs out to colorways now that we know what
+    // colorways exist in the current snapshot. Idempotent: if every old ID
+    // has already been migrated (or has no colorways in the snapshot), no
+    // writes happen. If migration changed anything, push to the gist so
+    // other devices pick up the new IDs.
+    const knownIds = new Set(snapshots.flatMap((s) => s.products.map((p) => p.id)));
+    const beforeSwipeCount = Object.keys(rawSwipes).length;
+    const beforeCatalogCount = Object.keys(rawCatalog).length;
+    const swipes = await migrateLegacySwipes(rawSwipes, knownIds);
+    await migrateLegacyCatalog(rawCatalog, snapshots);
+    if (
+      Object.keys(swipes).length !== beforeSwipeCount ||
+      Object.keys(await loadCatalog()).length !== beforeCatalogCount
+    ) {
+      schedulePush();
+    }
+
     const built = buildDeck(snapshots, swipes, seen, errors);
     setState(built);
     setError(null);

@@ -67,6 +67,7 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 ### Data flow / state
 
 - Swipes are stored as `SwipeRecord = { swipe, priceAtSwipe?, swipedAt? }`. Legacy entries (plain `"like"` string) auto-migrate on read in `loadSwipes()`.
+- Product IDs were once design-level (`E486160-000`) and are now colorway-level (`E486160-000-34`). `migrateLegacySwipes` / `migrateLegacyCatalog` in `storage.ts` fan old IDs out to every colorway present in the latest snapshot. Idempotent — runs on every `reload()` in `app/index.tsx`. After a successful migration, `schedulePush()` is fired so the gist also gets the new IDs.
 - Re-surface logic: if `swipe.priceAtSwipe != null` and current `salePrice` differs, the item comes back into the deck. Triggered for any change, not just drops.
 - Push notifications fire for adds + significant drops only (>= 5%, configurable via `PRICE_DROP_THRESHOLD` env).
 - `SwipeDeck` holds `index` in local state. It survives focus refreshes — must be clamped when `products.length` drops below it (see `useEffect` in `SwipeDeck.tsx`).
