@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import {
   Dimensions,
   Image,
@@ -147,6 +147,13 @@ interface SwipeDeckProps {
 
 export function SwipeDeck({ products, newIds, repricedIds, onSwipe }: SwipeDeckProps) {
   const [index, setIndex] = React.useState(0);
+
+  // If the products list shrank below the current index (e.g. after a poll
+  // refresh or coming back from another screen with most items already swiped),
+  // wind index back so the remaining items are visible.
+  useEffect(() => {
+    setIndex((i) => (i >= products.length ? 0 : i));
+  }, [products.length]);
 
   const handleSwipe = useCallback(
     (swipe: Swipe) => {
