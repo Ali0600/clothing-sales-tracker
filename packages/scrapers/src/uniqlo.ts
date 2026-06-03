@@ -60,7 +60,7 @@ async function runScrape(browser: Browser): Promise<Snapshot> {
   await scrollUntilStable(page, expectedTotal);
 
   const tileCount = await page.evaluate((sel) => document.querySelectorAll(sel).length, TILE_SELECTOR);
-  if (expectedTotal != null && tileCount < expectedTotal * 0.9) {
+  if (expectedTotal != null && tileCount < expectedTotal * 0.95) {
     const html = await page.content();
     throw new ScrapeError({
       source: SOURCE,
@@ -86,6 +86,13 @@ async function runScrape(browser: Browser): Promise<Snapshot> {
     });
   }
 
+  if (expectedTotal != null) {
+    console.log(
+      `[uniqlo-de-men] pagination: ${tileCount}/${expectedTotal} tiles ` +
+        `(${Math.round((tileCount / expectedTotal) * 100)}%), ${products.length} after dedupe`,
+    );
+  }
+
   return {
     source: SOURCE,
     scrapedAt: new Date().toISOString(),
@@ -94,7 +101,7 @@ async function runScrape(browser: Browser): Promise<Snapshot> {
 }
 
 async function scrollUntilStable(page: import("playwright").Page, expectedTotal: number | null): Promise<void> {
-  const maxIterations = 60;
+  const maxIterations = 100;
   let lastCount = 0;
   let stableRounds = 0;
 
@@ -103,7 +110,13 @@ async function scrollUntilStable(page: import("playwright").Page, expectedTotal:
     if (expectedTotal != null && count >= expectedTotal) return;
     if (count === lastCount) {
       stableRounds++;
-      if (stableRounds >= 4) return;
+      // After a long no-progress stretch, try a stronger nudge: jump to top
+      // then back to the last tile to re-arm Uniqlo's intersection observer.
+      if (stableRounds === 4) {
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(400);
+      }
+      if (stableRounds >= 6) return;
     } else {
       stableRounds = 0;
       lastCount = count;
@@ -114,7 +127,7 @@ async function scrollUntilStable(page: import("playwright").Page, expectedTotal:
       last?.scrollIntoView({ block: "end", behavior: "instant" as ScrollBehavior });
     }, TILE_SELECTOR);
     await page.mouse.wheel(0, 1500);
-    await page.waitForTimeout(1200);
+    await page.waitForTimeout(1500);
   }
 }
 
