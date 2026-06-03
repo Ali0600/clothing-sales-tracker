@@ -1,0 +1,113 @@
+# CLAUDE.md
+
+Notes for Claude sessions working in this repo. Read before touching code.
+
+## What this is
+
+Personal "Tinder for sale clothes." Expo app (iOS + web) reads JSON snapshots
+of retailer sale catalogs. Snapshots are produced by Playwright scrapers run
+on a GitHub Actions cron and committed back to `data/`. Self-heal workflow
+runs Claude Code if a scraper breaks. No backend server; GitHub Actions IS
+the backend.
+
+## Project map
+
+```
+apps/mobile/             Expo SDK 52, expo-router, react-native-reanimated swipe deck
+  app/
+    _layout.tsx          MUST wrap in GestureHandlerRootView + SafeAreaProvider
+    index.tsx            Home: swipe deck, refresh button, freshness label, trigger+poll on launch
+    options.tsx          Settings: reject-all, reset-swipes, GitHub PAT
+    catalog.tsx          Archive: every product ever scraped, with price history
+  src/
+    api.ts               fetchAllSnapshots returns { snapshots, errors } NOT Snapshot[]
+    storage.ts           AsyncStorage: SwipeRecord, Catalog with priceHistory[]
+    github.ts            workflow_dispatch trigger, isStale(), config from app.json
+    components/SwipeDeck.tsx
+packages/
+  shared/                Product type, Snapshot, diffSnapshots (added/removed/repriced)
+  scrapers/              Playwright scrapers. One file per source. Uniqlo registered.
+scripts/scrape.ts        CLI: pnpm scrape [source] [--notify]
+data/                    Committed snapshot JSON. Bot pushes here every 6h.
+.github/workflows/
+  scrape.yml             Cron 17 */6 * * *. Triggerable via workflow_dispatch.
+  self-heal.yml          On scrape failure → Claude Code → PR
+```
+
+## Critical gotchas (don't re-discover these)
+
+### pnpm monorepo with Expo
+
+- **`.npmrc` has `node-linker=hoisted`** — Metro can't traverse pnpm's isolated symlinks. Do not remove.
+- **Root `package.json` lists `@cst/shared` and `@cst/scrapers` as workspace deps** even though only `scripts/` uses them. Without this, hoisted mode doesn't symlink them into root `node_modules/` and `scripts/scrape.ts` can't resolve them.
+- **`@expo/metro-runtime` must be an explicit dep of `apps/mobile`** — required by expo-router but not pulled in transitively.
+
+### Expo / React Native
+
+- `_layout.tsx` MUST wrap children in `GestureHandlerRootView` AND `SafeAreaProvider`. Missing either = blank white screen with no error.
+- `Alert.alert` is a silent no-op on Expo Web. Use tap-twice-to-confirm patterns instead.
+- After changing the *shape* of an exported value, Metro's bundle cache survives Fast Refresh. Stop the dev server and restart with `--clear`.
+- `app.json` has `newArchEnabled: true` to match Expo Go's hard-coded New Arch (Bridgeless) mode. Don't remove without explicit reason.
+- `react-native-safe-area-context`'s `SafeAreaView` is what we use (not the deprecated one from `react-native`).
+
+### GitHub Actions
+
+- `pnpm/action-setup@v4` rejects setups that pin pnpm in BOTH the workflow's `version:` input AND `package.json`'s `packageManager:` field. Drop the workflow input; let it read from `package.json`.
+- The scrape workflow uses `actions/checkout@v4` with default behavior — committing back requires `permissions: contents: write` already set.
+- Failure artifacts upload from `.scrape-artifacts/` and are how self-heal gets context. Do not commit that folder (in `.gitignore`).
+
+### Scraping
+
+- Uniqlo SSRs only ~30 of the ~100 items; the rest hydrate as you scroll. Playwright is required (plain `curl` + HTML parse misses most products).
+- Price format on Uniqlo DE is `12,90 €` (number first, German decimal comma). Regex must handle both `€ <num>` and `<num> €` and a `,` decimal separator.
+- Pagination via `scrollBy()` doesn't fire Uniqlo's intersection observer. Use `tile.scrollIntoView({ block: "end" })` + `page.mouse.wheel()` to trigger lazy-load.
+- The "total item count" lives in `.fr-ec-header-overlay__item-count` in the filter drawer header. Reliable as a sentinel for "did we scroll far enough."
+
+### Data flow / state
+
+- Swipes are stored as `SwipeRecord = { swipe, priceAtSwipe?, swipedAt? }`. Legacy entries (plain `"like"` string) auto-migrate on read in `loadSwipes()`.
+- Re-surface logic: if `swipe.priceAtSwipe != null` and current `salePrice` differs, the item comes back into the deck. Triggered for any change, not just drops.
+- Push notifications fire for adds + significant drops only (>= 5%, configurable via `PRICE_DROP_THRESHOLD` env).
+- `SwipeDeck` holds `index` in local state. It survives focus refreshes — must be clamped when `products.length` drops below it (see `useEffect` in `SwipeDeck.tsx`).
+- App fetches from `raw.githubusercontent.com/<owner>/<repo>/main/data/<source>.json`. Repo must be PUBLIC for this to work without auth.
+
+## Commands
+
+```bash
+pnpm install                              # honors .npmrc node-linker=hoisted
+pnpm --filter @cst/scrapers exec playwright install chromium  # one-time
+
+pnpm scrape:uniqlo                        # local scrape, writes data/uniqlo-de-men.json
+pnpm scrape uniqlo --notify               # also sends Expo push if EXPO_PUSH_TOKEN set
+pnpm -r typecheck                         # all workspaces
+pnpm --filter mobile start --clear        # Expo with Metro cache wiped
+
+gh workflow run scrape.yml --ref main     # manually trigger CI scrape
+gh run watch <run-id>                     # watch CI run
+gh run view <run-id> --log-failed         # show only failed step logs
+```
+
+## Before declaring "done"
+
+For any non-trivial change:
+
+1. **`pnpm -r typecheck`** passes.
+2. If touching `apps/mobile/`: actually launch with `pnpm --filter mobile start --clear` and confirm the affected screen renders. Typecheck does not catch missing providers, runtime imports, or shape mismatches at AsyncStorage boundaries.
+3. If touching scrapers: run `pnpm scrape:uniqlo` locally and inspect `data/uniqlo-de-men.json` — verify `count > 50`, `avg discount > 10%`, no `salePrice === price` for every item.
+4. If touching workflows: trigger manually with `gh workflow run` and `gh run watch` to confirm before relying on cron.
+5. Snapshot shape changes (api.ts return type, storage record shapes) require a Metro `--clear`. Tell the user.
+
+## Architecture decisions to NOT re-litigate
+
+- **No hosted backend.** GitHub Actions is the backend. User said no to Fly.io / Railway / Cloudflare Workers. Snapshots committed to repo, served via `raw.githubusercontent.com`.
+- **TypeScript + Playwright**, not Python + BS4. The user mentioned BS4 once — that's not what's running here. Playwright drives a real headless Chromium and works on JS-hydrated pages.
+- **Per-source adapter pattern.** Adding a retailer = one new file in `packages/scrapers/src/`, register in `index.ts`, add to `Source` union in `packages/shared/src/product.ts`, add to `ACTIVE_SOURCES` in `apps/mobile/src/config.ts`. That's it.
+- **AsyncStorage, not SecureStore**, for the GitHub PAT. Personal app, low stakes, and SecureStore doesn't work on web.
+- **Snapshot is the latest only.** Long-term history lives in git (`git log -p data/...`) and per-device in `CatalogEntry.priceHistory[]`. We do not append every snapshot to a history file.
+
+## Style
+
+- No `Co-Authored-By` trailers on commits (user's global preference).
+- TypeScript strict everywhere. Don't loosen.
+- No emojis in code/docs unless explicitly asked.
+- Workspace deps use `workspace:*` protocol.
