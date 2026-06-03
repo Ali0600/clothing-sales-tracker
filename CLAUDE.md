@@ -44,7 +44,8 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 
 ### Expo / React Native
 
-- `_layout.tsx` MUST wrap children in `GestureHandlerRootView` AND `SafeAreaProvider`. Missing either = blank white screen with no error.
+- `_layout.tsx` MUST wrap children in `GestureHandlerRootView` AND `SafeAreaProvider` AND `RootErrorBoundary`. Missing either provider = blank white screen with no error. The boundary catches render errors that would otherwise leave the providers visible but empty.
+- **Never use `Linking.openURL(https://...)` for external links.** It backgrounds the app; on resume Reanimated's worklet runtime can land in an undefined state and the screen renders blank. Use `WebBrowser.openBrowserAsync(url)` from `expo-web-browser` — opens an in-app `SFSafariViewController` on iOS, keeps the app process alive.
 - `Alert.alert` is a silent no-op on Expo Web. Use tap-twice-to-confirm patterns instead.
 - After changing the *shape* of an exported value, Metro's bundle cache survives Fast Refresh. Stop the dev server and restart with `--clear`.
 - `app.json` has `newArchEnabled: true` to match Expo Go's hard-coded New Arch (Bridgeless) mode. Don't remove without explicit reason.

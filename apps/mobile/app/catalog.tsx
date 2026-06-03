@@ -4,7 +4,6 @@ import {
   Dimensions,
   FlatList,
   Image,
-  Linking,
   Platform,
   StyleSheet,
   Switch,
@@ -15,6 +14,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 import { fetchAllSnapshots } from "../src/api";
 import {
   loadCatalog,
@@ -203,7 +203,7 @@ function FilterChip({
 function CatalogCard({ row }: { row: Row }) {
   const { product } = row.entry;
   const open = useCallback(() => {
-    if (row.onSale) Linking.openURL(product.url);
+    if (row.onSale) void WebBrowser.openBrowserAsync(product.url);
   }, [product.url, row.onSale]);
   const label = priceLabel(row.entry);
   return (

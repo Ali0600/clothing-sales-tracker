@@ -2,12 +2,12 @@ import React, { useCallback, useEffect, useMemo } from "react";
 import {
   Dimensions,
   Image,
-  Linking,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
+import * as WebBrowser from "expo-web-browser";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   interpolate,
@@ -129,7 +129,7 @@ function Card({ product, isNew, previousPrice, onSwipe, zIndex }: CardProps) {
               </>
             )}
           </View>
-          <TouchableOpacity onPress={() => Linking.openURL(product.url)}>
+          <TouchableOpacity onPress={() => void WebBrowser.openBrowserAsync(product.url)}>
             <Text style={styles.link}>Open on Uniqlo →</Text>
           </TouchableOpacity>
         </View>
