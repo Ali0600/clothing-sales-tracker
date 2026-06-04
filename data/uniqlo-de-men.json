@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-04T01:32:43.863Z",
+  "scrapedAt": "2026-06-04T07:56:04.759Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -547,7 +547,7 @@
       "source": "uniqlo-de-men",
       "name": "100% Cashmere Turtleneck Jumper",
       "url": "https://www.uniqlo.com/de/en/products/E450544-000/00?colorDisplayCode=69",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/450544/item/eugoods_69_450544_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/450544/item/eugoods_38_450544_3x4.jpg?width=300",
       "price": 109.9,
       "salePrice": 89.9,
       "currency": "EUR",
@@ -571,7 +571,7 @@
       "source": "uniqlo-de-men",
       "name": "Soufflé Yarn Short Cardigan",
       "url": "https://www.uniqlo.com/de/en/products/E478339-000/00?colorDisplayCode=08",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/478339/sub/eugoods_478339_sub5_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478339/item/goods_73_478339_3x4.jpg?width=300",
       "price": 39.9,
       "salePrice": 19.9,
       "currency": "EUR",
@@ -687,42 +687,6 @@
       "gender": "men"
     },
     {
-      "id": "E456592-000-60",
-      "source": "uniqlo-de-men",
-      "name": "Super Non-Iron Slim Fit Shirt (Spread Collar)",
-      "url": "https://www.uniqlo.com/de/en/products/E456592-000/01?colorDisplayCode=60",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/456592/item/goods_60_456592_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men"
-    },
-    {
-      "id": "E467483-000-63",
-      "source": "uniqlo-de-men",
-      "name": "Super Non-Iron Slim Fit Shirt (Spread Collar, Stripe)",
-      "url": "https://www.uniqlo.com/de/en/products/E467483-000/01?colorDisplayCode=63",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/467483/item/goods_63_467483_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men"
-    },
-    {
-      "id": "E479376-000-07",
-      "source": "uniqlo-de-men",
-      "name": "Warm Lined Trousers (Longer)",
-      "url": "https://www.uniqlo.com/de/en/products/E479376-000/00?colorDisplayCode=07",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/479376/item/eugoods_07_479376_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 74,
-      "gender": "men"
-    },
-    {
       "id": "E460616-000-00",
       "source": "uniqlo-de-men",
       "name": "Chino Shorts",
@@ -747,18 +711,6 @@
       "gender": "men"
     },
     {
-      "id": "E484093-000-09",
-      "source": "uniqlo-de-men",
-      "name": "Pleated Wide Trousers",
-      "url": "https://www.uniqlo.com/de/en/products/E484093-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484093/item/eugoods_09_484093_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 74,
-      "gender": "men"
-    },
-    {
       "id": "E450251-000-69",
       "source": "uniqlo-de-men",
       "name": "Slim Chino Trousers",
@@ -766,18 +718,6 @@
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/450251/item/eugoods_69_450251_3x4.jpg?width=300",
       "price": 39.9,
       "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 75,
-      "gender": "men"
-    },
-    {
-      "id": "E483835-000-30",
-      "source": "uniqlo-de-men",
-      "name": "Short Blouson",
-      "url": "https://www.uniqlo.com/de/en/products/E483835-000/00?colorDisplayCode=30",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483835/item/eugoods_30_483835_3x4.jpg?width=300",
-      "price": 79.9,
-      "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 75,
       "gender": "men"
@@ -804,18 +744,6 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
-    },
-    {
-      "id": "E479755-000-31",
-      "source": "uniqlo-de-men",
-      "name": "PUFFERTECH Jacket",
-      "url": "https://www.uniqlo.com/de/en/products/E479755-000/01?colorDisplayCode=31",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/479755/item/eugoods_31_479755_3x4.jpg?width=300",
-      "price": 69.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 72,
       "gender": "men"
     },
     {
@@ -847,7 +775,7 @@
       "source": "uniqlo-de-men",
       "name": "Hybrid Recycled Down Parka",
       "url": "https://www.uniqlo.com/de/en/products/E480045-000/01?colorDisplayCode=31",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/480045/item/goods_39_480045_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/480045/item/eugoods_31_480045_3x4.jpg?width=300",
       "price": 149.9,
       "salePrice": 109.9,
       "currency": "EUR",
@@ -924,90 +852,6 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
-    },
-    {
-      "id": "E484783-000-55",
-      "source": "uniqlo-de-men",
-      "name": "Leather Combination Belt (Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E484783-000/00?colorDisplayCode=55",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/484783/item/goods_55_484783_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 57,
-      "gender": "men"
-    },
-    {
-      "id": "E478319-000-05",
-      "source": "uniqlo-de-men",
-      "name": "HEATTECH Knit Gloves",
-      "url": "https://www.uniqlo.com/de/en/products/E478319-000/00?colorDisplayCode=05",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478319/item/goods_65_478319_3x4.jpg?width=300",
-      "price": 14.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 34,
-      "gender": "men"
-    },
-    {
-      "id": "E478312-000-01",
-      "source": "uniqlo-de-men",
-      "name": "HEATTECH Scarf",
-      "url": "https://www.uniqlo.com/de/en/products/E478312-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478312/item/goods_01_478312_3x4.jpg?width=300",
-      "price": 24.9,
-      "salePrice": 14.9,
-      "currency": "EUR",
-      "discountPct": 40,
-      "gender": "men"
-    },
-    {
-      "id": "E478313-001-55",
-      "source": "uniqlo-de-men",
-      "name": "HEATTECH Scarf (Patterned)",
-      "url": "https://www.uniqlo.com/de/en/products/E478313-001/00?colorDisplayCode=55",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478313001/item/goods_55_478313001_3x4.jpg?width=300",
-      "price": 24.9,
-      "salePrice": 14.9,
-      "currency": "EUR",
-      "discountPct": 40,
-      "gender": "men"
-    },
-    {
-      "id": "E479241-000-08",
-      "source": "uniqlo-de-men",
-      "name": "Soufflé Yarn Chunky Stole",
-      "url": "https://www.uniqlo.com/de/en/products/E479241-000/00?colorDisplayCode=08",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479241/item/goods_08_479241_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 33,
-      "gender": "men"
-    },
-    {
-      "id": "E479255-000-01",
-      "source": "uniqlo-de-men",
-      "name": "100% Cashmere Scarf",
-      "url": "https://www.uniqlo.com/de/en/products/E479255-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479255/item/goods_01_479255_3x4.jpg?width=300",
-      "price": 59.9,
-      "salePrice": 49.9,
-      "currency": "EUR",
-      "discountPct": 17,
-      "gender": "men"
-    },
-    {
-      "id": "E475053-000-50",
-      "source": "uniqlo-de-men",
-      "name": "Smooth Cotton Crew Neck Jumper",
-      "url": "https://www.uniqlo.com/de/en/products/E475053-000/01?colorDisplayCode=50",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/475053/item/eugoods_50_475053_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 50,
       "gender": "men"
     }
   ]
