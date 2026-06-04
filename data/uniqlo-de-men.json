@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-04T11:52:12.163Z",
+  "scrapedAt": "2026-06-04T13:28:48.049Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -459,18 +459,6 @@
       "gender": "men"
     },
     {
-      "id": "E485253-000-34",
-      "source": "uniqlo-de-men",
-      "name": "ZOOTROPOLIS UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485253-000/00?colorDisplayCode=34",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485253/item/eugoods_34_485253_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 7.9,
-      "currency": "EUR",
-      "discountPct": 60,
-      "gender": "men"
-    },
-    {
       "id": "E453754-000-60",
       "source": "uniqlo-de-men",
       "name": "Washable Milano Ribbed Crew Neck Jumper",
@@ -852,6 +840,18 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
+      "gender": "men"
+    },
+    {
+      "id": "E484783-000-55",
+      "source": "uniqlo-de-men",
+      "name": "Leather Combination Belt (Striped)",
+      "url": "https://www.uniqlo.com/de/en/products/E484783-000/00?colorDisplayCode=55",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/484783/item/goods_55_484783_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 12.9,
+      "currency": "EUR",
+      "discountPct": 57,
       "gender": "men"
     }
   ]
