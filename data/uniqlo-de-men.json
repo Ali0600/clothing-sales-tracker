@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-04T19:05:12.059Z",
+  "scrapedAt": "2026-06-05T01:22:39.597Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -368,18 +368,6 @@
       "name": "Curated by Tate: From the Collection UT Graphic T-Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E482750-000/00?colorDisplayCode=00",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482750/item/eugoods_00_482750_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 35,
-      "gender": "men"
-    },
-    {
-      "id": "E486153-000-01",
-      "source": "uniqlo-de-men",
-      "name": "TATE UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E486153-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/486153/item/eugoods_01_486153_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -852,6 +840,18 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 57,
+      "gender": "men"
+    },
+    {
+      "id": "E478319-000-05",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Knit Gloves",
+      "url": "https://www.uniqlo.com/de/en/products/E478319-000/00?colorDisplayCode=05",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478319/item/goods_05_478319_3x4.jpg?width=300",
+      "price": 14.9,
+      "salePrice": 9.9,
+      "currency": "EUR",
+      "discountPct": 34,
       "gender": "men"
     }
   ]
