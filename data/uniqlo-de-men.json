@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-05T13:24:07.922Z",
+  "scrapedAt": "2026-06-05T14:33:19.313Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -543,18 +543,6 @@
       "gender": "men"
     },
     {
-      "id": "E482321-000-24",
-      "source": "uniqlo-de-men",
-      "name": "Washable 3D Knit Seamless Crew Neck Jumper",
-      "url": "https://www.uniqlo.com/de/en/products/E482321-000/01?colorDisplayCode=24",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482321/item/eugoods_24_482321_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 29.9,
-      "currency": "EUR",
-      "discountPct": 40,
-      "gender": "men"
-    },
-    {
       "id": "E484403-000-07",
       "source": "uniqlo-de-men",
       "name": "Milano Ribbed Jacket",
@@ -672,18 +660,6 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
-    },
-    {
-      "id": "E484246-000-65",
-      "source": "uniqlo-de-men",
-      "name": "Chambray Overshirt",
-      "url": "https://www.uniqlo.com/de/en/products/E484246-000/00?colorDisplayCode=65",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484246/item/eugoods_65_484246_3x4.jpg?width=300",
-      "price": 34.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 72,
       "gender": "men"
     },
     {
@@ -927,18 +903,6 @@
       "gender": "men"
     },
     {
-      "id": "E483835-000-30",
-      "source": "uniqlo-de-men",
-      "name": "Short Blouson",
-      "url": "https://www.uniqlo.com/de/en/products/E483835-000/00?colorDisplayCode=30",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483835/item/eugoods_30_483835_3x4.jpg?width=300",
-      "price": 79.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 75,
-      "gender": "men"
-    },
-    {
       "id": "E484032-000-39",
       "source": "uniqlo-de-men",
       "name": "Cotton Blend Short Blouson",
@@ -955,7 +919,7 @@
       "source": "uniqlo-de-men",
       "name": "Utility Jacket",
       "url": "https://www.uniqlo.com/de/en/products/E483819-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483819/item/eugoods_56_483819_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483819/item/eugoods_01_483819_3x4.jpg?width=300",
       "price": 59.9,
       "salePrice": 19.9,
       "currency": "EUR",
