@@ -143,9 +143,10 @@ interface SwipeDeckProps {
   newIds: Set<string>;
   repricedIds: Map<string, number>;
   onSwipe: (product: Product, swipe: Swipe) => void;
+  onUndo: (product: Product) => void;
 }
 
-export function SwipeDeck({ products, newIds, repricedIds, onSwipe }: SwipeDeckProps) {
+export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo }: SwipeDeckProps) {
   const [index, setIndex] = React.useState(0);
 
   // If the products list shrank below the current index (e.g. after a poll
@@ -164,6 +165,14 @@ export function SwipeDeck({ products, newIds, repricedIds, onSwipe }: SwipeDeckP
     },
     [products, index, onSwipe],
   );
+
+  const handleUndo = useCallback(() => {
+    if (index === 0) return;
+    const previous = products[index - 1];
+    if (!previous) return;
+    setIndex((i) => i - 1);
+    onUndo(previous);
+  }, [products, index, onUndo]);
 
   const visible = useMemo(() => products.slice(index, index + 3).reverse(), [products, index]);
 
@@ -190,6 +199,13 @@ export function SwipeDeck({ products, newIds, repricedIds, onSwipe }: SwipeDeckP
         ))}
       </View>
       <View style={styles.buttons}>
+        <ActionButton
+          label="↩"
+          tone="undo"
+          onPress={handleUndo}
+          disabled={index === 0}
+          small
+        />
         <ActionButton label="✕" tone="nope" onPress={() => handleSwipe("dislike")} />
         <ActionButton label="?" tone="maybe" onPress={() => handleSwipe("maybe")} />
         <ActionButton label="♥" tone="like" onPress={() => handleSwipe("like")} />
@@ -205,15 +221,36 @@ function ActionButton({
   label,
   tone,
   onPress,
+  disabled,
+  small,
 }: {
   label: string;
-  tone: "like" | "nope" | "maybe";
+  tone: "like" | "nope" | "maybe" | "undo";
   onPress: () => void;
+  disabled?: boolean;
+  small?: boolean;
 }) {
-  const color = tone === "like" ? "#22c55e" : tone === "nope" ? "#ef4444" : "#eab308";
+  const color =
+    tone === "like"
+      ? "#22c55e"
+      : tone === "nope"
+        ? "#ef4444"
+        : tone === "maybe"
+          ? "#eab308"
+          : "#6b7280";
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.button, { borderColor: color }]}>
-      <Text style={[styles.buttonLabel, { color }]}>{label}</Text>
+    <TouchableOpacity
+      onPress={onPress}
+      disabled={disabled}
+      style={[
+        small ? styles.buttonSmall : styles.button,
+        { borderColor: color },
+        disabled && styles.buttonDisabled,
+      ]}
+    >
+      <Text style={[small ? styles.buttonLabelSmall : styles.buttonLabel, { color }]}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 }
@@ -279,7 +316,7 @@ const styles = StyleSheet.create({
   stampNope: { left: 24, borderColor: "#ef4444", transform: [{ rotate: "-12deg" }] },
   stampMaybe: { alignSelf: "center", top: 24, borderColor: "#eab308" },
   stampText: { fontSize: 24, fontWeight: "800", color: "#111" },
-  buttons: { flexDirection: "row", gap: 24, marginTop: 24 },
+  buttons: { flexDirection: "row", gap: 16, marginTop: 24, alignItems: "center" },
   button: {
     width: 64,
     height: 64,
@@ -289,7 +326,18 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "#fff",
   },
+  buttonSmall: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    borderWidth: 2,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  buttonDisabled: { opacity: 0.35 },
   buttonLabel: { fontSize: 28, fontWeight: "700" },
+  buttonLabelSmall: { fontSize: 20, fontWeight: "700" },
   counter: { marginTop: 16, color: "#6b7280" },
   empty: { flex: 1, alignItems: "center", justifyContent: "center" },
   emptyText: { fontSize: 18, color: "#6b7280" },

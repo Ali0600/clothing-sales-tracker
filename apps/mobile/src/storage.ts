@@ -60,6 +60,13 @@ export async function saveSwipe(
   await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(all));
 }
 
+export async function unsaveSwipe(id: string): Promise<void> {
+  const all = await loadSwipes();
+  if (!(id in all)) return;
+  delete all[id];
+  await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(all));
+}
+
 export async function bulkSaveSwipes(
   ids: string[],
   swipe: Swipe,

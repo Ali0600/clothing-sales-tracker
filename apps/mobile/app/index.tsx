@@ -13,6 +13,7 @@ import {
   migrateLegacyCatalog,
   migrateLegacySwipes,
   saveSwipe,
+  unsaveSwipe,
   type Swipe,
   type SwipeRecord,
 } from "../src/storage";
@@ -187,6 +188,11 @@ export default function Home() {
     schedulePush();
   }, []);
 
+  const handleUndo = useCallback((product: Product) => {
+    void unsaveSwipe(product.id);
+    schedulePush();
+  }, []);
+
   const handleRefresh = useCallback(() => {
     setRefreshing(true);
     setNonce((n) => n + 1);
@@ -277,6 +283,7 @@ export default function Home() {
         newIds={state.newIds}
         repricedIds={state.repricedIds}
         onSwipe={handleSwipe}
+        onUndo={handleUndo}
       />
     </SafeAreaView>
   );
