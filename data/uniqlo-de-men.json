@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-07T07:41:31.165Z",
+  "scrapedAt": "2026-06-07T08:56:54.321Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -687,18 +687,6 @@
       "gender": "men"
     },
     {
-      "id": "E484093-000-37",
-      "source": "uniqlo-de-men",
-      "name": "Pleated Wide Trousers",
-      "url": "https://www.uniqlo.com/de/en/products/E484093-000/00?colorDisplayCode=37",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484093/item/eugoods_37_484093_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 74,
-      "gender": "men"
-    },
-    {
       "id": "E450251-000-69",
       "source": "uniqlo-de-men",
       "name": "Slim Chino Trousers",
@@ -852,6 +840,18 @@
       "salePrice": 1.9,
       "currency": "EUR",
       "discountPct": 87,
+      "gender": "men"
+    },
+    {
+      "id": "E461015-000-01",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Ultra Warm Leggings",
+      "url": "https://www.uniqlo.com/de/en/products/E461015-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461015/item/goods_01_461015_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 9.9,
+      "currency": "EUR",
+      "discountPct": 67,
       "gender": "men"
     }
   ]
