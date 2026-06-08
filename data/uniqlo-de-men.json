@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-07T18:44:20.782Z",
+  "scrapedAt": "2026-06-08T01:27:15.364Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -543,18 +543,6 @@
       "gender": "men"
     },
     {
-      "id": "E462369-000-65",
-      "source": "uniqlo-de-men",
-      "name": "Slim Fit Oxford Shirt (Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E462369-000/01?colorDisplayCode=65",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/462369/item/eugoods_65_462369_3x4.jpg?width=300",
-      "price": 34.9,
-      "salePrice": 14.9,
-      "currency": "EUR",
-      "discountPct": 57,
-      "gender": "men"
-    },
-    {
       "id": "E456630-000-06",
       "source": "uniqlo-de-men",
       "name": "Slim Fit Oxford Shirt",
@@ -699,30 +687,6 @@
       "gender": "men"
     },
     {
-      "id": "E483836-000-34",
-      "source": "uniqlo-de-men",
-      "name": "Relaxed Jacket",
-      "url": "https://www.uniqlo.com/de/en/products/E483836-000/00?colorDisplayCode=34",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483836/item/eugoods_34_483836_3x4.jpg?width=300",
-      "price": 79.9,
-      "salePrice": 29.9,
-      "currency": "EUR",
-      "discountPct": 63,
-      "gender": "men"
-    },
-    {
-      "id": "E470118-000-09",
-      "source": "uniqlo-de-men",
-      "name": "PUFFERTECH Parka",
-      "url": "https://www.uniqlo.com/de/en/products/E470118-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/470118/item/eugoods_09_470118_3x4.jpg?width=300",
-      "price": 79.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 75,
-      "gender": "men"
-    },
-    {
       "id": "E478231-000-34",
       "source": "uniqlo-de-men",
       "name": "Windproof Parka",
@@ -852,6 +816,42 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 34,
+      "gender": "men"
+    },
+    {
+      "id": "E478312-000-01",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Scarf",
+      "url": "https://www.uniqlo.com/de/en/products/E478312-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478312/item/goods_01_478312_3x4.jpg?width=300",
+      "price": 24.9,
+      "salePrice": 14.9,
+      "currency": "EUR",
+      "discountPct": 40,
+      "gender": "men"
+    },
+    {
+      "id": "E478313-001-55",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Scarf (Patterned)",
+      "url": "https://www.uniqlo.com/de/en/products/E478313-001/00?colorDisplayCode=55",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478313001/item/goods_55_478313001_3x4.jpg?width=300",
+      "price": 24.9,
+      "salePrice": 14.9,
+      "currency": "EUR",
+      "discountPct": 40,
+      "gender": "men"
+    },
+    {
+      "id": "E479241-000-08",
+      "source": "uniqlo-de-men",
+      "name": "Soufflé Yarn Chunky Stole",
+      "url": "https://www.uniqlo.com/de/en/products/E479241-000/00?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479241/item/goods_08_479241_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 33,
       "gender": "men"
     }
   ]
