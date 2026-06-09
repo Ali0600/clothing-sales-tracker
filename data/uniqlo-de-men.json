@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-09T12:32:48.806Z",
+  "scrapedAt": "2026-06-09T13:18:43.566Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -1119,18 +1119,6 @@
       "gender": "men"
     },
     {
-      "id": "E467504-000-01",
-      "source": "uniqlo-de-men",
-      "name": "100% Premium Linen Shirt (Stripe)",
-      "url": "https://www.uniqlo.com/de/en/products/E467504-000/01?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/467504/item/goods_01_467504_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 29.9,
-      "currency": "EUR",
-      "discountPct": 40,
-      "gender": "men"
-    },
-    {
       "id": "E484246-000-61",
       "source": "uniqlo-de-men",
       "name": "Chambray Overshirt",
@@ -1311,42 +1299,6 @@
       "gender": "men"
     },
     {
-      "id": "E480356-000-08",
-      "source": "uniqlo-de-men",
-      "name": "Pleated Wide Trousers (Brushed Jersey)",
-      "url": "https://www.uniqlo.com/de/en/products/E480356-000/00?colorDisplayCode=08",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/480356/item/goods_08_480356_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 80,
-      "gender": "men"
-    },
-    {
-      "id": "E479134-000-12",
-      "source": "uniqlo-de-men",
-      "name": "Stretch Easy Ankle Trousers",
-      "url": "https://www.uniqlo.com/de/en/products/E479134-000/01?colorDisplayCode=12",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/479134/item/eugoods_12_479134_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 67,
-      "gender": "men"
-    },
-    {
-      "id": "E482883-000-58",
-      "source": "uniqlo-de-men",
-      "name": "Wide Cargo Trousers",
-      "url": "https://www.uniqlo.com/de/en/products/E482883-000/00?colorDisplayCode=58",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482883/item/eugoods_58_482883_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 29.9,
-      "currency": "EUR",
-      "discountPct": 40,
-      "gender": "men"
-    },
-    {
       "id": "E455476-000-65",
       "source": "uniqlo-de-men",
       "name": "EZY Jeans",
@@ -1380,6 +1332,18 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 68,
+      "gender": "men"
+    },
+    {
+      "id": "E477206-000-69",
+      "source": "uniqlo-de-men",
+      "name": "Geared Shorts (Printed)",
+      "url": "https://www.uniqlo.com/de/en/products/E477206-000/00?colorDisplayCode=69",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/477206/item/goods_69_477206_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 7.9,
+      "currency": "EUR",
+      "discountPct": 74,
       "gender": "men"
     },
     {
@@ -1551,11 +1515,11 @@
       "gender": "men"
     },
     {
-      "id": "E478578-000-09",
+      "id": "E478578-000-00",
       "source": "uniqlo-de-men",
       "name": "Seamless Down Short Jacket",
-      "url": "https://www.uniqlo.com/de/en/products/E478578-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/478578/sub/eugoods_478578_sub5_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E478578-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/478578/item/eugoods_00_478578_3x4.jpg?width=300",
       "price": 129.9,
       "salePrice": 39.9,
       "currency": "EUR",
@@ -1608,6 +1572,18 @@
       "salePrice": 3.9,
       "currency": "EUR",
       "discountPct": 20,
+      "gender": "men"
+    },
+    {
+      "id": "E462237-000-68",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Socks (Pile)",
+      "url": "https://www.uniqlo.com/de/en/products/E462237-000/01?colorDisplayCode=68",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/462237/item/goods_68_462237_3x4.jpg?width=300",
+      "price": 7.9,
+      "salePrice": 1.9,
+      "currency": "EUR",
+      "discountPct": 76,
       "gender": "men"
     },
     {
@@ -1716,6 +1692,30 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 25,
+      "gender": "men"
+    },
+    {
+      "id": "E482816-000-68",
+      "source": "uniqlo-de-men",
+      "name": "Reversible Bucket Hat",
+      "url": "https://www.uniqlo.com/de/en/products/E482816-000/00?colorDisplayCode=68",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/482816/item/goods_68_482816_3x4.jpg?width=300",
+      "price": 19.9,
+      "salePrice": 12.9,
+      "currency": "EUR",
+      "discountPct": 35,
+      "gender": "men"
+    },
+    {
+      "id": "E479241-000-08",
+      "source": "uniqlo-de-men",
+      "name": "Soufflé Yarn Chunky Stole",
+      "url": "https://www.uniqlo.com/de/en/products/E479241-000/00?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479241/item/goods_08_479241_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 33,
       "gender": "men"
     }
   ]
