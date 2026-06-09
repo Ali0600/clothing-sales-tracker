@@ -38,9 +38,19 @@ export default function Home() {
   const [nonce, setNonce] = useState(0);
   const [phase, setPhase] = useState<RefreshPhase>("idle");
   const [phaseDetail, setPhaseDetail] = useState<string | null>(null);
+  const [pinFrontProductId, setPinFrontProductId] = useState<string | null>(null);
+  const [deckEpoch, setDeckEpoch] = useState(0);
+  const [canUndo, setCanUndo] = useState(false);
   const router = useRouter();
   const lastScrapedAtRef = useRef<string | null>(null);
   const pollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastSwipedRef = useRef<{ product: Product; previous: SwipeRecord | null } | null>(null);
+  const writeQueueRef = useRef<Promise<void>>(Promise.resolve());
+  const pinRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    pinRef.current = pinFrontProductId;
+  }, [pinFrontProductId]);
 
   const stopPolling = useCallback(() => {
     if (pollTimerRef.current) {
@@ -74,9 +84,15 @@ export default function Home() {
       schedulePush();
     }
 
-    const built = buildDeck(snapshots, swipes, seen, errors);
+    const built = buildDeck(snapshots, swipes, seen, errors, pinRef.current);
     setState(built);
     setError(null);
+    // If the pinned id didn't survive the rebuild (e.g. another device
+    // re-swiped on it via gist sync), drop the stale pin so we don't keep
+    // trying to surface a ghost.
+    if (pinRef.current && !built.products.some((p) => p.id === pinRef.current)) {
+      setPinFrontProductId(null);
+    }
     if (snapshots.length > 0) await mergeIntoCatalog(snapshots);
     if (built.products.length > 0) await markSeen(built.products.map((p) => p.id));
     return built;
@@ -184,14 +200,40 @@ export default function Home() {
   useEffect(() => stopPolling, [stopPolling]);
 
   const handleSwipe = useCallback((product: Product, swipe: Swipe) => {
-    void saveSwipe(product.id, swipe, product.salePrice);
+    // Serialize writes so a fast swipe→undo can't have unsaveSwipe land
+    // before the underlying saveSwipe completes (would leave the swipe
+    // persisted instead of removed). Capture the previous record under the
+    // same lock so the snapshot lastSwipedRef holds is consistent with
+    // what's actually in AsyncStorage.
+    writeQueueRef.current = writeQueueRef.current.then(async () => {
+      const existing = await loadSwipes();
+      const previous = existing[product.id] ?? null;
+      await saveSwipe(product.id, swipe, product.salePrice);
+      lastSwipedRef.current = { product, previous };
+    });
+    if (pinFrontProductId === product.id) setPinFrontProductId(null);
+    setCanUndo(true);
     schedulePush();
-  }, []);
+  }, [pinFrontProductId]);
 
-  const handleUndo = useCallback((product: Product) => {
-    void unsaveSwipe(product.id);
+  const handleUndo = useCallback(() => {
+    const last = lastSwipedRef.current;
+    if (!last) return;
+    const { product, previous } = last;
+    writeQueueRef.current = writeQueueRef.current.then(async () => {
+      if (previous) {
+        await saveSwipe(product.id, previous.swipe, previous.priceAtSwipe);
+      } else {
+        await unsaveSwipe(product.id);
+      }
+    });
+    setPinFrontProductId(product.id);
+    setDeckEpoch((e) => e + 1);
+    lastSwipedRef.current = null;
+    setCanUndo(false);
     schedulePush();
-  }, []);
+    void writeQueueRef.current.then(() => reload());
+  }, [reload]);
 
   const handleRefresh = useCallback(() => {
     setRefreshing(true);
@@ -279,11 +321,13 @@ export default function Home() {
       )}
 
       <SwipeDeck
+        key={deckEpoch}
         products={state.products}
         newIds={state.newIds}
         repricedIds={state.repricedIds}
         onSwipe={handleSwipe}
         onUndo={handleUndo}
+        canUndo={canUndo}
       />
     </SafeAreaView>
   );
@@ -294,6 +338,7 @@ function buildDeck(
   swipes: Record<string, SwipeRecord>,
   seen: Set<string>,
   fetchErrors: FetchResult["errors"],
+  pinFrontId: string | null,
 ): DeckState {
   const all: Product[] = snapshots.flatMap((s) => s.products);
   const candidates: Product[] = [];
@@ -326,6 +371,16 @@ function buildDeck(
     if (ra !== rb) return ra - rb;
     return b.discountPct - a.discountPct;
   });
+
+  // After sorting, hoist the pinned product (the one just brought back by
+  // undo) to slot 0 so SwipeDeck's reset-to-0 remount lands on it.
+  if (pinFrontId) {
+    const idx = candidates.findIndex((p) => p.id === pinFrontId);
+    if (idx > 0) {
+      const [pinned] = candidates.splice(idx, 1);
+      candidates.unshift(pinned);
+    }
+  }
 
   const oldestScrapedAt = snapshots
     .map((s) => s.scrapedAt)

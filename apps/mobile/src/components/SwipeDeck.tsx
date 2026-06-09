@@ -143,10 +143,11 @@ interface SwipeDeckProps {
   newIds: Set<string>;
   repricedIds: Map<string, number>;
   onSwipe: (product: Product, swipe: Swipe) => void;
-  onUndo: (product: Product) => void;
+  onUndo: () => void;
+  canUndo: boolean;
 }
 
-export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo }: SwipeDeckProps) {
+export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo, canUndo }: SwipeDeckProps) {
   const [index, setIndex] = React.useState(0);
 
   // If the products list shrank below the current index (e.g. after a poll
@@ -166,13 +167,13 @@ export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo }: Sw
     [products, index, onSwipe],
   );
 
+  // Undo is now driven by Home: it restores the swipe in storage, sets
+  // pinFrontId so the un-swiped product surfaces at slot 0 of the next
+  // buildDeck, and bumps a key on this component so we remount and
+  // index re-initializes to 0. So all we do here is forward the tap.
   const handleUndo = useCallback(() => {
-    if (index === 0) return;
-    const previous = products[index - 1];
-    if (!previous) return;
-    setIndex((i) => i - 1);
-    onUndo(previous);
-  }, [products, index, onUndo]);
+    onUndo();
+  }, [onUndo]);
 
   const visible = useMemo(() => products.slice(index, index + 3).reverse(), [products, index]);
 
@@ -203,7 +204,7 @@ export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo }: Sw
           label="↩"
           tone="undo"
           onPress={handleUndo}
-          disabled={index === 0}
+          disabled={!canUndo}
           small
         />
         <ActionButton label="✕" tone="nope" onPress={() => handleSwipe("dislike")} />
