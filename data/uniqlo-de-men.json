@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-09T13:18:43.566Z",
+  "scrapedAt": "2026-06-09T13:54:40.749Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -291,6 +291,18 @@
       "gender": "men"
     },
     {
+      "id": "E475376-000-12",
+      "source": "uniqlo-de-men",
+      "name": "DRY V Neck T-Shirt",
+      "url": "https://www.uniqlo.com/de/en/products/E475376-000/00?colorDisplayCode=12",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/475376/item/eugoods_12_475376_3x4.jpg?width=300",
+      "price": 7.9,
+      "salePrice": 3.9,
+      "currency": "EUR",
+      "discountPct": 51,
+      "gender": "men"
+    },
+    {
       "id": "E461011-000-69",
       "source": "uniqlo-de-men",
       "name": "HEATTECH Ultra Warm Crew Neck T-Shirt (Long Sleeve)",
@@ -512,18 +524,6 @@
       "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINNIKUMAN)",
       "url": "https://www.uniqlo.com/de/en/products/E487573-000/00?colorDisplayCode=09",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487573/item/eugoods_09_487573_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 35,
-      "gender": "men"
-    },
-    {
-      "id": "E482772-000-09",
-      "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (HUNTER x HUNTER)",
-      "url": "https://www.uniqlo.com/de/en/products/E482772-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482772/item/eugoods_09_482772_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
