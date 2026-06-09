@@ -15,6 +15,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
+import { CATEGORY_ORDER, categorize } from "@cst/shared";
 import { fetchAllSnapshots } from "../src/api";
 import {
   loadCatalog,
@@ -36,6 +37,14 @@ interface Row {
   entry: CatalogEntry;
   onSale: boolean;
   swipe?: Swipe;
+  category: string;
+}
+
+function categoryOf(entry: CatalogEntry): string {
+  // Prefer the field the scraper wrote; fall back to render-time derivation
+  // for catalog entries that pre-date the category field. Keeps the feature
+  // useful without forcing a re-scrape + gist resync.
+  return entry.product.category ?? categorize(entry.product.name);
 }
 
 interface PriceLabel {
@@ -68,6 +77,7 @@ export default function Catalog() {
   const [error, setError] = useState<string | null>(null);
   const [showOffSale, setShowOffSale] = useState(false);
   const [filter, setFilter] = useState<Filter>("all");
+  const [category, setCategory] = useState<string | null>(null); // null = "All"
   const [query, setQuery] = useState("");
 
   const load = useCallback(async () => {
@@ -81,6 +91,7 @@ export default function Catalog() {
           entry,
           onSale: onSaleIds.has(entry.product.id),
           swipe: swipes[entry.product.id]?.swipe,
+          category: categoryOf(entry),
         }))
         .sort((a, b) => {
           if (a.onSale !== b.onSale) return a.onSale ? -1 : 1;
@@ -105,10 +116,19 @@ export default function Catalog() {
       if (filter === "like" && r.swipe !== "like") return false;
       if (filter === "maybe" && r.swipe !== "maybe") return false;
       if (filter === "dislike" && r.swipe !== "dislike") return false;
+      if (category && r.category !== category) return false;
       if (q && !r.entry.product.name.toLowerCase().includes(q)) return false;
       return true;
     });
-  }, [rows, showOffSale, filter, query]);
+  }, [rows, showOffSale, filter, category, query]);
+
+  // Dynamic chip set: only categories present in the loaded rows, in the
+  // shared CATEGORY_ORDER so the row layout stays stable across renders.
+  const availableCategories = useMemo(() => {
+    if (!rows) return [];
+    const present = new Set(rows.map((r) => r.category));
+    return CATEGORY_ORDER.filter((c) => present.has(c));
+  }, [rows]);
 
   const stats = useMemo(() => {
     if (!rows) return { total: 0, onSale: 0, offSale: 0 };
@@ -141,6 +161,26 @@ export default function Catalog() {
           autoCorrect={false}
           autoCapitalize="none"
         />
+        {availableCategories.length > 0 && (
+          <FlatList
+            horizontal
+            data={["All", ...availableCategories]}
+            keyExtractor={(c) => c}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.categoryRow}
+            renderItem={({ item }) => {
+              const isAll = item === "All";
+              const active = isAll ? category === null : category === item;
+              return (
+                <FilterChip
+                  label={item}
+                  active={active}
+                  onPress={() => setCategory(isAll ? null : item)}
+                />
+              );
+            }}
+          />
+        )}
         <View style={styles.filterRow}>
           <FilterChip label="All" active={filter === "all"} onPress={() => setFilter("all")} />
           <FilterChip label="♥ Liked" active={filter === "like"} onPress={() => setFilter("like")} />
@@ -284,6 +324,7 @@ const styles = StyleSheet.create({
     color: "#111827",
   },
   filterRow: { flexDirection: "row", gap: 6, flexWrap: "wrap" },
+  categoryRow: { gap: 6, paddingRight: PADDING },
   chip: {
     paddingHorizontal: 10,
     paddingVertical: 6,

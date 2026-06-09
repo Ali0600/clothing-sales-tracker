@@ -13,6 +13,7 @@ export interface Product {
   gender?: "men" | "women" | "kids" | "unisex";
   colors?: string[];
   sizes?: string[];
+  category?: string;
 }
 
 export interface Snapshot {

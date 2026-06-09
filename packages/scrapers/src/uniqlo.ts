@@ -1,5 +1,5 @@
 import { chromium, type Browser } from "playwright";
-import type { Product, Snapshot } from "@cst/shared";
+import { categorize, type Product, type Snapshot } from "@cst/shared";
 import { ScrapeError } from "./error.js";
 
 const URL = "https://www.uniqlo.com/de/en/feature/sale/men";
@@ -178,6 +178,7 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
       currency: "EUR",
       discountPct: base > 0 ? Math.round(((base - sale) / base) * 100) : 0,
       gender: "men",
+      category: categorize(r.name),
     });
   }
   return products;
