@@ -1,6 +1,6 @@
 import { chromium, type Browser } from "playwright";
 import { categorize, type Product, type Snapshot } from "@cst/shared";
-import { ScrapeError } from "./error.js";
+import { ScrapeError } from "./error";
 
 const URL = "https://www.uniqlo.com/de/en/feature/sale/men";
 const SOURCE = "uniqlo-de-men" as const;

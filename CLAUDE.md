@@ -41,6 +41,7 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 - **`.npmrc` has `node-linker=hoisted`** — Metro can't traverse pnpm's isolated symlinks. Do not remove.
 - **Root `package.json` lists `@cst/shared` and `@cst/scrapers` as workspace deps** even though only `scripts/` uses them. Without this, hoisted mode doesn't symlink them into root `node_modules/` and `scripts/scrape.ts` can't resolve them.
 - **`@expo/metro-runtime` must be an explicit dep of `apps/mobile`** — required by expo-router but not pulled in transitively.
+- **Internal re-exports between TS files in workspace packages MUST NOT carry `.js` extensions** (`export * from "./product"`, not `"./product.js"`). TypeScript's `moduleResolution: Bundler` rewrites `.js`→`.ts` at typecheck time, and `tsx` is permissive, so the scripts and `pnpm -r typecheck` will both pass. But Metro's resolver does NOT do that rewrite — when the app bundle hits a `.js` import inside `@cst/shared`, it tries to read a literal `.js` file that doesn't exist and the simulator dies with "Unable to resolve module". The breakage is delayed because Metro caches transforms; a brand-new import elsewhere in the same file invalidates the cache and surfaces the underlying bug.
 
 ### Expo / React Native
 

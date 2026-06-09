@@ -1,3 +1,3 @@
-export * from "./product.js";
-export * from "./diff.js";
-export * from "./category.js";
+export * from "./product";
+export * from "./diff";
+export * from "./category";

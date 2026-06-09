@@ -1,4 +1,4 @@
-import type { Product, Snapshot } from "./product.js";
+import type { Product, Snapshot } from "./product";
 
 export interface SnapshotDiff {
   added: Product[];

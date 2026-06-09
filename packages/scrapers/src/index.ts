@@ -1,5 +1,5 @@
 import type { Snapshot, Source } from "@cst/shared";
-import { scrapeUniqloDeMen } from "./uniqlo.js";
+import { scrapeUniqloDeMen } from "./uniqlo";
 
 export type Scraper = () => Promise<Snapshot>;
 
@@ -10,5 +10,5 @@ export const scrapers: Record<Source, Scraper | undefined> = {
   "hm-de": undefined,
 };
 
-export { ScrapeError } from "./error.js";
-export { scrapeUniqloDeMen } from "./uniqlo.js";
+export { ScrapeError } from "./error";
+export { scrapeUniqloDeMen } from "./uniqlo";

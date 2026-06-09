@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-09T16:32:19.768Z",
+  "scrapedAt": "2026-06-09T16:50:45.107Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -12,7 +12,8 @@
       "salePrice": 69.9,
       "currency": "EUR",
       "discountPct": 22,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E482452-000-67",
@@ -24,7 +25,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E482211-000-56",
@@ -36,7 +38,8 @@
       "salePrice": 59.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E482235-000-56",
@@ -48,7 +51,8 @@
       "salePrice": 99.9,
       "currency": "EUR",
       "discountPct": 23,
-      "gender": "men"
+      "gender": "men",
+      "category": "Coat"
     },
     {
       "id": "E485741-000-00",
@@ -60,7 +64,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486131-000-09",
@@ -72,7 +77,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E482497-000-30",
@@ -84,7 +90,8 @@
       "salePrice": 24.9,
       "currency": "EUR",
       "discountPct": 29,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E488881-000-01",
@@ -96,7 +103,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E482874-000-09",
@@ -108,7 +116,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jeans"
     },
     {
       "id": "E482933-000-04",
@@ -120,7 +129,8 @@
       "salePrice": 49.9,
       "currency": "EUR",
       "discountPct": 29,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E483960-000-69",
@@ -132,7 +142,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Hoodie"
     },
     {
       "id": "E470077-000-09",
@@ -144,7 +155,8 @@
       "salePrice": 129.9,
       "currency": "EUR",
       "discountPct": 13,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E465185-000-11",
@@ -156,7 +168,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E465185-000-34",
@@ -168,7 +181,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486103-000-00",
@@ -180,7 +194,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E455365-000-12",
@@ -192,7 +207,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E455365-000-65",
@@ -204,7 +220,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E465187-000-43",
@@ -216,7 +233,8 @@
       "salePrice": 5.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E465187-000-64",
@@ -228,7 +246,8 @@
       "salePrice": 3.9,
       "currency": "EUR",
       "discountPct": 51,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485454-000-04",
@@ -240,7 +259,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485455-000-05",
@@ -252,7 +272,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484203-000-00",
@@ -264,7 +285,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E422992-000-30",
@@ -276,7 +298,8 @@
       "salePrice": 7.9,
       "currency": "EUR",
       "discountPct": 47,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484079-000-62",
@@ -288,7 +311,8 @@
       "salePrice": 5.9,
       "currency": "EUR",
       "discountPct": 70,
-      "gender": "men"
+      "gender": "men",
+      "category": "Vest"
     },
     {
       "id": "E482301-000-18",
@@ -300,7 +324,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 34,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E481004-000-61",
@@ -312,7 +337,8 @@
       "salePrice": 24.9,
       "currency": "EUR",
       "discountPct": 29,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E461011-000-69",
@@ -324,7 +350,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E488260-000-00",
@@ -336,7 +363,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E488259-000-16",
@@ -348,7 +376,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E475377-000-11",
@@ -360,7 +389,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484398-000-09",
@@ -372,7 +402,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E484399-000-69",
@@ -384,7 +415,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 68,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E482758-000-17",
@@ -396,7 +428,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E483285-000-17",
@@ -408,7 +441,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E487569-000-00",
@@ -420,7 +454,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487558-000-09",
@@ -432,7 +467,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487570-000-09",
@@ -444,7 +480,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484778-000-00",
@@ -456,7 +493,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487557-000-00",
@@ -468,7 +506,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487574-000-00",
@@ -480,7 +519,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487563-000-03",
@@ -492,7 +532,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487566-000-00",
@@ -504,7 +545,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487564-000-31",
@@ -516,7 +558,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487565-000-55",
@@ -528,7 +571,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487573-000-09",
@@ -540,7 +584,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485480-000-09",
@@ -552,7 +597,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485482-000-01",
@@ -564,7 +610,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485481-000-00",
@@ -576,7 +623,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487464-000-00",
@@ -588,7 +636,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486132-000-00",
@@ -600,7 +649,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484759-000-30",
@@ -612,7 +662,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487806-000-08",
@@ -624,7 +675,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E482747-000-01",
@@ -636,7 +688,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E487463-000-18",
@@ -648,7 +701,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484758-000-68",
@@ -660,7 +714,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484663-001-30",
@@ -672,7 +727,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E484663-003-69",
@@ -684,7 +740,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E484663-002-55",
@@ -696,7 +753,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E484261-000-03",
@@ -708,7 +766,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485743-000-09",
@@ -720,7 +779,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486160-000-69",
@@ -732,7 +792,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E482757-000-00",
@@ -744,7 +805,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486162-000-01",
@@ -756,7 +818,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486161-000-10",
@@ -768,7 +831,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485075-000-01",
@@ -780,7 +844,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E482750-000-00",
@@ -792,7 +857,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486157-000-69",
@@ -804,7 +870,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E486153-000-01",
@@ -816,7 +883,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E482805-000-00",
@@ -828,7 +896,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485467-000-09",
@@ -840,7 +909,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485465-000-00",
@@ -852,7 +922,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485466-000-08",
@@ -864,7 +935,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E488734-000-00",
@@ -876,7 +948,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E488735-000-09",
@@ -888,7 +961,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E482773-000-69",
@@ -900,7 +974,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E488733-000-58",
@@ -912,7 +987,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E484909-000-69",
@@ -924,7 +1000,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E485255-000-67",
@@ -936,7 +1013,8 @@
       "salePrice": 7.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men"
+      "gender": "men",
+      "category": "T-Shirt"
     },
     {
       "id": "E453754-000-60",
@@ -948,7 +1026,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E482321-000-51",
@@ -960,7 +1039,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 20,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E482321-000-24",
@@ -972,7 +1052,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E484403-000-07",
@@ -984,7 +1065,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E478550-000-02",
@@ -996,7 +1078,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 20,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450535-000-30",
@@ -1008,7 +1091,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450535-000-53",
@@ -1020,7 +1104,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450543-000-67",
@@ -1032,7 +1117,8 @@
       "salePrice": 79.9,
       "currency": "EUR",
       "discountPct": 20,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450543-000-78",
@@ -1044,7 +1130,8 @@
       "salePrice": 49.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450543-000-61",
@@ -1056,7 +1143,8 @@
       "salePrice": 59.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450543-000-09",
@@ -1068,7 +1156,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E450544-000-69",
@@ -1080,7 +1169,8 @@
       "salePrice": 89.9,
       "currency": "EUR",
       "discountPct": 18,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E478546-000-01",
@@ -1092,7 +1182,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E460940-000-55",
@@ -1104,7 +1195,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 75,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E481727-000-02",
@@ -1116,7 +1208,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E478339-000-08",
@@ -1128,7 +1221,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 68,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E457428-000-32",
@@ -1140,7 +1234,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E484246-000-61",
@@ -1152,7 +1247,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 72,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E482498-000-36",
@@ -1164,7 +1260,8 @@
       "salePrice": 24.9,
       "currency": "EUR",
       "discountPct": 29,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E480802-000-60",
@@ -1176,7 +1273,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 68,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E462369-000-65",
@@ -1188,7 +1286,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E456630-000-64",
@@ -1200,7 +1299,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E485772-000-64",
@@ -1212,7 +1312,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 68,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E483877-000-09",
@@ -1224,7 +1325,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 33,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E482823-000-01",
@@ -1236,7 +1338,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E484929-000-12",
@@ -1248,7 +1351,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E484929-001-61",
@@ -1260,7 +1364,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E479071-000-07",
@@ -1272,7 +1377,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E477683-002-60",
@@ -1284,7 +1390,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 72,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shirt"
     },
     {
       "id": "E485565-000-63",
@@ -1296,7 +1403,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 33,
-      "gender": "men"
+      "gender": "men",
+      "category": "Polo"
     },
     {
       "id": "E482303-000-60",
@@ -1308,7 +1416,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 33,
-      "gender": "men"
+      "gender": "men",
+      "category": "Polo"
     },
     {
       "id": "E483972-000-15",
@@ -1320,7 +1429,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Polo"
     },
     {
       "id": "E481520-000-39",
@@ -1332,7 +1442,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 80,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E482883-000-58",
@@ -1344,7 +1455,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E455476-000-65",
@@ -1356,7 +1468,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 20,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jeans"
     },
     {
       "id": "E474123-000-08",
@@ -1368,7 +1481,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E458325-000-08",
@@ -1380,7 +1494,8 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 40,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E482965-000-37",
@@ -1392,7 +1507,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 68,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E477206-000-06",
@@ -1404,7 +1520,8 @@
       "salePrice": 7.9,
       "currency": "EUR",
       "discountPct": 74,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E460616-000-69",
@@ -1416,7 +1533,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E455503-000-66",
@@ -1428,7 +1546,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
+      "gender": "men",
+      "category": "Shorts"
     },
     {
       "id": "E482873-000-68",
@@ -1440,7 +1559,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 74,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jeans"
     },
     {
       "id": "E484093-000-37",
@@ -1452,7 +1572,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 74,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E450251-000-69",
@@ -1464,7 +1585,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 75,
-      "gender": "men"
+      "gender": "men",
+      "category": "Pants"
     },
     {
       "id": "E484032-000-39",
@@ -1476,7 +1598,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E483819-000-01",
@@ -1488,7 +1611,8 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E483836-000-34",
@@ -1500,7 +1624,8 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 63,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E481608-000-09",
@@ -1512,7 +1637,8 @@
       "salePrice": 89.9,
       "currency": "EUR",
       "discountPct": 36,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E478231-000-26",
@@ -1524,7 +1650,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E483834-000-31",
@@ -1536,7 +1663,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 64,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E480045-000-31",
@@ -1548,7 +1676,8 @@
       "salePrice": 109.9,
       "currency": "EUR",
       "discountPct": 27,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E478280-000-09",
@@ -1560,7 +1689,8 @@
       "salePrice": 159.9,
       "currency": "EUR",
       "discountPct": 20,
-      "gender": "men"
+      "gender": "men",
+      "category": "Coat"
     },
     {
       "id": "E481675-000-09",
@@ -1572,7 +1702,8 @@
       "salePrice": 109.9,
       "currency": "EUR",
       "discountPct": 27,
-      "gender": "men"
+      "gender": "men",
+      "category": "Coat"
     },
     {
       "id": "E479229-000-09",
@@ -1584,7 +1715,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 33,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E478578-000-09",
@@ -1596,7 +1728,8 @@
       "salePrice": 39.9,
       "currency": "EUR",
       "discountPct": 69,
-      "gender": "men"
+      "gender": "men",
+      "category": "Jacket"
     },
     {
       "id": "E479502-000-55",
@@ -1608,7 +1741,8 @@
       "salePrice": 5.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E482602-000-69",
@@ -1620,7 +1754,8 @@
       "salePrice": 5.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E483996-000-63",
@@ -1632,7 +1767,8 @@
       "salePrice": 3.9,
       "currency": "EUR",
       "discountPct": 51,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E476966-000-08",
@@ -1644,7 +1780,8 @@
       "salePrice": 3.9,
       "currency": "EUR",
       "discountPct": 20,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E484241-000-61",
@@ -1656,7 +1793,8 @@
       "salePrice": 2.9,
       "currency": "EUR",
       "discountPct": 41,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E461015-000-01",
@@ -1668,7 +1806,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E484086-000-74",
@@ -1680,7 +1819,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E484783-000-16",
@@ -1692,7 +1832,8 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 57,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     },
     {
       "id": "E478319-000-05",
@@ -1704,7 +1845,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 34,
-      "gender": "men"
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E478317-000-08",
@@ -1716,7 +1858,8 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men"
+      "gender": "men",
+      "category": "Other"
     }
   ]
 }
