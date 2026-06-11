@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  Dimensions,
   Image,
   StyleSheet,
   Text,
@@ -20,33 +19,31 @@ import Animated, {
 import type { Product } from "@cst/shared";
 import type { Swipe } from "../storage";
 
-const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get("window");
-const CARD_W = Math.min(SCREEN_W - 32, 440);
-const CARD_H = Math.min(SCREEN_H - 240, 640);
-const SWIPE_THRESHOLD = CARD_W * 0.28;
-
 interface CardProps {
   product: Product;
   isNew: boolean;
   previousPrice: number | null;
   onSwipe: (swipe: Swipe) => void;
   zIndex: number;
+  cardW: number;
+  cardH: number;
 }
 
-function Card({ product, isNew, previousPrice, onSwipe, zIndex }: CardProps) {
+function Card({ product, isNew, previousPrice, onSwipe, zIndex, cardW, cardH }: CardProps) {
   const tx = useSharedValue(0);
   const ty = useSharedValue(0);
+  const swipeThreshold = cardW * 0.28;
 
   const fling = useCallback(
     (swipe: Swipe) => {
-      const targetX = swipe === "like" ? CARD_W * 1.6 : swipe === "dislike" ? -CARD_W * 1.6 : 0;
-      const targetY = swipe === "maybe" ? -CARD_H * 1.4 : 0;
+      const targetX = swipe === "like" ? cardW * 1.6 : swipe === "dislike" ? -cardW * 1.6 : 0;
+      const targetY = swipe === "maybe" ? -cardH * 1.4 : 0;
       tx.value = withTiming(targetX, { duration: 220 });
       ty.value = withTiming(targetY, { duration: 220 }, () => {
         runOnJS(onSwipe)(swipe);
       });
     },
-    [tx, ty, onSwipe],
+    [tx, ty, onSwipe, cardW, cardH],
   );
 
   const pan = Gesture.Pan()
@@ -57,9 +54,9 @@ function Card({ product, isNew, previousPrice, onSwipe, zIndex }: CardProps) {
     .onEnd(() => {
       const dx = tx.value;
       const dy = ty.value;
-      if (dx > SWIPE_THRESHOLD) runOnJS(fling)("like");
-      else if (dx < -SWIPE_THRESHOLD) runOnJS(fling)("dislike");
-      else if (dy < -SWIPE_THRESHOLD) runOnJS(fling)("maybe");
+      if (dx > swipeThreshold) runOnJS(fling)("like");
+      else if (dx < -swipeThreshold) runOnJS(fling)("dislike");
+      else if (dy < -swipeThreshold) runOnJS(fling)("maybe");
       else {
         tx.value = withSpring(0);
         ty.value = withSpring(0);
@@ -70,23 +67,23 @@ function Card({ product, isNew, previousPrice, onSwipe, zIndex }: CardProps) {
     transform: [
       { translateX: tx.value },
       { translateY: ty.value },
-      { rotate: `${interpolate(tx.value, [-CARD_W, 0, CARD_W], [-12, 0, 12])}deg` },
+      { rotate: `${interpolate(tx.value, [-cardW, 0, cardW], [-12, 0, 12])}deg` },
     ],
   }));
 
   const likeStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(tx.value, [0, SWIPE_THRESHOLD], [0, 1], "clamp"),
+    opacity: interpolate(tx.value, [0, swipeThreshold], [0, 1], "clamp"),
   }));
   const nopeStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(tx.value, [-SWIPE_THRESHOLD, 0], [1, 0], "clamp"),
+    opacity: interpolate(tx.value, [-swipeThreshold, 0], [1, 0], "clamp"),
   }));
   const maybeStyle = useAnimatedStyle(() => ({
-    opacity: interpolate(ty.value, [-SWIPE_THRESHOLD, 0], [1, 0], "clamp"),
+    opacity: interpolate(ty.value, [-swipeThreshold, 0], [1, 0], "clamp"),
   }));
 
   return (
     <GestureDetector gesture={pan}>
-      <Animated.View style={[styles.card, { zIndex }, cardStyle]}>
+      <Animated.View style={[styles.card, { zIndex, width: cardW, height: cardH }, cardStyle]}>
         <Image source={{ uri: product.imageUrl }} style={styles.image} resizeMode="cover" />
         {previousPrice != null ? (
           <View
@@ -149,6 +146,12 @@ interface SwipeDeckProps {
 
 export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo, canUndo }: SwipeDeckProps) {
   const [index, setIndex] = React.useState(0);
+  // Card size is derived from the measured space between the header/banners
+  // and the action buttons — NOT from Dimensions.get("window"). Window math
+  // can't know how much vertical chrome is above us (insets, banners), and
+  // overestimating made the card overlap the header and push the counter
+  // off-screen.
+  const [area, setArea] = useState<{ w: number; h: number } | null>(null);
 
   // If the products list shrank below the current index (e.g. after a poll
   // refresh or coming back from another screen with most items already swiped),
@@ -185,19 +188,34 @@ export function SwipeDeck({ products, newIds, repricedIds, onSwipe, onUndo, canU
     );
   }
 
+  const cardW = area ? Math.min(area.w - 24, 440) : 0;
+  const cardH = area ? Math.max(Math.min(area.h - 8, 640), 320) : 0;
+
   return (
     <View style={styles.root}>
-      <View style={styles.stack}>
-        {visible.map((p, i) => (
-          <Card
-            key={p.id}
-            product={p}
-            isNew={newIds.has(p.id)}
-            previousPrice={repricedIds.get(p.id) ?? null}
-            onSwipe={handleSwipe}
-            zIndex={i + 1}
-          />
-        ))}
+      <View
+        style={styles.stackArea}
+        onLayout={(e) => {
+          const { width, height } = e.nativeEvent.layout;
+          setArea({ w: width, h: height });
+        }}
+      >
+        {area != null && (
+          <View style={{ width: cardW, height: cardH }}>
+            {visible.map((p, i) => (
+              <Card
+                key={p.id}
+                product={p}
+                isNew={newIds.has(p.id)}
+                previousPrice={repricedIds.get(p.id) ?? null}
+                onSwipe={handleSwipe}
+                zIndex={i + 1}
+                cardW={cardW}
+                cardH={cardH}
+              />
+            ))}
+          </View>
+        )}
       </View>
       <View style={styles.buttons}>
         <ActionButton
@@ -257,12 +275,10 @@ function ActionButton({
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1, alignItems: "center", justifyContent: "center", paddingTop: 24 },
-  stack: { width: CARD_W, height: CARD_H },
+  root: { flex: 1, alignSelf: "stretch", alignItems: "center" },
+  stackArea: { flex: 1, width: "100%", alignItems: "center", justifyContent: "center" },
   card: {
     position: "absolute",
-    width: CARD_W,
-    height: CARD_H,
     borderRadius: 20,
     backgroundColor: "#fff",
     overflow: "hidden",
@@ -273,7 +289,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     elevation: 6,
   },
-  image: { flex: 1, width: "100%", backgroundColor: "#f3f4f6", minHeight: 200 },
+  image: { flex: 1, width: "100%", backgroundColor: "#f3f4f6", minHeight: 160 },
   info: { padding: 16, gap: 6, flexShrink: 0 },
   name: { fontSize: 18, fontWeight: "600", color: "#111827" },
   priceRow: { flexDirection: "row", alignItems: "baseline", gap: 10 },
@@ -318,7 +334,7 @@ const styles = StyleSheet.create({
   stampNope: { left: 24, borderColor: "#ef4444", transform: [{ rotate: "-12deg" }] },
   stampMaybe: { alignSelf: "center", top: 24, borderColor: "#eab308" },
   stampText: { fontSize: 24, fontWeight: "800", color: "#111" },
-  buttons: { flexDirection: "row", gap: 16, marginTop: 24, alignItems: "center" },
+  buttons: { flexDirection: "row", gap: 16, marginTop: 16, alignItems: "center" },
   button: {
     width: 64,
     height: 64,
@@ -340,7 +356,7 @@ const styles = StyleSheet.create({
   buttonDisabled: { opacity: 0.35 },
   buttonLabel: { fontSize: 28, fontWeight: "700" },
   buttonLabelSmall: { fontSize: 20, fontWeight: "700" },
-  counter: { marginTop: 16, color: "#6b7280" },
+  counter: { marginTop: 12, marginBottom: 8, color: "#6b7280" },
   empty: { flex: 1, alignItems: "center", justifyContent: "center" },
   emptyText: { fontSize: 18, color: "#6b7280" },
 });
