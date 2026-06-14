@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-14T07:54:04.012Z",
+  "scrapedAt": "2026-06-14T12:57:41.226Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -1316,19 +1316,6 @@
       "category": "Jacket"
     },
     {
-      "id": "E478578-000-09",
-      "source": "uniqlo-de-men",
-      "name": "Seamless Down Short Jacket",
-      "url": "https://www.uniqlo.com/de/en/products/E478578-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/478578/sub/eugoods_478578_sub5_3x4.jpg?width=300",
-      "price": 129.9,
-      "salePrice": 39.9,
-      "currency": "EUR",
-      "discountPct": 69,
-      "gender": "men",
-      "category": "Jacket"
-    },
-    {
       "id": "E479502-000-55",
       "source": "uniqlo-de-men",
       "name": "Cotton Boxer Briefs (Low Rise)",
@@ -1390,6 +1377,19 @@
       "salePrice": 2.9,
       "currency": "EUR",
       "discountPct": 41,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E461015-000-01",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Ultra Warm Leggings",
+      "url": "https://www.uniqlo.com/de/en/products/E461015-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461015/item/goods_01_461015_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 9.9,
+      "currency": "EUR",
+      "discountPct": 67,
       "gender": "men",
       "category": "Other"
     }
