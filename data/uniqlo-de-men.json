@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-14T12:57:41.226Z",
+  "scrapedAt": "2026-06-14T18:46:32.036Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -207,19 +207,6 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E465187-000-43",
-      "source": "uniqlo-de-men",
-      "name": "DRY Colour Crew Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E465187-000/01?colorDisplayCode=43",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/465187/item/eugoods_43_465187_3x4.jpg?width=300",
-      "price": 7.9,
-      "salePrice": 5.9,
-      "currency": "EUR",
-      "discountPct": 25,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -1390,6 +1377,19 @@
       "salePrice": 9.9,
       "currency": "EUR",
       "discountPct": 67,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E484783-000-16",
+      "source": "uniqlo-de-men",
+      "name": "Leather Combination Belt (Striped)",
+      "url": "https://www.uniqlo.com/de/en/products/E484783-000/00?colorDisplayCode=16",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/484783/item/goods_16_484783_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 12.9,
+      "currency": "EUR",
+      "discountPct": 57,
       "gender": "men",
       "category": "Other"
     }
