@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-14T22:27:40.124Z",
+  "scrapedAt": "2026-06-15T01:31:01.806Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -354,11 +354,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487557-000-00",
+      "id": "E487574-000-00",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Yu Yu Hakusho)",
-      "url": "https://www.uniqlo.com/de/en/products/E487557-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487557/item/eugoods_00_487557_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Kochira Kutsushikaku Kamearikoenmae Hashutsujo)",
+      "url": "https://www.uniqlo.com/de/en/products/E487574-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487574/item/eugoods_00_487574_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -367,11 +367,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487574-000-00",
+      "id": "E487557-000-00",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Kochira Kutsushikaku Kamearikoenmae Hashutsujo)",
-      "url": "https://www.uniqlo.com/de/en/products/E487574-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487574/item/eugoods_00_487574_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Yu Yu Hakusho)",
+      "url": "https://www.uniqlo.com/de/en/products/E487557-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487557/item/eugoods_00_487557_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -445,11 +445,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E485480-000-09",
+      "id": "E485482-000-01",
       "source": "uniqlo-de-men",
       "name": "MAGIC FOR ALL ICONS UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485480-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485480/item/eugoods_09_485480_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E485482-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485482/item/eugoods_01_485482_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -458,11 +458,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E485482-000-01",
+      "id": "E485480-000-09",
       "source": "uniqlo-de-men",
       "name": "MAGIC FOR ALL ICONS UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485482-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485482/item/eugoods_01_485482_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E485480-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485480/item/eugoods_09_485480_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
