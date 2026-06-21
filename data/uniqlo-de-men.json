@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-21T07:56:32.101Z",
+  "scrapedAt": "2026-06-21T12:58:58.456Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -307,19 +307,6 @@
       "name": "MANGA UT Shueisha 100th Graphic T-Shirt (GANTZ)",
       "url": "https://www.uniqlo.com/de/en/products/E487569-000/00?colorDisplayCode=00",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487569/item/eugoods_00_487569_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E488260-000-00",
-      "source": "uniqlo-de-men",
-      "name": "MANGA 100th UT Graphic T-Shirt (Chibi Maruko-chan)",
-      "url": "https://www.uniqlo.com/de/en/products/E488260-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488260/item/eugoods_00_488260_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -1390,6 +1377,19 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 33,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E479255-000-01",
+      "source": "uniqlo-de-men",
+      "name": "100% Cashmere Scarf",
+      "url": "https://www.uniqlo.com/de/en/products/E479255-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479255/item/goods_01_479255_3x4.jpg?width=300",
+      "price": 59.9,
+      "salePrice": 49.9,
+      "currency": "EUR",
+      "discountPct": 17,
       "gender": "men",
       "category": "Other"
     }
