@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-21T12:58:58.456Z",
+  "scrapedAt": "2026-06-21T18:49:06.793Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -220,19 +220,6 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E465187-000-43",
-      "source": "uniqlo-de-men",
-      "name": "DRY Colour Crew Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E465187-000/01?colorDisplayCode=43",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/465187/item/eugoods_43_465187_3x4.jpg?width=300",
-      "price": 7.9,
-      "salePrice": 5.9,
-      "currency": "EUR",
-      "discountPct": 25,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -515,19 +502,6 @@
       "name": "PEANUTS UT Graphic T-Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E485058-000/00?colorDisplayCode=30",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485058/item/eugoods_30_485058_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E485054-000-66",
-      "source": "uniqlo-de-men",
-      "name": "PEANUTS UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485054-000/00?colorDisplayCode=66",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485054/item/eugoods_66_485054_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -911,19 +885,6 @@
       "discountPct": 57,
       "gender": "men",
       "category": "Shirt"
-    },
-    {
-      "id": "E483972-000-15",
-      "source": "uniqlo-de-men",
-      "name": "DRY-EX Polo Shirt (Patterned)",
-      "url": "https://www.uniqlo.com/de/en/products/E483972-000/01?colorDisplayCode=15",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483972/item/eugoods_15_483972_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 67,
-      "gender": "men",
-      "category": "Polo"
     },
     {
       "id": "E485565-000-63",
