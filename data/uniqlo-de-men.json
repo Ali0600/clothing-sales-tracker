@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-21T01:31:20.938Z",
+  "scrapedAt": "2026-06-21T07:56:32.101Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -246,19 +246,6 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E422992-000-30",
-      "source": "uniqlo-de-men",
-      "name": "Crew Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E422992-000/03?colorDisplayCode=30",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/422992/item/goods_30_422992_3x4.jpg?width=300",
-      "price": 14.9,
-      "salePrice": 5.9,
-      "currency": "EUR",
-      "discountPct": 60,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -1030,19 +1017,6 @@
       "category": "Jacket"
     },
     {
-      "id": "E478270-000-34",
-      "source": "uniqlo-de-men",
-      "name": "PUFFERTECH Vest",
-      "url": "https://www.uniqlo.com/de/en/products/E478270-000/02?colorDisplayCode=34",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/478270/item/eugoods_34_478270_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 74,
-      "gender": "men",
-      "category": "Vest"
-    },
-    {
       "id": "E480045-000-31",
       "source": "uniqlo-de-men",
       "name": "Hybrid Recycled Down Parka",
@@ -1329,19 +1303,6 @@
       "category": "Other"
     },
     {
-      "id": "E484167-000-67",
-      "source": "uniqlo-de-men",
-      "name": "Roll Top Backpack",
-      "url": "https://www.uniqlo.com/de/en/products/E484167-000/00?colorDisplayCode=67",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/484167/item/goods_67_484167_3x4.jpg?width=300",
-      "price": 59.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 67,
-      "gender": "men",
-      "category": "Other"
-    },
-    {
       "id": "E484783-000-16",
       "source": "uniqlo-de-men",
       "name": "Leather Combination Belt (Striped)",
@@ -1390,6 +1351,45 @@
       "salePrice": 14.9,
       "currency": "EUR",
       "discountPct": 40,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E478313-000-08",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Scarf (Patterned)",
+      "url": "https://www.uniqlo.com/de/en/products/E478313-000/00?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478313/item/goods_08_478313_3x4.jpg?width=300",
+      "price": 24.9,
+      "salePrice": 14.9,
+      "currency": "EUR",
+      "discountPct": 40,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E479253-000-10",
+      "source": "uniqlo-de-men",
+      "name": "100% Cashmere Knit Beanie",
+      "url": "https://www.uniqlo.com/de/en/products/E479253-000/00?colorDisplayCode=10",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479253/item/goods_10_479253_3x4.jpg?width=300",
+      "price": 39.9,
+      "salePrice": 29.9,
+      "currency": "EUR",
+      "discountPct": 25,
+      "gender": "men",
+      "category": "Sweater"
+    },
+    {
+      "id": "E479241-000-08",
+      "source": "uniqlo-de-men",
+      "name": "Soufflé Yarn Chunky Stole",
+      "url": "https://www.uniqlo.com/de/en/products/E479241-000/00?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479241/item/goods_08_479241_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 33,
       "gender": "men",
       "category": "Other"
     }
