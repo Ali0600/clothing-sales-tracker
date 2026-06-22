@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-21T18:49:06.793Z",
+  "scrapedAt": "2026-06-22T01:30:50.080Z",
   "products": [
     {
       "id": "E483829-000-04",
@@ -302,11 +302,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487558-000-09",
+      "id": "E487574-000-00",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Yu Yu Hakusho)",
-      "url": "https://www.uniqlo.com/de/en/products/E487558-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487558/item/eugoods_09_487558_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Kochira Kutsushikaku Kamearikoenmae Hashutsujo)",
+      "url": "https://www.uniqlo.com/de/en/products/E487574-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487574/item/eugoods_00_487574_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -315,11 +315,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487574-000-00",
+      "id": "E487558-000-09",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Kochira Kutsushikaku Kamearikoenmae Hashutsujo)",
-      "url": "https://www.uniqlo.com/de/en/products/E487574-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487574/item/eugoods_00_487574_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Yu Yu Hakusho)",
+      "url": "https://www.uniqlo.com/de/en/products/E487558-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487558/item/eugoods_09_487558_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -1251,11 +1251,11 @@
       "category": "Other"
     },
     {
-      "id": "E484783-000-16",
+      "id": "E484783-000-55",
       "source": "uniqlo-de-men",
       "name": "Leather Combination Belt (Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E484783-000/00?colorDisplayCode=16",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/484783/item/goods_16_484783_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E484783-000/00?colorDisplayCode=55",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/484783/item/goods_55_484783_3x4.jpg?width=300",
       "price": 29.9,
       "salePrice": 12.9,
       "currency": "EUR",
