@@ -58,6 +58,7 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 - OTA (`eas update`) only reaches a build whose `runtimeVersion` matches. We use `runtimeVersion.policy: appVersion`, so a JS-only change ships via OTA, but a native module / SDK / version-number change needs a fresh `eas build`. Don't bump `app.json` `version` casually — it cuts the OTA channel.
 - `useOtaUpdates` (in `app/_layout.tsx`) guards `__DEV__ || web || !Updates.isEnabled`, so it's inert locally — there is nothing to test in Expo Go. Verify OTA only against an installed EAS build.
 - Expo account owner is `mhassan0600` (same as grocery-helper). `expo-updates` is pinned to the SDK-52 line (`~0.27.x`) via `npx expo install`, NOT the unified-version number.
+- **The production build profile pins `ios.image: "latest"`.** Without it, EAS uses the `auto` image, which for SDK 52 selects an old Xcode 16.x (iOS 18.2 SDK). Apple now rejects uploads not built with the iOS 26 SDK (Xcode 26), so `eas submit` fails at the `altool` step with `STATE_ERROR.VALIDATION_ERROR`. `latest` resolves to `macos-tahoe-26.4-xcode-26.4`. After any submit-time "SDK version issue", bump/confirm this image — a build already made with the wrong SDK can't be resubmitted; rebuild.
 
 ### GitHub Actions
 
