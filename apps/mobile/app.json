@@ -2,7 +2,9 @@
   "expo": {
     "name": "Clothing Sales Tracker",
     "slug": "clothing-sales-tracker",
-    "version": "0.0.1",
+    "owner": "mhassan0600",
+    "version": "1.0.0",
+    "runtimeVersion": { "policy": "appVersion" },
     "orientation": "portrait",
     "userInterfaceStyle": "automatic",
     "scheme": "cst",

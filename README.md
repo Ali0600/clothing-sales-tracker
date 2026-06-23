@@ -46,8 +46,41 @@ pnpm mobile               # starts Expo (press i for iOS, w for web)
    |---|---|---|
    | `ANTHROPIC_API_KEY` | self-heal.yml | Lets Claude Code fix broken scrapers automatically |
    | `EXPO_PUSH_TOKEN` | scrape.yml | Your device's Expo push token (get it from the app via `Notifications.getExpoPushTokenAsync`) |
+   | `EXPO_TOKEN` | eas-update.yml | Expo access token so CI can publish OTA updates (see Production builds & OTA) |
 
 4. The `scrape` workflow runs every 6 hours and on manual dispatch. The first run creates the snapshots. Subsequent runs diff against the committed JSON and push if there are new items.
+
+## Production builds & OTA (EAS + TestFlight)
+
+The app ships as a real iOS build via EAS, with over-the-air (OTA) JS/asset updates so most changes reach installed builds without re-submitting to TestFlight.
+
+**How it fits together:**
+
+- `apps/mobile/eas.json` defines a `preview` profile (internal/simulator) and a `production` profile (`channel: production`, `autoIncrement` build numbers, `appVersionSource: remote`).
+- `app.json` sets `runtimeVersion.policy: appVersion` and (after `eas init`) an `updates.url`. expo-updates is embedded in production builds.
+- `apps/mobile/src/useOtaUpdates.ts` runs on launch and on every foreground: checks for an update, downloads it, and shows a native **"Reload now?"** alert. It no-ops in dev / Expo Go / web. Wired in `app/_layout.tsx`.
+- `.github/workflows/eas-update.yml` auto-publishes an OTA to the `production` channel on every push to `main` that touches `apps/mobile/**` or `packages/**` (needs the `EXPO_TOKEN` secret; skips gracefully without it).
+
+**One-time setup (run these yourself — they create cloud resources / need Apple credentials):**
+
+```bash
+cd apps/mobile
+eas init                 # links the EAS project, writes extra.eas.projectId
+eas update:configure     # writes updates.url, confirms runtimeVersion
+eas build  --platform ios --profile production   # first native build (embeds expo-updates @ runtimeVersion 1.0.0)
+eas submit --platform ios --profile production   # push that build to TestFlight (needs Apple Developer account)
+```
+
+Then add the **`EXPO_TOKEN`** repo secret (expo.dev → Account → Access tokens) so CI OTA publishing works.
+
+**OTA vs native build — the rule:**
+
+| Change | How it ships |
+|---|---|
+| JS / styles / assets only | `eas update` (automatic via CI on push to main). Lands on next app launch. |
+| New native module, SDK bump, `app.json` native config, version bump | Fresh `eas build` + `eas submit`. OTA can't cross a `runtimeVersion` change. |
+
+> Before a polished TestFlight submission, add `apps/mobile/assets/icon.png` (1024×1024) and set `expo.icon` in `app.json`. Without it the build uses Expo's default placeholder icon.
 
 ## On-launch refresh (optional)
 

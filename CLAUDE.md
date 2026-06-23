@@ -52,6 +52,13 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 - `app.json` has `newArchEnabled: true` to match Expo Go's hard-coded New Arch (Bridgeless) mode. Don't remove without explicit reason.
 - `react-native-safe-area-context`'s `SafeAreaView` is what we use (not the deprecated one from `react-native`).
 
+### EAS / OTA
+
+- EAS Build + OTA config lives in `apps/mobile/` (`eas.json`, `app.json`). The CI OTA job (`.github/workflows/eas-update.yml`) installs deps at the **repo root** (`pnpm install --frozen-lockfile`, hoisted workspace) but runs `eas update` with `working-directory: apps/mobile` so eas-cli reads that app's `eas.json`/`app.json`. The app's `metro.config.js` `watchFolders` → workspace root already resolve `@cst/shared` for the EAS bundle.
+- OTA (`eas update`) only reaches a build whose `runtimeVersion` matches. We use `runtimeVersion.policy: appVersion`, so a JS-only change ships via OTA, but a native module / SDK / version-number change needs a fresh `eas build`. Don't bump `app.json` `version` casually — it cuts the OTA channel.
+- `useOtaUpdates` (in `app/_layout.tsx`) guards `__DEV__ || web || !Updates.isEnabled`, so it's inert locally — there is nothing to test in Expo Go. Verify OTA only against an installed EAS build.
+- Expo account owner is `mhassan0600` (same as grocery-helper). `expo-updates` is pinned to the SDK-52 line (`~0.27.x`) via `npx expo install`, NOT the unified-version number.
+
 ### GitHub Actions
 
 - `pnpm/action-setup@v4` rejects setups that pin pnpm in BOTH the workflow's `version:` input AND `package.json`'s `packageManager:` field. Drop the workflow input; let it read from `package.json`.

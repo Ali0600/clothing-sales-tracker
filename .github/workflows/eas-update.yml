@@ -1,0 +1,73 @@
+name: EAS Update (OTA)
+
+# Publishes an over-the-air JS/asset update to the production channel on app or
+# shared-package changes. OTA only reaches a build that embeds expo-updates at the
+# matching runtimeVersion (app.json runtimeVersion.policy: appVersion) — so a fresh
+# `eas build` is required once before updates land on installed apps.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/mobile/**"
+      - "packages/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eas-update-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  update:
+    name: Publish OTA update
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      # Skip gracefully until the Expo token is configured, so the workflow stays
+      # green before EAS Update is enabled.
+      - name: Check for EXPO_TOKEN
+        id: check
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          if [ -z "$EXPO_TOKEN" ]; then
+            echo "EXPO_TOKEN not set — skipping OTA publish. Add the secret to enable EAS Update."
+            echo "has_token=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_token=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout
+        if: steps.check.outputs.has_token == 'true'
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        if: steps.check.outputs.has_token == 'true'
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node
+        if: steps.check.outputs.has_token == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Setup EAS
+        if: steps.check.outputs.has_token == 'true'
+        uses: expo/expo-github-action@v9
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Install dependencies
+        if: steps.check.outputs.has_token == 'true'
+        run: pnpm install --frozen-lockfile
+
+      - name: Publish update to the production channel
+        if: steps.check.outputs.has_token == 'true'
+        working-directory: apps/mobile
+        env:
+          UPDATE_MSG: ${{ github.event.head_commit.message || format('Manual OTA from {0}', github.sha) }}
+        run: eas update --branch production --message "$UPDATE_MSG" --non-interactive

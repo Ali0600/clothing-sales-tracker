@@ -4,6 +4,7 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useOtaUpdates } from "../src/useOtaUpdates";
 
 interface BoundaryState {
   error: Error | null;
@@ -52,6 +53,9 @@ class RootErrorBoundary extends Component<{ children: ReactNode }, BoundaryState
 }
 
 export default function RootLayout() {
+  // Prompt to reload when an OTA update is available (no-op in dev / web).
+  useOtaUpdates();
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
