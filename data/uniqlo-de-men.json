@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-28T07:38:50.288Z",
+  "scrapedAt": "2026-06-28T12:46:03.219Z",
   "products": [
     {
       "id": "E482886-000-32",
@@ -1121,11 +1121,11 @@
       "category": "Sweater"
     },
     {
-      "id": "E482602-000-69",
+      "id": "E482602-000-09",
       "source": "uniqlo-de-men",
       "name": "Cotton Boxer Briefs (Low Rise, Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E482602-000/00?colorDisplayCode=69",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/482602/item/goods_69_482602_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E482602-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/482602/item/goods_09_482602_3x4.jpg?width=300",
       "price": 7.9,
       "salePrice": 5.9,
       "currency": "EUR",
