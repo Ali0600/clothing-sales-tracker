@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-27T18:42:07.756Z",
+  "scrapedAt": "2026-06-28T01:23:37.985Z",
   "products": [
     {
       "id": "E482886-000-32",
@@ -198,19 +198,6 @@
       "category": "Jacket"
     },
     {
-      "id": "E465185-000-11",
-      "source": "uniqlo-de-men",
-      "name": "AIRism Cotton Oversized Crew Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E465185-000/01?colorDisplayCode=11",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/465185/item/eugoods_11_465185_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E465185-000-34",
       "source": "uniqlo-de-men",
       "name": "AIRism Cotton Oversized Crew Neck T-Shirt",
@@ -224,50 +211,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E486103-000-00",
-      "source": "uniqlo-de-men",
-      "name": "AIRism Cotton Crew Neck T-Shirt (Striped, Long Sleeve)",
-      "url": "https://www.uniqlo.com/de/en/products/E486103-000/01?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/486103/item/eugoods_00_486103_3x4.jpg?width=300",
-      "price": 24.9,
-      "salePrice": 7.9,
-      "currency": "EUR",
-      "discountPct": 68,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E455365-000-12",
       "source": "uniqlo-de-men",
       "name": "100% Supima Cotton T-Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E455365-000/02?colorDisplayCode=12",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/455365/item/eugoods_12_455365_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E485454-000-69",
-      "source": "uniqlo-de-men",
-      "name": "Colour Block T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485454-000/00?colorDisplayCode=69",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485454/item/eugoods_69_485454_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E485455-000-05",
-      "source": "uniqlo-de-men",
-      "name": "Oversized Henley Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485455-000/00?colorDisplayCode=05",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485455/item/eugoods_05_485455_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -302,30 +250,17 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E483924-000-61",
+      "id": "E483924-000-57",
       "source": "uniqlo-de-men",
       "name": "DRY Waffle Henley Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E483924-000/00?colorDisplayCode=61",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483924/item/eugoods_61_483924_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E483924-000/00?colorDisplayCode=57",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483924/item/eugoods_57_483924_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
       "gender": "men",
       "category": "T-Shirt"
-    },
-    {
-      "id": "E475380-000-31",
-      "source": "uniqlo-de-men",
-      "name": "Sweat Full-Zip Hoodie",
-      "url": "https://www.uniqlo.com/de/en/products/E475380-000/01?colorDisplayCode=31",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/475380/item/eugoods_31_475380_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 68,
-      "gender": "men",
-      "category": "Hoodie"
     },
     {
       "id": "E465203-000-09",
@@ -614,11 +549,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E482805-000-00",
+      "id": "E485467-000-09",
       "source": "uniqlo-de-men",
       "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E482805-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482805/item/eugoods_00_482805_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E485467-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485467/item/eugoods_09_485467_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -627,11 +562,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E485467-000-09",
+      "id": "E482805-000-00",
       "source": "uniqlo-de-men",
       "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485467-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485467/item/eugoods_09_485467_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E482805-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482805/item/eugoods_00_482805_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -898,19 +833,6 @@
       "discountPct": 57,
       "gender": "men",
       "category": "Shirt"
-    },
-    {
-      "id": "E485565-000-63",
-      "source": "uniqlo-de-men",
-      "name": "DRY Piqué Polo Shirt (Wide Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E485565-000/01?colorDisplayCode=63",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485565/item/eugoods_63_485565_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 57,
-      "gender": "men",
-      "category": "Polo"
     },
     {
       "id": "E482303-000-00",
