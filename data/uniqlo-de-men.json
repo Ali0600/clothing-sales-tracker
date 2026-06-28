@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-28T01:23:37.985Z",
+  "scrapedAt": "2026-06-28T07:38:50.288Z",
   "products": [
     {
       "id": "E482886-000-32",
@@ -207,19 +207,6 @@
       "salePrice": 7.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E455365-000-12",
-      "source": "uniqlo-de-men",
-      "name": "100% Supima Cotton T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E455365-000/02?colorDisplayCode=12",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/455365/item/eugoods_12_455365_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
       "gender": "men",
       "category": "T-Shirt"
     },
