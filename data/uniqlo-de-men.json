@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-06-28T18:41:52.288Z",
+  "scrapedAt": "2026-06-29T01:24:34.323Z",
   "products": [
     {
       "id": "E482886-000-32",
@@ -211,6 +211,19 @@
       "category": "T-Shirt"
     },
     {
+      "id": "E465193-000-30",
+      "source": "uniqlo-de-men",
+      "name": "AIRism Cotton Crew Neck T-Shirt (Long Sleeve)",
+      "url": "https://www.uniqlo.com/de/en/products/E465193-000/03?colorDisplayCode=30",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/465193/item/eugoods_30_465193_3x4.jpg?width=300",
+      "price": 24.9,
+      "salePrice": 3.9,
+      "currency": "EUR",
+      "discountPct": 84,
+      "gender": "men",
+      "category": "T-Shirt"
+    },
+    {
       "id": "E481004-000-65",
       "source": "uniqlo-de-men",
       "name": "Washable Milano Ribbed Knitted T-Shirt",
@@ -315,11 +328,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E488259-000-16",
+      "id": "E487573-000-09",
       "source": "uniqlo-de-men",
-      "name": "MANGA 100th UT Graphic T-Shirt (Chibi Maruko-chan)",
-      "url": "https://www.uniqlo.com/de/en/products/E488259-000/00?colorDisplayCode=16",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488259/item/eugoods_16_488259_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINNIKUMAN)",
+      "url": "https://www.uniqlo.com/de/en/products/E487573-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487573/item/eugoods_09_487573_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -328,11 +341,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487573-000-09",
+      "id": "E488259-000-16",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINNIKUMAN)",
-      "url": "https://www.uniqlo.com/de/en/products/E487573-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487573/item/eugoods_09_487573_3x4.jpg?width=300",
+      "name": "MANGA 100th UT Graphic T-Shirt (Chibi Maruko-chan)",
+      "url": "https://www.uniqlo.com/de/en/products/E488259-000/00?colorDisplayCode=16",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488259/item/eugoods_16_488259_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -1021,7 +1034,7 @@
       "source": "uniqlo-de-men",
       "name": "Soufflé Yarn Short Cardigan",
       "url": "https://www.uniqlo.com/de/en/products/E478339-000/00?colorDisplayCode=08",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478339/item/goods_73_478339_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/478339/sub/eugoods_478339_sub5_3x4.jpg?width=300",
       "price": 39.9,
       "salePrice": 9.9,
       "currency": "EUR",
