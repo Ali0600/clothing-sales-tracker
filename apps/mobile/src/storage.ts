@@ -167,81 +167,77 @@ export function lowestSalePrice(entry: CatalogEntry): number {
   return min;
 }
 
-// Pre-colorway product IDs looked like `E486160-000`. Post-colorway IDs
-// look like `E486160-000-34` (base + colorDisplayCode). When this returns
-// true, the id is the legacy design-level format and should be fanned out
-// to every colorway that's currently known.
-const LEGACY_PRODUCT_ID = /^E\d+-\d+$/;
-
-function colorwaysFor(baseId: string, knownIds: Iterable<string>): string[] {
-  const prefix = baseId + "-";
-  const matches: string[] = [];
-  for (const id of knownIds) if (id.startsWith(prefix)) matches.push(id);
-  return matches;
+// Reduce any product id to its stable base design code:
+//   E465185-000-11  -> E465185-000   (strip the rotating colorway suffix)
+//   E465185-000     -> E465185-000   (already base — no-op)
+// Uniqlo rotates which colorway is the representative grid tile, so a
+// color-suffixed id drifts between scrapes; the base code does not.
+export function baseProductId(id: string): string {
+  return id.match(/^(E\d+-\d+)/)?.[1] ?? id;
 }
 
-export async function migrateLegacySwipes(
+// Collapse color-suffixed swipe + seen keys onto their base design code. When
+// several colorways of one design were swiped, the most recent swipe wins
+// (its priceAtSwipe becomes the design's reference). Idempotent. Returns the
+// collapsed maps plus whether anything changed (to gate a gist push).
+export async function collapseToBaseSwipes(
   swipes: Record<string, SwipeRecord>,
-  knownIds: Set<string>,
-): Promise<Record<string, SwipeRecord>> {
-  const out: Record<string, SwipeRecord> = { ...swipes };
+  seen: Set<string>,
+): Promise<{ swipes: Record<string, SwipeRecord>; seen: Set<string>; changed: boolean }> {
   let changed = false;
 
-  for (const [oldId, record] of Object.entries(swipes)) {
-    if (!LEGACY_PRODUCT_ID.test(oldId)) continue;
-    const colorways = colorwaysFor(oldId, knownIds);
-    if (colorways.length === 0) continue; // design not in current snapshot — defer
-    for (const newId of colorways) {
-      if (!out[newId]) {
-        out[newId] = { ...record };
-        changed = true;
-      }
+  const outSwipes: Record<string, SwipeRecord> = {};
+  for (const [id, record] of Object.entries(swipes)) {
+    const base = baseProductId(id);
+    if (base !== id) changed = true;
+    const existing = outSwipes[base];
+    if (!existing) {
+      outSwipes[base] = record;
+    } else {
+      const a = existing.swipedAt ?? "";
+      const b = record.swipedAt ?? "";
+      if (b > a) outSwipes[base] = record; // keep the most recent swipe
     }
-    delete out[oldId];
-    changed = true;
   }
 
-  if (changed) await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(out));
-  return out;
+  const outSeenArr = [...new Set([...seen].map(baseProductId))];
+  if (outSeenArr.length !== seen.size) changed = true;
+
+  if (changed) {
+    await AsyncStorage.setItem(SWIPES_KEY, JSON.stringify(outSwipes));
+    await AsyncStorage.setItem(SEEN_KEY, JSON.stringify(outSeenArr));
+  }
+  return { swipes: outSwipes, seen: new Set(outSeenArr), changed };
 }
 
-export async function migrateLegacyCatalog(
-  catalog: Catalog,
-  snapshots: Snapshot[],
-): Promise<Catalog> {
-  const newByBase = new Map<string, Product[]>();
-  for (const snap of snapshots) {
-    for (const p of snap.products) {
-      const base = p.id.match(/^(E\d+-\d+)-/)?.[1];
-      if (!base) continue;
-      const bucket = newByBase.get(base) ?? [];
-      bucket.push(p);
-      newByBase.set(base, bucket);
-    }
-  }
-
-  const out: Catalog = { ...catalog };
+// Collapse color-suffixed catalog entries onto their base design code: earliest
+// firstSeenAt, latest lastSeenAt, merged priceHistory (deduped by scrapedAt).
+export async function collapseToBaseCatalog(catalog: Catalog): Promise<boolean> {
   let changed = false;
+  const out: Catalog = {};
 
-  for (const [oldId, entry] of Object.entries(catalog)) {
-    if (!LEGACY_PRODUCT_ID.test(oldId)) continue;
-    const colorways = newByBase.get(oldId) ?? [];
-    if (colorways.length === 0) continue;
-    for (const p of colorways) {
-      if (!out[p.id]) {
-        out[p.id] = {
-          product: p,
-          firstSeenAt: entry.firstSeenAt,
-          lastSeenAt: entry.lastSeenAt,
-          priceHistory: entry.priceHistory ? [...entry.priceHistory] : undefined,
-        };
-        changed = true;
-      }
+  for (const [id, entry] of Object.entries(catalog)) {
+    const base = baseProductId(id);
+    if (base !== id) changed = true;
+    const merged = out[base];
+    if (!merged) {
+      out[base] = { ...entry, product: { ...entry.product, id: base } };
+      continue;
     }
-    delete out[oldId];
-    changed = true;
+    const dedup = new Map<string, PricePoint>();
+    for (const p of [...(merged.priceHistory ?? []), ...(entry.priceHistory ?? [])]) {
+      dedup.set(p.scrapedAt, p);
+    }
+    out[base] = {
+      product: entry.lastSeenAt > merged.lastSeenAt
+        ? { ...entry.product, id: base }
+        : merged.product,
+      firstSeenAt: merged.firstSeenAt < entry.firstSeenAt ? merged.firstSeenAt : entry.firstSeenAt,
+      lastSeenAt: merged.lastSeenAt > entry.lastSeenAt ? merged.lastSeenAt : entry.lastSeenAt,
+      priceHistory: [...dedup.values()].sort((a, b) => a.scrapedAt.localeCompare(b.scrapedAt)),
+    };
   }
 
   if (changed) await AsyncStorage.setItem(CATALOG_KEY, JSON.stringify(out));
-  return out;
+  return changed;
 }

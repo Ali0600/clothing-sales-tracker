@@ -2,16 +2,16 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useRouter } from "expo-router";
-import type { Product, Snapshot } from "@cst/shared";
+import { SIGNIFICANT_DROP_PCT, type Product, type Snapshot } from "@cst/shared";
 import { fetchAllSnapshots, type FetchResult } from "../src/api";
 import {
+  collapseToBaseCatalog,
+  collapseToBaseSwipes,
   loadCatalog,
   loadSeen,
   loadSwipes,
   markSeen,
   mergeIntoCatalog,
-  migrateLegacyCatalog,
-  migrateLegacySwipes,
   saveSwipe,
   unsaveSwipe,
   type Swipe,
@@ -60,27 +60,21 @@ export default function Home() {
   }, []);
 
   const reload = useCallback(async (): Promise<DeckState | null> => {
-    const [{ snapshots, errors }, rawSwipes, seen, rawCatalog] = await Promise.all([
+    const [{ snapshots, errors }, rawSwipes, rawSeen, rawCatalog] = await Promise.all([
       fetchAllSnapshots(),
       loadSwipes(),
       loadSeen(),
       loadCatalog(),
     ]);
 
-    // Fan legacy design-level IDs out to colorways now that we know what
-    // colorways exist in the current snapshot. Idempotent: if every old ID
-    // has already been migrated (or has no colorways in the snapshot), no
-    // writes happen. If migration changed anything, push to the gist so
-    // other devices pick up the new IDs.
-    const knownIds = new Set(snapshots.flatMap((s) => s.products.map((p) => p.id)));
-    const beforeSwipeCount = Object.keys(rawSwipes).length;
-    const beforeCatalogCount = Object.keys(rawCatalog).length;
-    const swipes = await migrateLegacySwipes(rawSwipes, knownIds);
-    await migrateLegacyCatalog(rawCatalog, snapshots);
-    if (
-      Object.keys(swipes).length !== beforeSwipeCount ||
-      Object.keys(await loadCatalog()).length !== beforeCatalogCount
-    ) {
+    // Collapse any color-suffixed IDs (E465185-000-11) down to the stable base
+    // design code (E465185-000). Uniqlo rotates the representative colorway, so
+    // color-suffixed swipe/seen/catalog keys drift and re-surface swiped items.
+    // Idempotent: already-base keys are untouched. If anything collapsed, push
+    // so the gist drops the colorway keys too.
+    const { swipes, seen, changed } = await collapseToBaseSwipes(rawSwipes, rawSeen);
+    const catalogChanged = await collapseToBaseCatalog(rawCatalog);
+    if (changed || catalogChanged) {
       schedulePush();
     }
 
@@ -350,9 +344,12 @@ function buildDeck(
       candidates.push(p);
       continue;
     }
+    // Only re-surface a swiped item on a GENUINE drop (>= 5% below the price
+    // it was swiped at). Rises and sub-threshold wiggles stay hidden — this is
+    // what stops already-swiped items churning back into the deck.
     if (
       swipe.priceAtSwipe != null &&
-      Math.abs(swipe.priceAtSwipe - p.salePrice) > 0.01
+      p.salePrice <= swipe.priceAtSwipe * (1 - SIGNIFICANT_DROP_PCT)
     ) {
       candidates.push(p);
       repricedIds.set(p.id, swipe.priceAtSwipe);

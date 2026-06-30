@@ -1,7 +1,13 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { diffSnapshots, type Snapshot, type SnapshotDiff, type Source } from "@cst/shared";
+import {
+  diffSnapshots,
+  SIGNIFICANT_DROP_PCT,
+  type Snapshot,
+  type SnapshotDiff,
+  type Source,
+} from "@cst/shared";
 import { ScrapeError, scrapers } from "@cst/scrapers";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,7 +42,7 @@ async function writeFailureArtifact(source: Source, error: ScrapeError): Promise
   );
 }
 
-const PRICE_DROP_THRESHOLD = Number(process.env.PRICE_DROP_THRESHOLD ?? "0.05");
+const PRICE_DROP_THRESHOLD = Number(process.env.PRICE_DROP_THRESHOLD ?? String(SIGNIFICANT_DROP_PCT));
 
 function significantDrops(diff: SnapshotDiff): number {
   let n = 0;

@@ -21,3 +21,8 @@ export interface Snapshot {
   scrapedAt: string;
   products: Product[];
 }
+
+// A sale-price drop must be at least this fraction below the reference price to
+// count as "significant" — used both for push notifications (scripts/scrape.ts)
+// and for re-surfacing an already-swiped item in the deck (apps/mobile).
+export const SIGNIFICANT_DROP_PCT = 0.05;

@@ -156,18 +156,20 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
     });
   }, TILE_SELECTOR);
 
-  const seen = new Set<string>();
-  const products: Product[] = [];
+  // Identity is the base design code (e.g. E465185-000), NOT base-colorCode.
+  // Uniqlo rotates which colorway is the representative grid tile, so a
+  // color-suffixed id drifts between scrapes and breaks swipe persistence.
+  // When several colorways of one design appear in a single scrape, keep the
+  // cheapest (best deal on offer) so the card shows the lowest visible price.
+  const byId = new Map<string, Product>();
   for (const r of raw) {
     if (!r.baseId) continue;
-    const id = `${r.baseId}-${r.colorCode}`;
-    if (seen.has(id)) continue;
-    seen.add(id);
+    const id = r.baseId;
     const prices = r.prices.slice().sort((a, b) => b - a);
     const base = prices[0] ?? 0;
     const sale = prices[1] ?? base;
     if (base === 0) continue;
-    products.push({
+    const candidate: Product = {
       id,
       source: SOURCE,
       name: r.name,
@@ -179,7 +181,9 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
       discountPct: base > 0 ? Math.round(((base - sale) / base) * 100) : 0,
       gender: "men",
       category: categorize(r.name),
-    });
+    };
+    const existing = byId.get(id);
+    if (!existing || candidate.salePrice < existing.salePrice) byId.set(id, candidate);
   }
-  return products;
+  return [...byId.values()];
 }
