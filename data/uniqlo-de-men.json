@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-05T04:19:32.691Z",
+  "scrapedAt": "2026-07-05T09:22:33.218Z",
   "products": [
     {
       "id": "E485595-000",
@@ -562,19 +562,6 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E482805-000",
-      "source": "uniqlo-de-men",
-      "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E482805-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482805/item/eugoods_00_482805_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 0,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E485466-000",
       "source": "uniqlo-de-men",
       "name": "Elliott Erwitt UT Graphic T-Shirt",
@@ -632,19 +619,6 @@
       "name": "Chino Shorts",
       "url": "https://www.uniqlo.com/de/en/products/E460616-000/00?colorDisplayCode=00",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/460616/item/goods_00_460616_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 14.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "Shorts"
-    },
-    {
-      "id": "E455503-000",
-      "source": "uniqlo-de-men",
-      "name": "Chino Shorts",
-      "url": "https://www.uniqlo.com/de/en/products/E455503-000/00?colorDisplayCode=66",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/455503/item/eugoods_66_455503_3x4.jpg?width=300",
       "price": 29.9,
       "salePrice": 14.9,
       "currency": "EUR",
@@ -760,8 +734,8 @@
       "id": "E482497-000",
       "source": "uniqlo-de-men",
       "name": "Boxy Shirt (Short Sleeve)",
-      "url": "https://www.uniqlo.com/de/en/products/E482497-000/00?colorDisplayCode=30",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482497/item/eugoods_30_482497_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E482497-000/00?colorDisplayCode=06",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482497/item/eugoods_06_482497_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -877,8 +851,8 @@
       "id": "E484032-000",
       "source": "uniqlo-de-men",
       "name": "Cotton Blend Short Blouson",
-      "url": "https://www.uniqlo.com/de/en/products/E484032-000/00?colorDisplayCode=39",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484032/sub/eugoods_484032_sub6_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E484032-000/00?colorDisplayCode=30",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484032/item/eugoods_30_484032_3x4.jpg?width=300",
       "price": 59.9,
       "salePrice": 29.9,
       "currency": "EUR",
