@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-05T19:41:39.155Z",
+  "scrapedAt": "2026-07-06T04:38:08.969Z",
   "products": [
     {
       "id": "E485595-000",
@@ -227,12 +227,12 @@
       "id": "E465193-000",
       "source": "uniqlo-de-men",
       "name": "AIRism Cotton Crew Neck T-Shirt (Long Sleeve)",
-      "url": "https://www.uniqlo.com/de/en/products/E465193-000/03?colorDisplayCode=39",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/465193/item/goods_39_465193_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E465193-000/01?colorDisplayCode=11",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/465193/item/eugoods_11_465193_3x4.jpg?width=300",
       "price": 24.9,
-      "salePrice": 5.9,
+      "salePrice": 24.9,
       "currency": "EUR",
-      "discountPct": 76,
+      "discountPct": 0,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -311,19 +311,6 @@
       "salePrice": 7.9,
       "currency": "EUR",
       "discountPct": 47,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E481004-000",
-      "source": "uniqlo-de-men",
-      "name": "Washable Milano Ribbed Knitted T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E481004-000/01?colorDisplayCode=61",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/481004/item/eugoods_61_481004_3x4.jpg?width=300",
-      "price": 34.9,
-      "salePrice": 24.9,
-      "currency": "EUR",
-      "discountPct": 29,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -515,19 +502,6 @@
       "name": "TATE UT Graphic T-Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E486154-000/00?colorDisplayCode=00",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/486154/item/eugoods_00_486154_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 0,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E486157-000",
-      "source": "uniqlo-de-men",
-      "name": "TATE UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E486157-000/00?colorDisplayCode=69",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/486157/item/eugoods_69_486157_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 19.9,
       "currency": "EUR",
@@ -1262,6 +1236,19 @@
       "discountPct": 57,
       "gender": "men",
       "category": "Pants"
+    },
+    {
+      "id": "E481731-000",
+      "source": "uniqlo-de-men",
+      "name": "Milano Ribbed Full-Zip Cardigan",
+      "url": "https://www.uniqlo.com/de/en/products/E481731-000/01?colorDisplayCode=69",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/481731/sub/eugoods_481731_sub6_3x4.jpg?width=300",
+      "price": 49.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 60,
+      "gender": "men",
+      "category": "Sweater"
     },
     {
       "id": "E475053-000",
