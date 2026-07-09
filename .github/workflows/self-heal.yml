@@ -1,9 +1,20 @@
 name: self-heal
 
+# MANUAL CLOUD FALLBACK — primary healing now runs locally via
+# https://github.com/Ali0600/self-healing-script (launchd poller + headless
+# Claude Code on the Mac: subscription auth instead of API billing, and a
+# residential IP the target sites actually serve). Dispatch this workflow by
+# hand only if the Mac is unavailable:
+#
+#   gh workflow run self-heal.yml -f run_id=<failed scrape run id>
+#
+# It consumes ANTHROPIC_API_KEY (API billing) when run.
 on:
-  workflow_run:
-    workflows: ["scrape"]
-    types: [completed]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Run ID of the failed scrape run (its failure artifacts are healed against)
+        required: true
 
 permissions:
   contents: write
@@ -12,7 +23,6 @@ permissions:
 
 jobs:
   heal:
-    if: github.event.workflow_run.conclusion == 'failure'
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
@@ -24,7 +34,7 @@ jobs:
       - name: Download failure artifact
         uses: actions/download-artifact@v4
         with:
-          run-id: ${{ github.event.workflow_run.id }}
+          run-id: ${{ inputs.run_id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: .scrape-artifacts/_dl
           pattern: scrape-failure-*
@@ -121,11 +131,11 @@ jobs:
           git push -u origin "$branch"
           gh pr create \
             --title "Self-heal: $summary" \
-            --body "Automated PR opened by the self-heal workflow after run ${{ github.event.workflow_run.id }} failed.
+            --body "Automated PR opened by the self-heal workflow after run ${{ inputs.run_id }} failed.
 
           **Claude's summary**: $summary
 
-          **Failure artifacts**: see [the failed run](${{ github.event.workflow_run.html_url }}).
+          **Failure artifacts**: see [the failed run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ inputs.run_id }}).
 
           Review the diff carefully before merging." \
             --base main \
