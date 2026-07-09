@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  issues: write # open/close the scrape-failure alert issue
 
 concurrency:
   group: scrape
@@ -59,3 +60,65 @@ jobs:
           path: .scrape-artifacts/
           if-no-files-found: ignore
           retention-days: 14
+
+      # A silent cron failure is invisible; surface it as ONE deduplicated issue.
+      # The local self-heal poller (Ali0600/self-healing-script) consumes exactly
+      # this signal: open issue labeled `scrape-failure`.
+      - name: Alert on failure
+        if: failure()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        with:
+          script: |
+            const run = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `The scheduled scrape failed on ${new Date().toISOString()}.\n\nRun: ${run}`;
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'scrape-failure',
+            });
+            if (open.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: open[0].number,
+                body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'Scheduled scrape failed',
+                body,
+                labels: ['scrape-failure'],
+              });
+            }
+
+      # Completes the loop: a healthy scrape closes any open alert issue, so
+      # outages that resolve themselves (or a merged self-heal fix) end the
+      # cycle without human bookkeeping.
+      - name: Close recovery issues
+        if: success()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
+        with:
+          script: |
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'scrape-failure',
+            });
+            for (const issue of open) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: `Scheduled scrape succeeded on ${new Date().toISOString()} — auto-closing.`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+            }
