@@ -4,7 +4,7 @@ import { ScrapeError } from "./error";
 
 const URL = "https://www.uniqlo.com/de/en/feature/sale/men";
 const SOURCE = "uniqlo-de-men" as const;
-const TILE_SELECTOR = 'a[href*="/products/E"]';
+const TILE_SELECTOR = 'a[href*="/products/ZZDRILL"]';
 const COUNT_SELECTOR = ".fr-ec-header-overlay__item-count";
 
 export async function scrapeUniqloDeMen(): Promise<Snapshot> {
