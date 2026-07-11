@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect, useRouter } from "expo-router";
-import { SIGNIFICANT_DROP_PCT, type Product, type Snapshot } from "@cst/shared";
+import { CATEGORY_ORDER, categorize, SIGNIFICANT_DROP_PCT, type Product, type Snapshot } from "@cst/shared";
 import { fetchAllSnapshots, type FetchResult } from "../src/api";
 import {
   collapseToBaseCatalog,
@@ -23,6 +23,20 @@ import { pullAndMerge, schedulePush } from "../src/sync";
 
 type RefreshPhase = "idle" | "triggering" | "polling" | "fresh" | "error";
 
+// Special (non-category) deck filters. A category filter is stored as the
+// category label itself (e.g. "T-Shirt"). "all" shows everything.
+type DeckFilter = "all" | "new" | "drops" | "big" | string;
+
+// A discount at or above this counts as a "big" deal for the filter chip.
+const BIG_DISCOUNT_PCT = 40;
+
+const SPECIAL_FILTERS: { key: DeckFilter; label: string }[] = [
+  { key: "all", label: "All" },
+  { key: "new", label: "New" },
+  { key: "drops", label: "Price drops" },
+  { key: "big", label: `${BIG_DISCOUNT_PCT}%+ off` },
+];
+
 interface DeckState {
   products: Product[];
   newIds: Set<string>;
@@ -41,6 +55,7 @@ export default function Home() {
   const [pinFrontProductId, setPinFrontProductId] = useState<string | null>(null);
   const [deckEpoch, setDeckEpoch] = useState(0);
   const [canUndo, setCanUndo] = useState(false);
+  const [filter, setFilter] = useState<DeckFilter>("all");
   const router = useRouter();
   const lastScrapedAtRef = useRef<string | null>(null);
   const pollTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -237,6 +252,33 @@ export default function Home() {
   const newCount = useMemo(() => state?.newIds.size ?? 0, [state]);
   const freshnessLabel = useMemo(() => formatAge(state?.oldestScrapedAt ?? null), [state]);
 
+  // Categories present among the current deck candidates, in the shared order.
+  const availableCategories = useMemo(() => {
+    if (!state) return [];
+    const present = new Set(
+      state.products.map((p) => p.category ?? categorize(p.name)),
+    );
+    return CATEGORY_ORDER.filter((c) => present.has(c));
+  }, [state]);
+
+  // Apply the active filter to the deck candidates. buildDeck already sorted
+  // them (repriced > new > rest, by discount), so filtering preserves order.
+  const filteredProducts = useMemo(() => {
+    if (!state) return [];
+    switch (filter) {
+      case "all":
+        return state.products;
+      case "new":
+        return state.products.filter((p) => state.newIds.has(p.id));
+      case "drops":
+        return state.products.filter((p) => state.repricedIds.has(p.id));
+      case "big":
+        return state.products.filter((p) => p.discountPct >= BIG_DISCOUNT_PCT);
+      default:
+        return state.products.filter((p) => (p.category ?? categorize(p.name)) === filter);
+    }
+  }, [state, filter]);
+
   if (error) {
     return (
       <SafeAreaView style={styles.center}>
@@ -314,16 +356,63 @@ export default function Home() {
         </View>
       )}
 
-      <SwipeDeck
-        key={deckEpoch}
-        products={state.products}
-        newIds={state.newIds}
-        repricedIds={state.repricedIds}
-        onSwipe={handleSwipe}
-        onUndo={handleUndo}
-        canUndo={canUndo}
+      <FlatList
+        horizontal
+        style={styles.filterList}
+        data={[...SPECIAL_FILTERS, ...availableCategories.map((c) => ({ key: c, label: c }))]}
+        keyExtractor={(item) => item.key}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.filterRow}
+        renderItem={({ item }) => (
+          <FilterChip
+            label={item.label}
+            active={filter === item.key}
+            onPress={() => setFilter(item.key)}
+          />
+        )}
       />
+
+      {filteredProducts.length === 0 ? (
+        <View style={styles.filterEmpty}>
+          <Text style={styles.filterEmptyText}>
+            {filter === "all"
+              ? "You're caught up — no more items."
+              : "No items match this filter."}
+          </Text>
+          {filter !== "all" && (
+            <TouchableOpacity style={styles.clearFilterButton} onPress={() => setFilter("all")}>
+              <Text style={styles.clearFilterLabel}>Show all</Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      ) : (
+        <SwipeDeck
+          key={`${deckEpoch}:${filter}`}
+          products={filteredProducts}
+          newIds={state.newIds}
+          repricedIds={state.repricedIds}
+          onSwipe={handleSwipe}
+          onUndo={handleUndo}
+          canUndo={canUndo}
+        />
+      )}
     </SafeAreaView>
+  );
+}
+
+function FilterChip({
+  label,
+  active,
+  onPress,
+}: {
+  label: string;
+  active: boolean;
+  onPress: () => void;
+}) {
+  return (
+    <TouchableOpacity onPress={onPress} style={[styles.chip, active && styles.chipActive]}>
+      <Text style={[styles.chipLabel, active && styles.chipLabelActive]}>{label}</Text>
+    </TouchableOpacity>
   );
 }
 
@@ -425,6 +514,29 @@ const styles = StyleSheet.create({
   headerText: { flex: 1 },
   title: { fontSize: 24, fontWeight: "700", color: "#111827" },
   subtitle: { fontSize: 13, color: "#6b7280", marginTop: 2 },
+  filterList: { flexGrow: 0, marginBottom: 4 },
+  filterRow: { gap: 6, paddingHorizontal: 20, paddingBottom: 8, alignItems: "center" },
+  chip: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: "#e5e7eb",
+    backgroundColor: "#fff",
+  },
+  chipActive: { backgroundColor: "#111827", borderColor: "#111827" },
+  chipLabel: { fontSize: 13, color: "#374151", fontWeight: "500" },
+  chipLabelActive: { color: "#fff" },
+  filterEmpty: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24, gap: 14 },
+  filterEmptyText: { fontSize: 16, color: "#6b7280", textAlign: "center" },
+  clearFilterButton: {
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#111827",
+  },
+  clearFilterLabel: { color: "#111827", fontWeight: "600" },
   iconButton: {
     width: 44,
     height: 44,
