@@ -72,6 +72,7 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 - Price format on Uniqlo DE is `12,90 €` (number first, German decimal comma). Regex must handle both `€ <num>` and `<num> €` and a `,` decimal separator.
 - Pagination via `scrollBy()` doesn't fire Uniqlo's intersection observer. Use `tile.scrollIntoView({ block: "end" })` + `page.mouse.wheel()` to trigger lazy-load.
 - The "total item count" lives in `.fr-ec-header-overlay__item-count` in the filter drawer header. Reliable as a sentinel for "did we scroll far enough."
+- **Tiles show an EU "30-Day Lowest Price: X €" line** (Omnibus Directive). That's a THIRD price number (usually equal to the original), so the "two highest = original + sale" heuristic picks original twice and zeroes the discount. `extractProducts` drops any line matching `/lowest price/i` before parsing prices. The scraper also fails (stage `parse`) if >30% of items have no discount — a sale page should be almost entirely discounted, so a high no-discount ratio means price parsing broke; failing loudly triggers self-heal instead of committing garbage.
 
 ### Data flow / state
 

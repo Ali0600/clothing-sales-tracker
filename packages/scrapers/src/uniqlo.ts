@@ -86,6 +86,25 @@ async function runScrape(browser: Browser): Promise<Snapshot> {
     });
   }
 
+  // This is a SALE page — the overwhelming majority of items must carry a real
+  // discount. A high no-discount ratio means price parsing broke (e.g. Uniqlo
+  // added the "30-Day Lowest Price" line that displaced the sale price), so fail
+  // loudly and let self-heal fix the parser rather than commit garbage.
+  const noDiscount = products.filter((p) => p.salePrice >= p.price).length;
+  if (noDiscount / products.length > 0.3) {
+    const html = await page.content();
+    throw new ScrapeError({
+      source: SOURCE,
+      url: URL,
+      stage: "parse",
+      message:
+        `Discount sanity check failed: ${noDiscount}/${products.length} items have no ` +
+        `discount on a sale page — price parsing is likely broken.`,
+      actualCount: products.length,
+      htmlSnippet: html.slice(0, 4000),
+    });
+  }
+
   if (expectedTotal != null) {
     console.log(
       `[uniqlo-de-men] pagination: ${tileCount}/${expectedTotal} tiles ` +
@@ -140,7 +159,14 @@ async function extractProducts(page: import("playwright").Page): Promise<Product
       const colorMatch = href.match(/colorDisplayCode=([\w-]+)/);
       const img = tile.querySelector("img") as HTMLImageElement | null;
       const text = tile.innerText.trim();
-      const priceMatches = Array.from(tile.innerText.matchAll(/(\d+(?:[.,]\d{1,2}))\s*€|€\s*(\d+(?:[.,]\d{1,2}))/g))
+      // Drop the EU "30-Day Lowest Price: X €" line (Omnibus Directive). It adds
+      // a third price number — usually equal to the original — which corrupts the
+      // "two highest = original + sale" heuristic and zeroes out the discount.
+      const priceText = tile.innerText
+        .split("\n")
+        .filter((l) => !/lowest price/i.test(l))
+        .join("\n");
+      const priceMatches = Array.from(priceText.matchAll(/(\d+(?:[.,]\d{1,2}))\s*€|€\s*(\d+(?:[.,]\d{1,2}))/g))
         .map((m) => Number((m[1] ?? m[2]).replace(",", ".")))
         .filter((n) => n > 0 && n < 100000);
       const nameEl = tile.querySelector('[data-testid="product-tile-title"], h3, h2, [class*="title" i], [class*="name" i]');
