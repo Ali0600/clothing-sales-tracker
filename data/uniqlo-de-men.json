@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-11T19:31:20.699Z",
+  "scrapedAt": "2026-07-12T03:55:46.339Z",
   "products": [
     {
       "id": "E481004-000",
@@ -233,19 +233,6 @@
       "salePrice": 7.9,
       "currency": "EUR",
       "discountPct": 60,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E422992-000",
-      "source": "uniqlo-de-men",
-      "name": "Crew Neck T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E422992-000/04?colorDisplayCode=30",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/422992/item/goods_30_422992_3x4.jpg?width=300",
-      "price": 14.9,
-      "salePrice": 3.9,
-      "currency": "EUR",
-      "discountPct": 74,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -718,19 +705,6 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E482805-000",
-      "source": "uniqlo-de-men",
-      "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E482805-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482805/item/eugoods_00_482805_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E485466-000",
       "source": "uniqlo-de-men",
       "name": "Elliott Erwitt UT Graphic T-Shirt",
@@ -1173,11 +1147,11 @@
       "category": "Shirt"
     },
     {
-      "id": "E482460-000",
+      "id": "E482461-000",
       "source": "uniqlo-de-men",
-      "name": "Broadcloth Regular Fit Shirt (Button-Down Collar, Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E482460-000/00?colorDisplayCode=52",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482460/item/eugoods_52_482460_3x4.jpg?width=300",
+      "name": "Broadcloth Regular Fit Shirt (Button-Down Collar, Check)",
+      "url": "https://www.uniqlo.com/de/en/products/E482461-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482461/item/eugoods_09_482461_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1186,11 +1160,11 @@
       "category": "Shirt"
     },
     {
-      "id": "E482461-000",
+      "id": "E482460-000",
       "source": "uniqlo-de-men",
-      "name": "Broadcloth Regular Fit Shirt (Button-Down Collar, Check)",
-      "url": "https://www.uniqlo.com/de/en/products/E482461-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482461/item/eugoods_09_482461_3x4.jpg?width=300",
+      "name": "Broadcloth Regular Fit Shirt (Button-Down Collar, Striped)",
+      "url": "https://www.uniqlo.com/de/en/products/E482460-000/00?colorDisplayCode=52",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482460/item/eugoods_52_482460_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1355,19 +1329,6 @@
       "category": "Polo"
     },
     {
-      "id": "E475367-000",
-      "source": "uniqlo-de-men",
-      "name": "AIRism Cotton Piqué Polo Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E475367-000/01?colorDisplayCode=42",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/475367/item/eugoods_42_475367_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 33,
-      "gender": "men",
-      "category": "Polo"
-    },
-    {
       "id": "E482303-000",
       "source": "uniqlo-de-men",
       "name": "AIRism Cotton Piqué Polo Shirt (Full Open)",
@@ -1444,19 +1405,6 @@
       "discountPct": 25,
       "gender": "men",
       "category": "Shirt"
-    },
-    {
-      "id": "E484032-000",
-      "source": "uniqlo-de-men",
-      "name": "Cotton Blend Short Blouson",
-      "url": "https://www.uniqlo.com/de/en/products/E484032-000/00?colorDisplayCode=39",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484032/sub/eugoods_484032_sub6_3x4.jpg?width=300",
-      "price": 59.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 78,
-      "gender": "men",
-      "category": "Other"
     },
     {
       "id": "E484249-000",
@@ -1554,24 +1502,11 @@
       "source": "uniqlo-de-men",
       "name": "Hybrid Down Parka",
       "url": "https://www.uniqlo.com/de/en/products/E480045-000/01?colorDisplayCode=31",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/480045/item/eugoods_31_480045_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/480045/item/goods_39_480045_3x4.jpg?width=300",
       "price": 149.9,
       "salePrice": 109.9,
       "currency": "EUR",
       "discountPct": 27,
-      "gender": "men",
-      "category": "Jacket"
-    },
-    {
-      "id": "E483834-000",
-      "source": "uniqlo-de-men",
-      "name": "Utility Parka",
-      "url": "https://www.uniqlo.com/de/en/products/E483834-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/483834/item/eugoods_09_483834_3x4.jpg?width=300",
-      "price": 109.9,
-      "salePrice": 29.9,
-      "currency": "EUR",
-      "discountPct": 73,
       "gender": "men",
       "category": "Jacket"
     },
@@ -1618,8 +1553,8 @@
       "id": "E479229-000",
       "source": "uniqlo-de-men",
       "name": "Cotton Blend Short Parka",
-      "url": "https://www.uniqlo.com/de/en/products/E479229-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/479229/sub/eugoods_479229_sub5_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E479229-000/00?colorDisplayCode=07",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/479229/item/eugoods_07_479229_3x4.jpg?width=300",
       "price": 59.9,
       "salePrice": 19.9,
       "currency": "EUR",
@@ -1644,12 +1579,12 @@
       "id": "E482321-000",
       "source": "uniqlo-de-men",
       "name": "Washable 3D Knit Seamless Crew Neck Jumper",
-      "url": "https://www.uniqlo.com/de/en/products/E482321-000/02?colorDisplayCode=24",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482321/item/eugoods_24_482321_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E482321-000/01?colorDisplayCode=51",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482321/item/eugoods_51_482321_3x4.jpg?width=300",
       "price": 49.9,
-      "salePrice": 12.9,
+      "salePrice": 19.9,
       "currency": "EUR",
-      "discountPct": 74,
+      "discountPct": 60,
       "gender": "men",
       "category": "Sweater"
     },
@@ -1782,6 +1717,110 @@
       "discountPct": 41,
       "gender": "men",
       "category": "Other"
+    },
+    {
+      "id": "E482611-000",
+      "source": "uniqlo-de-men",
+      "name": "Socks (Ribbed)",
+      "url": "https://www.uniqlo.com/de/en/products/E482611-000/00?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/482611/item/goods_08_482611_3x4.jpg?width=300",
+      "price": 4.9,
+      "salePrice": 2.9,
+      "currency": "EUR",
+      "discountPct": 41,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E485002-000",
+      "source": "uniqlo-de-men",
+      "name": "Sports Socks (Pile Lined)",
+      "url": "https://www.uniqlo.com/de/en/products/E485002-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/485002/item/goods_09_485002_3x4.jpg?width=300",
+      "price": 4.9,
+      "salePrice": 2.9,
+      "currency": "EUR",
+      "discountPct": 41,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E461015-000",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Ultra Warm Leggings",
+      "url": "https://www.uniqlo.com/de/en/products/E461015-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461015/item/goods_01_461015_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 7.9,
+      "currency": "EUR",
+      "discountPct": 74,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E483050-000",
+      "source": "uniqlo-de-men",
+      "name": "Drawstring Bag",
+      "url": "https://www.uniqlo.com/de/en/products/E483050-000/00?colorDisplayCode=31",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/483050/item/goods_31_483050_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 33,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E478319-000",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Knit Gloves",
+      "url": "https://www.uniqlo.com/de/en/products/E478319-000/00?colorDisplayCode=05",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478319/item/goods_05_478319_3x4.jpg?width=300",
+      "price": 14.9,
+      "salePrice": 9.9,
+      "currency": "EUR",
+      "discountPct": 34,
+      "gender": "men",
+      "category": "Sweater"
+    },
+    {
+      "id": "E478312-000",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Scarf",
+      "url": "https://www.uniqlo.com/de/en/products/E478312-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478312/item/goods_01_478312_3x4.jpg?width=300",
+      "price": 24.9,
+      "salePrice": 14.9,
+      "currency": "EUR",
+      "discountPct": 40,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E478313-001",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Scarf (Patterned)",
+      "url": "https://www.uniqlo.com/de/en/products/E478313-001/00?colorDisplayCode=55",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/478313001/item/goods_55_478313001_3x4.jpg?width=300",
+      "price": 24.9,
+      "salePrice": 14.9,
+      "currency": "EUR",
+      "discountPct": 40,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E479253-000",
+      "source": "uniqlo-de-men",
+      "name": "100% Cashmere Knit Beanie",
+      "url": "https://www.uniqlo.com/de/en/products/E479253-000/00?colorDisplayCode=10",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479253/item/goods_10_479253_3x4.jpg?width=300",
+      "price": 39.9,
+      "salePrice": 29.9,
+      "currency": "EUR",
+      "discountPct": 25,
+      "gender": "men",
+      "category": "Sweater"
     }
   ]
 }
