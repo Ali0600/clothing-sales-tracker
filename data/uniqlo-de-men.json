@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-12T08:30:58.709Z",
+  "scrapedAt": "2026-07-12T13:55:29.302Z",
   "products": [
     {
       "id": "E481004-000",
@@ -432,19 +432,6 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487565-000",
-      "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (GOLDEN KAMUY)",
-      "url": "https://www.uniqlo.com/de/en/products/E487565-000/00?colorDisplayCode=55",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487565/item/eugoods_55_487565_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E484779-000",
       "source": "uniqlo-de-men",
       "name": "MANGA UT Shueisha 100th Graphic T-Shirt (HUNTER x HUNTER)",
@@ -632,19 +619,6 @@
       "name": "The Super Mario Galaxy Movie UT Graphic T-Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E482757-000/00?colorDisplayCode=00",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482757/item/eugoods_00_482757_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E486161-000",
-      "source": "uniqlo-de-men",
-      "name": "The Super Mario Galaxy Movie UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E486161-000/00?colorDisplayCode=10",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/486161/item/eugoods_10_486161_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -883,19 +857,6 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 25,
-      "gender": "men",
-      "category": "Jeans"
-    },
-    {
-      "id": "E479816-000",
-      "source": "uniqlo-de-men",
-      "name": "Straight Jeans",
-      "url": "https://www.uniqlo.com/de/en/products/E479816-000/01?colorDisplayCode=64",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/479816/item/eugoods_64_479816_3x4.jpg?width=300",
-      "price": 49.9,
-      "salePrice": 39.9,
-      "currency": "EUR",
-      "discountPct": 20,
       "gender": "men",
       "category": "Jeans"
     },
@@ -1346,7 +1307,7 @@
       "source": "uniqlo-de-men",
       "name": "Washable Knit Polo Jumper (Short Sleeve)",
       "url": "https://www.uniqlo.com/de/en/products/E476997-000/00?colorDisplayCode=54",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/476997/item/eugoods_64_476997_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/476997/item/eugoods_54_476997_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1819,6 +1780,45 @@
       "salePrice": 29.9,
       "currency": "EUR",
       "discountPct": 25,
+      "gender": "men",
+      "category": "Sweater"
+    },
+    {
+      "id": "E479241-000",
+      "source": "uniqlo-de-men",
+      "name": "Soufflé Yarn Chunky Stole",
+      "url": "https://www.uniqlo.com/de/en/products/E479241-000/00?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479241/item/goods_08_479241_3x4.jpg?width=300",
+      "price": 29.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 33,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E475053-000",
+      "source": "uniqlo-de-men",
+      "name": "Smooth Cotton Crew Neck Jumper",
+      "url": "https://www.uniqlo.com/de/en/products/E475053-000/01?colorDisplayCode=67",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/475053/item/eugoods_67_475053_3x4.jpg?width=300",
+      "price": 39.9,
+      "salePrice": 29.9,
+      "currency": "EUR",
+      "discountPct": 25,
+      "gender": "men",
+      "category": "Sweater"
+    },
+    {
+      "id": "E481731-000",
+      "source": "uniqlo-de-men",
+      "name": "Milano Ribbed Full-Zip Cardigan",
+      "url": "https://www.uniqlo.com/de/en/products/E481731-000/01?colorDisplayCode=69",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/481731/sub/eugoods_481731_sub6_3x4.jpg?width=300",
+      "price": 49.9,
+      "salePrice": 9.9,
+      "currency": "EUR",
+      "discountPct": 80,
       "gender": "men",
       "category": "Sweater"
     }
