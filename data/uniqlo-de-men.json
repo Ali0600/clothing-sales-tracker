@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-12T19:30:18.280Z",
+  "scrapedAt": "2026-07-13T03:58:35.080Z",
   "products": [
     {
       "id": "E481004-000",
@@ -419,11 +419,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E484779-000",
+      "id": "E488261-000",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (HUNTER x HUNTER)",
-      "url": "https://www.uniqlo.com/de/en/products/E484779-000/00?colorDisplayCode=03",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484779/item/eugoods_03_484779_3x4.jpg?width=300",
+      "name": "MANGA 100th UT Graphic T-Shirt (Coji-Coji)",
+      "url": "https://www.uniqlo.com/de/en/products/E488261-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488261/item/eugoods_00_488261_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -432,11 +432,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E488261-000",
+      "id": "E484779-000",
       "source": "uniqlo-de-men",
-      "name": "MANGA 100th UT Graphic T-Shirt (Coji-Coji)",
-      "url": "https://www.uniqlo.com/de/en/products/E488261-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488261/item/eugoods_00_488261_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (HUNTER x HUNTER)",
+      "url": "https://www.uniqlo.com/de/en/products/E484779-000/00?colorDisplayCode=03",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484779/item/eugoods_03_484779_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 12.9,
       "currency": "EUR",
@@ -588,19 +588,6 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E486160-000",
-      "source": "uniqlo-de-men",
-      "name": "The Super Mario Galaxy Movie UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E486160-000/00?colorDisplayCode=69",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/486160/item/eugoods_69_486160_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E482757-000",
       "source": "uniqlo-de-men",
       "name": "The Super Mario Galaxy Movie UT Graphic T-Shirt",
@@ -640,11 +627,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E485467-000",
+      "id": "E485465-000",
       "source": "uniqlo-de-men",
       "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485467-000/00?colorDisplayCode=09",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485467/item/eugoods_09_485467_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E485465-000/00?colorDisplayCode=00",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485465/item/eugoods_00_485465_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -653,11 +640,11 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E485465-000",
+      "id": "E485467-000",
       "source": "uniqlo-de-men",
       "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485465-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485465/item/eugoods_00_485465_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E485467-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485467/item/eugoods_09_485467_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -1147,11 +1134,11 @@
       "category": "Shirt"
     },
     {
-      "id": "E482465-000",
+      "id": "E485649-000",
       "source": "uniqlo-de-men",
-      "name": "Broadcloth Regular Fit Shirt (Regular Collar, Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E482465-000/00?colorDisplayCode=60",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482465/item/eugoods_60_482465_3x4.jpg?width=300",
+      "name": "Broadcloth Regular Fit Shirt (Regular Collar, Check)",
+      "url": "https://www.uniqlo.com/de/en/products/E485649-000/00?colorDisplayCode=01",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485649/item/eugoods_01_485649_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1160,11 +1147,11 @@
       "category": "Shirt"
     },
     {
-      "id": "E485649-000",
+      "id": "E482465-000",
       "source": "uniqlo-de-men",
-      "name": "Broadcloth Regular Fit Shirt (Regular Collar, Check)",
-      "url": "https://www.uniqlo.com/de/en/products/E485649-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485649/item/eugoods_01_485649_3x4.jpg?width=300",
+      "name": "Broadcloth Regular Fit Shirt (Regular Collar, Striped)",
+      "url": "https://www.uniqlo.com/de/en/products/E482465-000/00?colorDisplayCode=60",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482465/item/eugoods_60_482465_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1735,8 +1722,8 @@
       "id": "E479253-000",
       "source": "uniqlo-de-men",
       "name": "100% Cashmere Knit Beanie",
-      "url": "https://www.uniqlo.com/de/en/products/E479253-000/00?colorDisplayCode=10",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479253/item/goods_10_479253_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E479253-000/00?colorDisplayCode=55",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479253/item/goods_55_479253_3x4.jpg?width=300",
       "price": 39.9,
       "salePrice": 29.9,
       "currency": "EUR",
