@@ -59,6 +59,19 @@ jobs:
             echo "has_failure=false" >> "$GITHUB_OUTPUT"
           fi
 
+      # There IS something to heal but no API key — fail with a clear message rather
+      # than letting the claude step die with a cryptic auth error further down.
+      # (Checked via an env var in bash — secrets aren't reliable in `if:`.)
+      - name: Require ANTHROPIC_API_KEY when healing
+        if: steps.check.outputs.has_failure == 'true'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error title=ANTHROPIC_API_KEY missing::A scraper failed and needs healing, but ANTHROPIC_API_KEY is not set, so Claude Code cannot run. Add the secret to enable self-heal."
+            exit 1
+          fi
+
       - uses: pnpm/action-setup@v4
         if: steps.check.outputs.has_failure == 'true'
 

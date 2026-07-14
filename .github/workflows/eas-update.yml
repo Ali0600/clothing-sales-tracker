@@ -25,48 +25,40 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      # Skip gracefully until the Expo token is configured, so the workflow stays
-      # green before EAS Update is enabled.
-      - name: Check for EXPO_TOKEN
-        id: check
+      # Publishing the OTA IS the job — so a missing token is a hard failure, not a
+      # silent green skip. (A skip-to-green here previously hid the fact that no OTA
+      # had ever shipped.) Fail fast with a clear message before doing any work.
+      - name: Require EXPO_TOKEN
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: |
           if [ -z "$EXPO_TOKEN" ]; then
-            echo "EXPO_TOKEN not set — skipping OTA publish. Add the secret to enable EAS Update."
-            echo "has_token=false" >> "$GITHUB_OUTPUT"
-          else
-            echo "has_token=true" >> "$GITHUB_OUTPUT"
+            echo "::error title=EXPO_TOKEN missing::EAS Update cannot publish without the EXPO_TOKEN secret. Add it at Settings → Secrets and variables → Actions (create a token at expo.dev → Account → Access tokens)."
+            exit 1
           fi
 
       - name: Checkout
-        if: steps.check.outputs.has_token == 'true'
         uses: actions/checkout@v4
 
       - name: Setup pnpm
-        if: steps.check.outputs.has_token == 'true'
         uses: pnpm/action-setup@v4
 
       - name: Setup Node
-        if: steps.check.outputs.has_token == 'true'
         uses: actions/setup-node@v4
         with:
           node-version-file: .nvmrc
           cache: pnpm
 
       - name: Setup EAS
-        if: steps.check.outputs.has_token == 'true'
         uses: expo/expo-github-action@v9
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
-        if: steps.check.outputs.has_token == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Publish update to the production channel
-        if: steps.check.outputs.has_token == 'true'
         working-directory: apps/mobile
         env:
           UPDATE_MSG: ${{ github.event.head_commit.message || format('Manual OTA from {0}', github.sha) }}
