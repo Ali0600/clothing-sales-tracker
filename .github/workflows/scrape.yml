@@ -33,6 +33,17 @@ jobs:
       - name: Install Playwright browser
         run: pnpm --filter @cst/scrapers exec playwright install --with-deps chromium
 
+      # Push notifications are optional, so a missing token does NOT fail the run —
+      # but it must be VISIBLE, not silently swallowed inside the scrape script.
+      # (Checked via an env var in bash — secrets aren't reliable in `if:`.)
+      - name: Warn if push notifications are disabled
+        env:
+          EXPO_PUSH_TOKEN: ${{ secrets.EXPO_PUSH_TOKEN }}
+        run: |
+          if [ -z "$EXPO_PUSH_TOKEN" ]; then
+            echo "::warning title=Push notifications disabled::EXPO_PUSH_TOKEN is not set, so new-item / price-drop notifications will not be sent. Scraping and committing still run. Add the secret to enable them."
+          fi
+
       - name: Run scrapers
         id: scrape
         env:
