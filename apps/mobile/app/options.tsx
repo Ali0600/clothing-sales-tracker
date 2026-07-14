@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import {
   ActivityIndicator,
   Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -165,7 +166,11 @@ export default function Options() {
         <View style={styles.backButton} />
       </View>
 
-      <View style={styles.body}>
+      <ScrollView
+        style={styles.body}
+        contentContainerStyle={styles.bodyContent}
+        keyboardShouldPersistTaps="handled"
+      >
         {error && <Text style={styles.error}>{error}</Text>}
 
         {!counts ? (
@@ -296,7 +301,7 @@ export default function Options() {
             </View>
           </>
         )}
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -374,7 +379,8 @@ const styles = StyleSheet.create({
   backButton: { width: 44, height: 44, alignItems: "center", justifyContent: "center" },
   backIcon: { fontSize: 28, color: "#374151" },
   title: { fontSize: 18, fontWeight: "600", color: "#111827" },
-  body: { paddingHorizontal: 20, paddingTop: 8, gap: 20 },
+  body: { flex: 1 },
+  bodyContent: { paddingHorizontal: 20, paddingTop: 8, paddingBottom: 48, gap: 20 },
   center: { paddingVertical: 40, alignItems: "center" },
   error: { color: "#dc2626", textAlign: "center" },
   statsCard: {
