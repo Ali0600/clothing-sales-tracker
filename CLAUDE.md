@@ -6,9 +6,13 @@ Notes for Claude sessions working in this repo. Read before touching code.
 
 Personal "Tinder for sale clothes." Expo app (iOS + web) reads JSON snapshots
 of retailer sale catalogs. Snapshots are produced by Playwright scrapers run
-on a GitHub Actions cron and committed back to `data/`. Self-heal workflow
-runs Claude Code if a scraper breaks. No backend server; GitHub Actions IS
-the backend.
+on a GitHub Actions cron and committed back to `data/`. No backend server;
+GitHub Actions IS the backend.
+
+**Healing is NOT in this repo.** When a scraper breaks, CI fails loudly and
+publishes a failure signal (artifact + `scrape-failure` issue). A local poller,
+https://github.com/Ali0600/self-healing-script, consumes that signal and runs
+headless Claude Code on the Mac. Do not add a self-heal workflow back here.
 
 ## Project map
 
@@ -31,7 +35,8 @@ scripts/scrape.ts        CLI: pnpm scrape [source] [--notify]
 data/                    Committed snapshot JSON. Bot pushes here every 6h.
 .github/workflows/
   scrape.yml             Cron 17 */6 * * *. Triggerable via workflow_dispatch.
-  self-heal.yml          On scrape failure → Claude Code → PR
+                         On failure: upload artifact + open `scrape-failure` issue.
+  eas-update.yml         On apps/mobile|packages change → publish OTA.
 ```
 
 ## Critical gotchas (don't re-discover these)
@@ -64,7 +69,7 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 
 - `pnpm/action-setup@v4` rejects setups that pin pnpm in BOTH the workflow's `version:` input AND `package.json`'s `packageManager:` field. Drop the workflow input; let it read from `package.json`.
 - The scrape workflow uses `actions/checkout@v4` with default behavior — committing back requires `permissions: contents: write` already set.
-- Failure artifacts upload from `.scrape-artifacts/` and are how self-heal gets context. Do not commit that folder (in `.gitignore`).
+- **The failure signal is a contract with the external healer** ([Ali0600/self-healing-script](https://github.com/Ali0600/self-healing-script)) — don't change these without updating it: the artifact name `scrape-failure-<run_id>`, its `.scrape-artifacts/<source>.failure.json` payload shape (`context` with `source`, `stage`, `message`, `expectedCount`, `actualCount`, `htmlSnippet`), and the **`scrape-failure`** issue label the poller watches for. A healthy scrape auto-closes that issue. Do not commit `.scrape-artifacts/` (in `.gitignore`).
 
 ### Scraping
 
@@ -72,7 +77,7 @@ data/                    Committed snapshot JSON. Bot pushes here every 6h.
 - Price format on Uniqlo DE is `12,90 €` (number first, German decimal comma). Regex must handle both `€ <num>` and `<num> €` and a `,` decimal separator.
 - Pagination via `scrollBy()` doesn't fire Uniqlo's intersection observer. Use `tile.scrollIntoView({ block: "end" })` + `page.mouse.wheel()` to trigger lazy-load.
 - The "total item count" lives in `.fr-ec-header-overlay__item-count` in the filter drawer header. Reliable as a sentinel for "did we scroll far enough."
-- **Tiles show an EU "30-Day Lowest Price: X €" line** (Omnibus Directive). That's a THIRD price number (usually equal to the original), so the "two highest = original + sale" heuristic picks original twice and zeroes the discount. `extractProducts` drops any line matching `/lowest price/i` before parsing prices. The scraper also fails (stage `parse`) if >30% of items have no discount — a sale page should be almost entirely discounted, so a high no-discount ratio means price parsing broke; failing loudly triggers self-heal instead of committing garbage.
+- **Tiles show an EU "30-Day Lowest Price: X €" line** (Omnibus Directive). That's a THIRD price number (usually equal to the original), so the "two highest = original + sale" heuristic picks original twice and zeroes the discount. `extractProducts` drops any line matching `/lowest price/i` before parsing prices. The scraper also fails (stage `parse`) if >30% of items have no discount — a sale page should be almost entirely discounted, so a high no-discount ratio means price parsing broke; failing loudly publishes the failure signal instead of committing garbage.
 
 ### Data flow / state
 
