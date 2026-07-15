@@ -106,8 +106,8 @@ jobs:
             }
 
       # Completes the loop: a healthy scrape closes any open alert issue, so
-      # outages that resolve themselves (or a merged self-heal fix) end the
-      # cycle without human bookkeeping.
+      # outages that resolve themselves (or a merged fix from the local healer)
+      # end the cycle without human bookkeeping.
       - name: Close recovery issues
         if: success()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9

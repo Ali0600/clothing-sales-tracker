@@ -89,7 +89,7 @@ async function runScrape(browser: Browser): Promise<Snapshot> {
   // This is a SALE page — the overwhelming majority of items must carry a real
   // discount. A high no-discount ratio means price parsing broke (e.g. Uniqlo
   // added the "30-Day Lowest Price" line that displaced the sale price), so fail
-  // loudly and let self-heal fix the parser rather than commit garbage.
+  // loudly rather than commit garbage.
   const noDiscount = products.filter((p) => p.salePrice >= p.price).length;
   if (noDiscount / products.length > 0.3) {
     const html = await page.content();
