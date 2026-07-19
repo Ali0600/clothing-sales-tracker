@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-19T08:32:18.463Z",
+  "scrapedAt": "2026-07-19T13:52:19.019Z",
   "products": [
     {
       "id": "E484662-000",
@@ -1589,19 +1589,6 @@
       "category": "Other"
     },
     {
-      "id": "E482593-000",
-      "source": "uniqlo-de-men",
-      "name": "Woven Trunks (Crest)",
-      "url": "https://www.uniqlo.com/de/en/products/E482593-000/00?colorDisplayCode=67",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/482593/item/goods_67_482593_3x4.jpg?width=300",
-      "price": 7.9,
-      "salePrice": 3.9,
-      "currency": "EUR",
-      "discountPct": 51,
-      "gender": "men",
-      "category": "Other"
-    },
-    {
       "id": "E482611-000",
       "source": "uniqlo-de-men",
       "name": "Socks (Ribbed)",
@@ -1631,8 +1618,8 @@
       "id": "E461015-000",
       "source": "uniqlo-de-men",
       "name": "HEATTECH Ultra Warm Leggings",
-      "url": "https://www.uniqlo.com/de/en/products/E461015-000/00?colorDisplayCode=01",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461015/item/goods_01_461015_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E461015-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461015/item/goods_09_461015_3x4.jpg?width=300",
       "price": 29.9,
       "salePrice": 7.9,
       "currency": "EUR",
@@ -1709,8 +1696,8 @@
       "id": "E479253-000",
       "source": "uniqlo-de-men",
       "name": "100% Cashmere Knit Beanie",
-      "url": "https://www.uniqlo.com/de/en/products/E479253-000/00?colorDisplayCode=65",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479253/item/goods_65_479253_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E479253-000/00?colorDisplayCode=71",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/479253/item/goods_71_479253_3x4.jpg?width=300",
       "price": 39.9,
       "salePrice": 29.9,
       "currency": "EUR",
