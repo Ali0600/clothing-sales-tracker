@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-19T13:52:19.019Z",
+  "scrapedAt": "2026-07-19T19:31:13.588Z",
   "products": [
     {
       "id": "E484662-000",
@@ -311,19 +311,6 @@
       "salePrice": 12.9,
       "currency": "EUR",
       "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E487574-000",
-      "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (Kochira Kutsushikaku Kamearikoenmae Hashutsujo)",
-      "url": "https://www.uniqlo.com/de/en/products/E487574-000/00?colorDisplayCode=00",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487574/item/eugoods_00_487574_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -825,12 +812,12 @@
       "id": "E450251-000",
       "source": "uniqlo-de-men",
       "name": "Slim Chino Trousers",
-      "url": "https://www.uniqlo.com/de/en/products/E450251-000/02?colorDisplayCode=69",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/450251/item/eugoods_69_450251_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E450251-000/01?colorDisplayCode=35",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/450251/item/eugoods_35_450251_3x4.jpg?width=300",
       "price": 39.9,
-      "salePrice": 7.9,
+      "salePrice": 29.9,
       "currency": "EUR",
-      "discountPct": 80,
+      "discountPct": 25,
       "gender": "men",
       "category": "Pants"
     },
@@ -1416,19 +1403,6 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 67,
-      "gender": "men",
-      "category": "Jacket"
-    },
-    {
-      "id": "E469292-000",
-      "source": "uniqlo-de-men",
-      "name": "UV Protection Pocketable Parka",
-      "url": "https://www.uniqlo.com/de/en/products/E469292-000/01?colorDisplayCode=54",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/469292/item/eugoods_54_469292_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 19.9,
-      "currency": "EUR",
-      "discountPct": 50,
       "gender": "men",
       "category": "Jacket"
     },
