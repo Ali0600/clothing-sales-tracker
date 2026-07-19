@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-18T19:30:06.758Z",
+  "scrapedAt": "2026-07-19T03:52:35.984Z",
   "products": [
     {
       "id": "E484662-000",
@@ -118,19 +118,6 @@
       "discountPct": 25,
       "gender": "men",
       "category": "Sweater"
-    },
-    {
-      "id": "E465193-000",
-      "source": "uniqlo-de-men",
-      "name": "AIRism Cotton Crew Neck T-Shirt (Long Sleeve)",
-      "url": "https://www.uniqlo.com/de/en/products/E465193-000/01?colorDisplayCode=11",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/465193/item/eugoods_11_465193_3x4.jpg?width=300",
-      "price": 24.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 60,
-      "gender": "men",
-      "category": "T-Shirt"
     },
     {
       "id": "E485595-000",
@@ -432,19 +419,6 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E488255-000",
-      "source": "uniqlo-de-men",
-      "name": "MANGA 100th UT Graphic T-Shirt (Sakamoto Days)",
-      "url": "https://www.uniqlo.com/de/en/products/E488255-000/00?colorDisplayCode=45",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488255/item/eugoods_45_488255_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E488262-000",
       "source": "uniqlo-de-men",
       "name": "MANGA 100th UT Graphic T-Shirt (Coji-Coji)",
@@ -458,15 +432,15 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487564-000",
+      "id": "E488255-000",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINGDOM)",
-      "url": "https://www.uniqlo.com/de/en/products/E487564-000/00?colorDisplayCode=31",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487564/item/eugoods_31_487564_3x4.jpg?width=300",
+      "name": "MANGA 100th UT Graphic T-Shirt (Sakamoto Days)",
+      "url": "https://www.uniqlo.com/de/en/products/E488255-000/00?colorDisplayCode=45",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488255/item/eugoods_45_488255_3x4.jpg?width=300",
       "price": 19.9,
-      "salePrice": 9.9,
+      "salePrice": 12.9,
       "currency": "EUR",
-      "discountPct": 50,
+      "discountPct": 35,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -632,19 +606,6 @@
       "name": "Elliott Erwitt UT Graphic T-Shirt",
       "url": "https://www.uniqlo.com/de/en/products/E485465-000/00?colorDisplayCode=00",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485465/item/eugoods_00_485465_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 50,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
-      "id": "E485466-000",
-      "source": "uniqlo-de-men",
-      "name": "Elliott Erwitt UT Graphic T-Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E485466-000/00?colorDisplayCode=08",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/485466/item/eugoods_08_485466_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -1111,8 +1072,8 @@
       "id": "E482460-000",
       "source": "uniqlo-de-men",
       "name": "Broadcloth Regular Fit Shirt (Button-Down Collar, Striped)",
-      "url": "https://www.uniqlo.com/de/en/products/E482460-000/00?colorDisplayCode=52",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482460/item/eugoods_52_482460_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E482460-000/00?colorDisplayCode=67",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482460/item/eugoods_67_482460_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1333,7 +1294,7 @@
       "source": "uniqlo-de-men",
       "name": "Washable Knit Polo Jumper (Short Sleeve)",
       "url": "https://www.uniqlo.com/de/en/products/E476997-000/00?colorDisplayCode=54",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/476997/item/eugoods_64_476997_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/476997/item/eugoods_54_476997_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 24.9,
       "currency": "EUR",
@@ -1476,7 +1437,7 @@
       "source": "uniqlo-de-men",
       "name": "Hybrid Down Parka",
       "url": "https://www.uniqlo.com/de/en/products/E480045-000/01?colorDisplayCode=31",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/480045/item/goods_39_480045_3x4.jpg?width=300",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/480045/item/eugoods_31_480045_3x4.jpg?width=300",
       "price": 149.9,
       "salePrice": 109.9,
       "currency": "EUR",
@@ -1641,19 +1602,6 @@
       "category": "Other"
     },
     {
-      "id": "E452029-000",
-      "source": "uniqlo-de-men",
-      "name": "Socks (Argyle)",
-      "url": "https://www.uniqlo.com/de/en/products/E452029-000/01?colorDisplayCode=04",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/452029/item/goods_04_452029_3x4.jpg?width=300",
-      "price": 4.9,
-      "salePrice": 2.9,
-      "currency": "EUR",
-      "discountPct": 41,
-      "gender": "men",
-      "category": "Other"
-    },
-    {
       "id": "E482611-000",
       "source": "uniqlo-de-men",
       "name": "Socks (Ribbed)",
@@ -1787,12 +1735,12 @@
       "id": "E475053-000",
       "source": "uniqlo-de-men",
       "name": "Smooth Cotton Crew Neck Jumper",
-      "url": "https://www.uniqlo.com/de/en/products/E475053-000/02?colorDisplayCode=50",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/475053/item/eugoods_50_475053_3x4.jpg?width=300",
+      "url": "https://www.uniqlo.com/de/en/products/E475053-000/03?colorDisplayCode=19",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/475053/item/goods_19_475053_3x4.jpg?width=300",
       "price": 39.9,
-      "salePrice": 9.9,
+      "salePrice": 7.9,
       "currency": "EUR",
-      "discountPct": 75,
+      "discountPct": 80,
       "gender": "men",
       "category": "Sweater"
     }
