@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-07-19T19:31:13.588Z",
+  "scrapedAt": "2026-07-20T04:03:16.901Z",
   "products": [
     {
       "id": "E484662-000",
@@ -341,19 +341,6 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487556-000",
-      "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (HUNTER x HUNTER)",
-      "url": "https://www.uniqlo.com/de/en/products/E487556-000/00?colorDisplayCode=78",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487556/item/eugoods_78_487556_3x4.jpg?width=300",
-      "price": 19.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 35,
-      "gender": "men",
-      "category": "T-Shirt"
-    },
-    {
       "id": "E488261-000",
       "source": "uniqlo-de-men",
       "name": "MANGA 100th UT Graphic T-Shirt (Coji-Coji)",
@@ -367,15 +354,15 @@
       "category": "T-Shirt"
     },
     {
-      "id": "E487563-000",
+      "id": "E487556-000",
       "source": "uniqlo-de-men",
-      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINGDOM)",
-      "url": "https://www.uniqlo.com/de/en/products/E487563-000/00?colorDisplayCode=03",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487563/item/eugoods_03_487563_3x4.jpg?width=300",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (HUNTER x HUNTER)",
+      "url": "https://www.uniqlo.com/de/en/products/E487556-000/00?colorDisplayCode=78",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487556/item/eugoods_78_487556_3x4.jpg?width=300",
       "price": 19.9,
-      "salePrice": 9.9,
+      "salePrice": 12.9,
       "currency": "EUR",
-      "discountPct": 50,
+      "discountPct": 35,
       "gender": "men",
       "category": "T-Shirt"
     },
@@ -385,6 +372,19 @@
       "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINNIKUMAN)",
       "url": "https://www.uniqlo.com/de/en/products/E487573-000/00?colorDisplayCode=09",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487573/item/eugoods_09_487573_3x4.jpg?width=300",
+      "price": 19.9,
+      "salePrice": 9.9,
+      "currency": "EUR",
+      "discountPct": 50,
+      "gender": "men",
+      "category": "T-Shirt"
+    },
+    {
+      "id": "E487563-000",
+      "source": "uniqlo-de-men",
+      "name": "MANGA UT Shueisha 100th Graphic T-Shirt (KINGDOM)",
+      "url": "https://www.uniqlo.com/de/en/products/E487563-000/00?colorDisplayCode=03",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487563/item/eugoods_03_487563_3x4.jpg?width=300",
       "price": 19.9,
       "salePrice": 9.9,
       "currency": "EUR",
@@ -1407,6 +1407,19 @@
       "category": "Jacket"
     },
     {
+      "id": "E469292-001",
+      "source": "uniqlo-de-men",
+      "name": "UV Protection Pocketable Parka",
+      "url": "https://www.uniqlo.com/de/en/products/E469292-001/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/469292001/item/eugoods_09_469292001_3x4.jpg?width=300",
+      "price": 39.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 50,
+      "gender": "men",
+      "category": "Jacket"
+    },
+    {
       "id": "E480045-000",
       "source": "uniqlo-de-men",
       "name": "Hybrid Down Parka",
@@ -1559,6 +1572,19 @@
       "salePrice": 5.9,
       "currency": "EUR",
       "discountPct": 25,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
+      "id": "E482618-000",
+      "source": "uniqlo-de-men",
+      "name": "Socks (Herringbone)",
+      "url": "https://www.uniqlo.com/de/en/products/E482618-000/00?colorDisplayCode=69",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/482618/item/goods_69_482618_3x4.jpg?width=300",
+      "price": 4.9,
+      "salePrice": 2.9,
+      "currency": "EUR",
+      "discountPct": 41,
       "gender": "men",
       "category": "Other"
     },
