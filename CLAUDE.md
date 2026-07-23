@@ -32,9 +32,9 @@ packages/
   shared/                Product type, Snapshot, diffSnapshots (added/removed/repriced)
   scrapers/              Playwright scrapers. One file per source. Uniqlo registered.
 scripts/scrape.ts        CLI: pnpm scrape [source] [--notify]
-data/                    Committed snapshot JSON. Bot pushes here every 6h.
+data/                    Committed snapshot JSON. Bot pushes here once a day.
 .github/workflows/
-  scrape.yml             Cron 17 */6 * * *. Triggerable via workflow_dispatch.
+  scrape.yml             Cron 17 5 * * * (daily). Triggerable via workflow_dispatch.
                          On failure: upload artifact + open `scrape-failure` issue.
   eas-update.yml         On apps/mobile|packages change → publish OTA.
 ```

@@ -24,7 +24,7 @@ packages/scrapers/       Per-site Playwright scrapers (start: Uniqlo DE Men)
 scripts/scrape.ts        CLI runner
 data/                    Committed JSON snapshots (one per source)
 .github/workflows/
-  scrape.yml             Cron every 6h → scrape → commit → push notify
+  scrape.yml             Cron daily 05:17 UTC → scrape → commit → push notify
                          On failure: upload artifact + open `scrape-failure` issue
   eas-update.yml         On apps/mobile or packages change → publish OTA
 ```
@@ -51,7 +51,7 @@ pnpm mobile               # starts Expo (press i for iOS, w for web)
    | `EXPO_PUSH_TOKEN` | scrape.yml | Your device's Expo push token (get it from the app via `Notifications.getExpoPushTokenAsync`). Optional — without it the scrape still runs and warns. |
    | `EXPO_TOKEN` | eas-update.yml | Expo access token so CI can publish OTA updates (see Production builds & OTA) |
 
-4. The `scrape` workflow runs every 6 hours and on manual dispatch. The first run creates the snapshots. Subsequent runs diff against the committed JSON and push if there are new items.
+4. The `scrape` workflow runs once a day (05:17 UTC) and on manual dispatch. The first run creates the snapshots. Subsequent runs diff against the committed JSON and push if there are new items. (The app can also trigger an on-demand scrape at launch via `workflow_dispatch` — see On-launch refresh.)
 
 ## Production builds & OTA (EAS + TestFlight)
 
