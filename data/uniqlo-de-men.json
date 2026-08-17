@@ -1,6 +1,6 @@
 {
   "source": "uniqlo-de-men",
-  "scrapedAt": "2026-08-16T05:43:50.275Z",
+  "scrapedAt": "2026-08-17T05:50:52.555Z",
   "products": [
     {
       "id": "E489563-000",
@@ -510,6 +510,19 @@
       "category": "Jeans"
     },
     {
+      "id": "E484662-000",
+      "source": "uniqlo-de-men",
+      "name": "Pleated Wide Tapered Trousers",
+      "url": "https://www.uniqlo.com/de/en/products/E484662-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484662/item/eugoods_09_484662_3x4.jpg?width=300",
+      "price": 49.9,
+      "salePrice": 29.9,
+      "currency": "EUR",
+      "discountPct": 40,
+      "gender": "men",
+      "category": "Pants"
+    },
+    {
       "id": "E462197-000",
       "source": "uniqlo-de-men",
       "name": "Pleated Wide Trousers",
@@ -562,6 +575,19 @@
       "category": "Pants"
     },
     {
+      "id": "E482887-000",
+      "source": "uniqlo-de-men",
+      "name": "Smart Ankle Trousers (Patterned)",
+      "url": "https://www.uniqlo.com/de/en/products/E482887-000/00?colorDisplayCode=04",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482887/item/eugoods_04_482887_3x4.jpg?width=300",
+      "price": 39.9,
+      "salePrice": 19.9,
+      "currency": "EUR",
+      "discountPct": 50,
+      "gender": "men",
+      "category": "Pants"
+    },
+    {
       "id": "E479360-000",
       "source": "uniqlo-de-men",
       "name": "Smart Ankle Trousers (Cotton)",
@@ -593,6 +619,19 @@
       "name": "Wide Shorts (Printed)",
       "url": "https://www.uniqlo.com/de/en/products/E488997-000/00?colorDisplayCode=07",
       "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/488997/item/eugoods_07_488997_3x4.jpg?width=300",
+      "price": 34.9,
+      "salePrice": 14.9,
+      "currency": "EUR",
+      "discountPct": 57,
+      "gender": "men",
+      "category": "Shorts"
+    },
+    {
+      "id": "E487892-000",
+      "source": "uniqlo-de-men",
+      "name": "Pleated Shorts",
+      "url": "https://www.uniqlo.com/de/en/products/E487892-000/00?colorDisplayCode=09",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/487892/item/eugoods_09_487892_3x4.jpg?width=300",
       "price": 34.9,
       "salePrice": 14.9,
       "currency": "EUR",
@@ -1186,19 +1225,6 @@
       "category": "Shirt"
     },
     {
-      "id": "E484929-001",
-      "source": "uniqlo-de-men",
-      "name": "Oxford Boxy Shirt (Check)",
-      "url": "https://www.uniqlo.com/de/en/products/E484929-001/00?colorDisplayCode=61",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/484929001/sub/eugoods_484929001_sub6_3x4.jpg?width=300",
-      "price": 34.9,
-      "salePrice": 9.9,
-      "currency": "EUR",
-      "discountPct": 72,
-      "gender": "men",
-      "category": "Shirt"
-    },
-    {
       "id": "E488448-000",
       "source": "uniqlo-de-men",
       "name": "Nylon Boxy Short Shirt (Half Sleeve)",
@@ -1316,19 +1342,6 @@
       "category": "Polo"
     },
     {
-      "id": "E482304-000",
-      "source": "uniqlo-de-men",
-      "name": "DRY Piqué Polo Shirt",
-      "url": "https://www.uniqlo.com/de/en/products/E482304-000/01?colorDisplayCode=52",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/482304/item/eugoods_52_482304_3x4.jpg?width=300",
-      "price": 29.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 57,
-      "gender": "men",
-      "category": "Polo"
-    },
-    {
       "id": "E476997-000",
       "source": "uniqlo-de-men",
       "name": "Washable Knit Polo Jumper (Short Sleeve)",
@@ -1433,19 +1446,6 @@
       "category": "Sweater"
     },
     {
-      "id": "E481727-000",
-      "source": "uniqlo-de-men",
-      "name": "Knit V Neck Cardigan",
-      "url": "https://www.uniqlo.com/de/en/products/E481727-000/00?colorDisplayCode=38",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/eu/imagesgoods/481727/item/eugoods_38_481727_3x4.jpg?width=300",
-      "price": 39.9,
-      "salePrice": 12.9,
-      "currency": "EUR",
-      "discountPct": 68,
-      "gender": "men",
-      "category": "Sweater"
-    },
-    {
       "id": "E478339-000",
       "source": "uniqlo-de-men",
       "name": "Soufflé Yarn Short Cardigan",
@@ -1485,6 +1485,19 @@
       "category": "Other"
     },
     {
+      "id": "E461013-000",
+      "source": "uniqlo-de-men",
+      "name": "HEATTECH Leggings",
+      "url": "https://www.uniqlo.com/de/en/products/E461013-000/01?colorDisplayCode=08",
+      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461013/item/goods_08_461013_3x4.jpg?width=300",
+      "price": 14.9,
+      "salePrice": 1.9,
+      "currency": "EUR",
+      "discountPct": 87,
+      "gender": "men",
+      "category": "Other"
+    },
+    {
       "id": "E483050-000",
       "source": "uniqlo-de-men",
       "name": "Drawstring Bag",
@@ -1520,19 +1533,6 @@
       "salePrice": 19.9,
       "currency": "EUR",
       "discountPct": 33,
-      "gender": "men",
-      "category": "Other"
-    },
-    {
-      "id": "E461013-000",
-      "source": "uniqlo-de-men",
-      "name": "HEATTECH Leggings",
-      "url": "https://www.uniqlo.com/de/en/products/E461013-000/01?colorDisplayCode=08",
-      "imageUrl": "https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/461013/item/goods_08_461013_3x4.jpg?width=300",
-      "price": 14.9,
-      "salePrice": 1.9,
-      "currency": "EUR",
-      "discountPct": 87,
       "gender": "men",
       "category": "Other"
     }
