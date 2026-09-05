@@ -4,19 +4,24 @@ name: EAS Update (OTA)
 # shared-package changes. OTA only reaches a build that embeds expo-updates at the
 # matching runtimeVersion (app.json runtimeVersion.policy: appVersion) — so a fresh
 # `eas build` is required once before updates land on installed apps.
+# Gated on CI rather than fired by the push directly: this ships to installed apps, so it must
+# never run ahead of the checks. `workflow_run` cannot filter by path, so the filter the old
+# `paths:` block provided is replicated below by diffing the commit that passed.
 on:
-  push:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
     branches: [main]
-    paths:
-      - "apps/mobile/**"
-      - "packages/**"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: eas-update-${{ github.ref }}
+  # Keyed on the COMMIT being published, never the ref. Every workflow_run event for main shares
+  # one ref, so a ref-keyed group makes consecutive merges cancel each other — and the survivor
+  # evaluates a DIFFERENT commit, so the cancelled one's changes are published by nothing.
+  group: eas-update-${{ github.event.workflow_run.head_sha || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -24,6 +29,20 @@ jobs:
     name: Publish OTA update
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    # Two gates, both load-bearing:
+    #
+    #   conclusion == 'success'  workflow_run fires whatever the triggering run concluded, so
+    #                            without this a RED CI run would still publish.
+    #   event == 'push'          `branches: [main]` filters the TRIGGERING RUN'S HEAD BRANCH,
+    #                            not "a push to our main". CI also runs on `pull_request`, so a
+    #                            fork PR from a branch named `main` matches it — and this job
+    #                            would then check out that fork's head_sha and publish their
+    #                            bundle to every installed app. A push to main needs write
+    #                            access; a fork PR never has it.
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push')
     steps:
       # Publishing the OTA IS the job — so a missing token is a hard failure, not a
       # silent green skip. (A skip-to-green here previously hid the fact that no OTA
@@ -38,27 +57,56 @@ jobs:
           fi
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # workflow_run checks out the default branch HEAD by default, which is not necessarily
+          # the commit that passed CI. Pin it. Depth 2 so the path filter below can diff.
+          ref: ${{ github.event.workflow_run.head_sha || github.ref }}
+          fetch-depth: 2
+          persist-credentials: false
+
+      # workflow_run has no paths filter, so replicate the old `paths:` gate by diffing the
+      # commit that passed. A manual dispatch always publishes.
+      - name: Did apps/mobile or packages change?
+        id: filter
+        run: |
+          if [ "$IS_DISPATCH" = "workflow_dispatch" ]; then
+            echo "manual dispatch — publishing"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          elif git diff --name-only HEAD~1 HEAD | grep -qE '^(apps/mobile|packages)/'; then
+            echo "app or shared package changed — publishing"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "no app changes in this commit — skipping OTA"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          IS_DISPATCH: ${{ github.event_name }}
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+        if: steps.filter.outputs.changed == 'true'
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        if: steps.filter.outputs.changed == 'true'
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .nvmrc
           cache: pnpm
 
       - name: Setup EAS
-        uses: expo/expo-github-action@v9
+        if: steps.filter.outputs.changed == 'true'
+        uses: expo/expo-github-action@eab7a230208c952974db8c3245cfd78402c7b385 # 9.0.0
         with:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
+        if: steps.filter.outputs.changed == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Publish update to the production channel
+        if: steps.filter.outputs.changed == 'true'
         working-directory: apps/mobile
         env:
           UPDATE_MSG: ${{ github.event.head_commit.message || format('Manual OTA from {0}', github.sha) }}
